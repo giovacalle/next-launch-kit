@@ -6,6 +6,7 @@ This is a starter template for [Next.js](https://nextjs.org/) projects with [Typ
   - 🛠 [Stack](#stack)
   - 🌱 [Branches](#branches)
   - 🧪 [Usage](#usage)
+  - 📚 [Resources](#resources)
 
 ## Stack
 
@@ -26,7 +27,8 @@ This is a starter template for [Next.js](https://nextjs.org/) projects with [Typ
 
 All branches are derived from the `base` branch: the idea is to divide the various topics by individual branch, and then merge all the features of the other branches into `main`.
 
-Right now you are in `base`: eslint, prettier, commitlint and tailwind-css base settings
+- `main`: entire project (you are here 😁)
+- `base`: eslint, prettier, commitlint and tailwind-css base settings
 
 ## Usage
 
@@ -34,3 +36,11 @@ Right now you are in `base`: eslint, prettier, commitlint and tailwind-css base 
 2. Run `pnpm install` to install dependencies
 3. Run `pnpm dev` to start the development server
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
+
+## Resources
+
+This project was inspired by:
+
+- [The Net Ninja's "Next.js Crash Course" YouTube video](https://www.youtube.com/watch?v=dLRKV-bajS4&t=2032s)
+- [Alan2207's Bulletproof React](https://github.com/alan2207/bulletproof-react)
+- [Airbnb's JavaScript Style Guide](https://github.com/airbnb/javascript/tree/master/react)
