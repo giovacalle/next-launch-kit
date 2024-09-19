@@ -1,0 +1,37 @@
+{
+  "name": "next-base",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "next": "14.2.12",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.12",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-check-file": "^2.8.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
