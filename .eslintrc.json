@@ -4,6 +4,7 @@
   "rules": {
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
+    "@typescript-eslint/no-empty-interface": "off",
     "check-file/no-index": "error",
     "check-file/filename-naming-convention": [
       "error",
