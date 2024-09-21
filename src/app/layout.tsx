@@ -4,8 +4,9 @@ import { Montserrat } from 'next/font/google';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 
-import '@/assets/globals.css';
 import { cn } from '@/lib/tailwind';
+
+import '@/assets/globals.css';
 
 export const metadata: Metadata = {
   title: 'Next.js Base Template',
