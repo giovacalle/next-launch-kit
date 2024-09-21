@@ -9,6 +9,7 @@
   "bracketSameLine": true,
   "endOfLine": "auto",
   "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tv"],
   "importOrder": [
     "^(react|next)/?(.*)$",
     "<THIRD_PARTY_MODULES>",
