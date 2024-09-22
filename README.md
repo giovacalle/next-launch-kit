@@ -29,6 +29,7 @@ All branches are derived from the `base` branch: the idea is to divide the vario
 
 - `main`: entire project (you are here 😁)
 - `base`: eslint, prettier, commitlint and tailwind-css base settings
+- `with-radix/shadcn`: UI components, icons, fonts,
 
 ## Usage
 
