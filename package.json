@@ -7,10 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "local-db:up": "docker compose -f ./src/db/local-db.yml up -d",
+    "local-db:down": "docker compose -f ./src/db/local-db.yml down"
   },
   "dependencies": {
+    "drizzle-orm": "^0.33.0",
     "next": "14.2.12",
+    "postgres": "3.3",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -22,6 +28,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
+    "drizzle-kit": "^0.24.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.12",
     "eslint-config-prettier": "^9.1.0",
