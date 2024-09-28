@@ -1,15 +1,58 @@
-import { pgEnum, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import {
+  index,
+  pgEnum,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  uniqueIndex,
+  uuid
+} from 'drizzle-orm/pg-core';
 
-const providers = pgEnum('auth_providers', ['email', 'google']);
+const providers = pgEnum('auth_providers', ['credentials', 'google', 'magic-link']);
 
-export const usersTable = pgTable('users', {
-  id: uuid('id').defaultRandom().primaryKey(),
-  provider: providers('provider').notNull(),
-  providerId: text('provideId').unique(),
-  email: text('email').notNull().unique(),
-  password_hash: text('password_hash'),
-  created_at: timestamp('created_at').defaultNow()
+export const usersTable = pgTable(
+  'users',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    provider: providers('provider').notNull(),
+    providerId: text('providerId').unique(),
+    email: text('email').notNull(),
+    password_hash: text('password_hash'),
+    verified_at: timestamp('verified_at'),
+    created_at: timestamp('created_at').defaultNow()
+  },
+  table => ({
+    userProviderEmailIdx: uniqueIndex('users_provider_email_idx').on(table.provider, table.email)
+  })
+);
+
+export const usersProfileTable = pgTable('users_profile', {
+  user_id: uuid('user_id')
+    .notNull()
+    .references(() => usersTable.id, {
+      onDelete: 'cascade'
+    })
+    .primaryKey(),
+  name: text('name').notNull(),
+  surname: text('surname'),
+  avatar: text('avatar')
 });
+
+export const emailVerificationTokens = pgTable(
+  'email_verification_tokens',
+  {
+    user_id: uuid('user_id')
+      .notNull()
+      .references(() => usersTable.id, { onDelete: 'cascade' })
+      .primaryKey(),
+    token: text('token').notNull(),
+    expires_at: timestamp('expires_at').notNull()
+  },
+  table => ({
+    emailVerificationTokenIdx: index('email_verification_tokens_token_idx').on(table.token)
+  })
+);
 
 export const sessionsTable = pgTable('sessions', {
   id: text('id').primaryKey(),
@@ -21,3 +64,25 @@ export const sessionsTable = pgTable('sessions', {
   expiresAt: timestamp('expires_at').notNull(), // camelCased because it is required by the Lucia package
   created_at: timestamp('created_at').defaultNow()
 });
+
+export const magicLinks = pgTable(
+  'magic_links',
+  {
+    id: serial('id').primaryKey(),
+    user_id: uuid('user_id')
+      .notNull()
+      .references(() => usersTable.id, { onDelete: 'cascade' }),
+    token: text('token'),
+    expires_at: timestamp('expires_at').notNull(),
+    usedAt: timestamp('used_at')
+  },
+  table => ({
+    magicLinkTokenIdx: index('magic_links_token_idx').on(table.token)
+  })
+);
+
+export type User = typeof usersTable.$inferSelect;
+export type UserProfile = typeof usersProfileTable.$inferSelect;
+export type EmailVerificationToken = typeof emailVerificationTokens.$inferSelect;
+export type Session = typeof sessionsTable.$inferSelect;
+export type MagicLink = typeof magicLinks.$inferSelect;
