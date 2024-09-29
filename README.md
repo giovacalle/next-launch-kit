@@ -1,8 +1,8 @@
-# Next Base
+# Next launch kit
 
 This is a starter template for [Next.js](https://nextjs.org/) projects with [TypeScript](https://www.typescriptlang.org/).
 
-- 🏁 [Next Base](#next-base)
+- 🏁 [Next launch kit](#title)
   - 🛠 [Stack](#stack)
   - 🌱 [Branches](#branches)
   - 🧪 [Usage](#usage)
