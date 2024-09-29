@@ -5,9 +5,9 @@ services:
     image: postgres:14
     container_name: postgres-db
     environment:
-      POSTGRES_USER: next-base-user
-      POSTGRES_PASSWORD: next-base-password
-      POSTGRES_DB: next-base-db
+      POSTGRES_USER: next-launch-kit-user
+      POSTGRES_PASSWORD: next-launch-kit-password
+      POSTGRES_DB: next-launch-kit-db
     ports:
       - '5432:5432'
     volumes:
