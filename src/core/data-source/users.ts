@@ -5,7 +5,7 @@ import { UserId } from '@/core/types';
 import { db } from '@/db/config';
 import { User, usersTable } from '@/db/schema';
 
-const hashPassword = async (password: string) => {
+async function hashPassword(password: string) {
   return await hash(password, {
     // recommended minimum parameters from Lucia docs
     memoryCost: 19456,
@@ -13,15 +13,15 @@ const hashPassword = async (password: string) => {
     outputLen: 32,
     parallelism: 1
   });
-};
+}
 
-export const getUserByEmail = async (email: string) => {
+export async function getUserByEmail(email: string) {
   return await db.query.usersTable.findFirst({
     where: eq(usersTable.email, email)
   });
-};
+}
 
-export const createUserWithCredentials = async (email: string, password: string) => {
+export async function createUserWithCredentials(email: string, password: string) {
   const hashedPassword = await hashPassword(password);
   const [user] = await db
     .insert(usersTable)
@@ -32,8 +32,12 @@ export const createUserWithCredentials = async (email: string, password: string)
     })
     .returning();
   return user;
-};
+}
 
-export const updateUser = async (userId: UserId, data: Omit<Partial<User>, 'id'>) => {
+export async function updateUser(userId: UserId, data: Omit<Partial<User>, 'id'>) {
   await db.update(usersTable).set(data).where(eq(usersTable.id, userId));
-};
+}
+
+export async function verifyPassword(password: string, passwordHash: string) {
+  return (await hashPassword(password)) === passwordHash;
+}

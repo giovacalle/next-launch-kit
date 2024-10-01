@@ -4,7 +4,12 @@ import {
   deleteVerifyEmailToken,
   getVerifyEmailToken
 } from '@/core/data-source/email-verification-tokens';
-import { createUserWithCredentials, getUserByEmail, updateUser } from '@/core/data-source/users';
+import {
+  createUserWithCredentials,
+  getUserByEmail,
+  updateUser,
+  verifyPassword
+} from '@/core/data-source/users';
 import { createUserProfile } from '@/core/data-source/users-profile';
 import VerifyEmail from '@/emails/verify-email';
 import { sendEmail } from '@/lib/email';
@@ -42,4 +47,20 @@ export async function verifyEmailUseCase(token: string) {
   await deleteVerifyEmailToken(token);
 
   return verificationToken.user_id;
+}
+
+export async function signInUseCase(email: string, password: string) {
+  const user = await getUserByEmail(email);
+
+  if (!user) throw new Error('Email/password not valid or not verified (check your email)');
+
+  if (!user.verified_at)
+    throw new Error('Email/password not valid or not verified (check your email)');
+
+  const isPasswordValid = await verifyPassword(password, user.password_hash!);
+
+  if (!isPasswordValid)
+    throw new Error('Email/password not valid or not verified (check your email)');
+
+  return { id: user.id };
 }
