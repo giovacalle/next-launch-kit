@@ -39,7 +39,7 @@ export const usersProfileTable = pgTable('users_profile', {
   avatar: text('avatar')
 });
 
-export const emailVerificationTokens = pgTable(
+export const emailVerificationTokensTable = pgTable(
   'email_verification_tokens',
   {
     user_id: uuid('user_id')
@@ -83,6 +83,6 @@ export const magicLinks = pgTable(
 
 export type User = typeof usersTable.$inferSelect;
 export type UserProfile = typeof usersProfileTable.$inferSelect;
-export type EmailVerificationToken = typeof emailVerificationTokens.$inferSelect;
+export type EmailVerificationToken = typeof emailVerificationTokensTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;
 export type MagicLink = typeof magicLinks.$inferSelect;

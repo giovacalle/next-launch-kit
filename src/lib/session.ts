@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 
-import { lucia, validateRequest } from '@/auth';
 import { UserId } from '@/core/types';
+import { lucia, validateRequest } from '@/lib/auth';
 
 export async function setSession(userId: UserId) {
   const session = await lucia.createSession(userId, {});
@@ -15,3 +15,9 @@ export const getCurrentUser = cache(async () => {
   if (!session.user) return undefined;
   return session.user;
 });
+
+export const getAuthenticatedUser = async () => {
+  const user = await getCurrentUser();
+  if (!user) throw new Error('Not authenticated');
+  return user;
+};
