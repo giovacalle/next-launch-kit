@@ -25,7 +25,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: '/sign-up/verify-email'
+        Location: '/sign-up/verify-email/?verified=true'
       }
     });
   } catch (err) {

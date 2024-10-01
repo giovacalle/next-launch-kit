@@ -35,7 +35,7 @@ export default function VerifyEmail({ token }: { token: string }) {
                 </Text>
                 <Text className="text-base font-medium">
                   <Link
-                    href={`${BASE_URL}/api/login/verify-email?token=${token}`}
+                    href={`${BASE_URL}/api/auth/verify-email/?token=${token}`}
                     target="_blank"
                     className="text-[#2754C5]">
                     Confirm registration
