@@ -21,6 +21,12 @@ export async function getUserByEmail(email: string) {
   });
 }
 
+export async function getUserById(userId: UserId) {
+  return await db.query.usersTable.findFirst({
+    where: eq(usersTable.id, userId)
+  });
+}
+
 export async function createUserWithCredentials(email: string, password: string) {
   const hashedPassword = await hashPassword(password);
   const [user] = await db
