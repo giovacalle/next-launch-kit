@@ -30,6 +30,18 @@ export async function GET(request: NextRequest): Promise<Response> {
     });
   } catch (err) {
     console.error(err);
+
+    if (err instanceof Error) {
+      if (err.message === 'Token expired') {
+        return new Response(null, {
+          status: 302,
+          headers: {
+            Location: '/sign-up/verify-email'
+          }
+        });
+      }
+    }
+
     return new Response(null, {
       status: 302,
       headers: {

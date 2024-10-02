@@ -7,6 +7,7 @@ import {
 import {
   createUserWithCredentials,
   getUserByEmail,
+  getUserById,
   updateUser,
   verifyPassword
 } from '@/core/data-source/users';
@@ -30,7 +31,6 @@ export async function createUserWithCredentialsUseCase(
   await createUserProfile(newUser.id, name, surname);
 
   const token = await createEmailVerificationToken(newUser.id);
-
   await sendEmail(email, `Verify your email for ${applicationName}`, VerifyEmail({ token }));
 
   return { id: newUser.id };
@@ -41,7 +41,17 @@ export async function verifyEmailUseCase(token: string) {
 
   if (!verificationToken) throw new Error('Invalid token');
 
-  if (verificationToken.expires_at < new Date()) throw new Error('Token expired');
+  if (verificationToken.expires_at < new Date()) {
+    // since token is expired, we need to send a new one (otherwise, the user will not be able to access the app)
+    const user = await getUserById(verificationToken.user_id);
+    if (!user) throw new Error('Impossible to re-send verification email');
+    if (user.verified_at) throw new Error('User already verified');
+
+    const token = await createEmailVerificationToken(user.id);
+    await sendEmail(user.email, `Verify your email for ${applicationName}`, VerifyEmail({ token }));
+
+    throw new Error('Token expired');
+  }
 
   await updateUser(verificationToken.user_id, { verified_at: new Date() });
   await deleteVerifyEmailToken(token);
