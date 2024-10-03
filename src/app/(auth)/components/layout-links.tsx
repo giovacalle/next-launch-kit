@@ -52,7 +52,7 @@ export function LayoutLinks() {
     );
   }
 
-  if (pathname === '/forgot-password') {
+  if (pathname === '/sign-in/forgot-password') {
     return (
       <>
         <hr />

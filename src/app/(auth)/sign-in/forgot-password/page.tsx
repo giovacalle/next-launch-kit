@@ -1,24 +1,23 @@
 'use client';
 
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useServerAction } from 'zsa-react';
 
-import { signInAction } from './actions/sign-in';
-import { SignInSchema, signInSchema } from './types/schema';
+import { forgotPasswordAction } from './actions/forgot-password';
+import { ForgotPasswordSchema, forgotPasswordSchema } from './types/schema';
 
-export default function Signin() {
+export default function ForgotPassword() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<SignInSchema>({
-    resolver: zodResolver(signInSchema)
+  } = useForm<ForgotPasswordSchema>({
+    resolver: zodResolver(forgotPasswordSchema)
   });
 
-  const { isPending, execute, error } = useServerAction(signInAction, {
+  const { isPending, execute, error } = useServerAction(forgotPasswordAction, {
     onError: ({ err }) => {
       alert(`Error: ${err.message}`);
     }
@@ -26,7 +25,7 @@ export default function Signin() {
 
   return (
     <div>
-      <h1 className="mb-2 text-2xl font-bold">Sign-in</h1>
+      <h1 className="mb-2 text-2xl font-bold">Forgot password</h1>
       {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <form onSubmit={handleSubmit(data => execute(data))} className="flex flex-col gap-3">
         <input type="hidden" value="" {...register('accept')} />
@@ -42,27 +41,10 @@ export default function Signin() {
           />
           {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-wrap items-end gap-2">
-            <label htmlFor="password" className="text-sm">
-              Password
-            </label>
-            <Link href="/sign-in/forgot-password" className="ml-auto text-center text-sm underline">
-              Forgot password?
-            </Link>
-          </div>
-          <input
-            type="password"
-            id="password"
-            className="rounded-md bg-slate-200 p-2 text-black"
-            {...register('password')}
-          />
-          {errors.password && <p className="text-red-500">{errors.password.message}</p>}
-        </div>
         <button
           disabled={isPending}
           className="col-span-full rounded-md bg-blue-600 p-2 text-white hover:bg-blue-500">
-          {isPending ? 'Loading...' : 'Sign in'}
+          {isPending ? 'Loading...' : 'Reset password'}
         </button>
       </form>
     </div>
