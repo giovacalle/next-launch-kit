@@ -5,15 +5,25 @@ import {
   getVerifyEmailToken
 } from '@/core/data-source/email-verification-tokens';
 import {
+  createPasswordResetToken,
+  deletePasswordResetToken,
+  getPasswordResetToken
+} from '@/core/data-source/password-reset-tokens';
+import {
   createUserWithCredentials,
   getUserByEmail,
   getUserById,
+  updatePassword,
   updateUser,
   verifyPassword
 } from '@/core/data-source/users';
 import { createUserProfile } from '@/core/data-source/users-profile';
+import { dbTransaction } from '@/core/utils';
+import ResetPasswordEmail from '@/emails/reset-password';
 import VerifyEmail from '@/emails/verify-email';
 import { sendEmail } from '@/lib/email';
+
+import { deleteSessionsByUserId } from '../data-source/sessions';
 
 export async function createUserWithCredentialsUseCase(
   email: string,
@@ -73,4 +83,32 @@ export async function signInUseCase(email: string, password: string) {
     throw new Error('Email/password not valid or not verified (check your email)');
 
   return { id: user.id };
+}
+
+export async function resetPasswordUseCase(email: string) {
+  const user = await getUserByEmail(email);
+
+  if (!user) return null;
+
+  const token = await createPasswordResetToken(user.id);
+
+  await sendEmail(
+    email,
+    `Reset your password for ${applicationName}`,
+    ResetPasswordEmail({ token })
+  );
+}
+
+export async function changePasswordUseCase(token: string, password: string) {
+  const passwordResetToken = await getPasswordResetToken(token);
+
+  if (!passwordResetToken) throw new Error('Invalid token or expired');
+
+  if (passwordResetToken.expires_at < new Date()) throw new Error('Token expired');
+
+  await dbTransaction(async tx => {
+    await deletePasswordResetToken(token, tx);
+    await updatePassword(passwordResetToken.user_id, password, tx);
+    await deleteSessionsByUserId(passwordResetToken.user_id, tx);
+  });
 }

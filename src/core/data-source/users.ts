@@ -1,5 +1,5 @@
 import { hash } from '@node-rs/argon2';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 
 import { UserId } from '@/core/types';
 import { db } from '@/db/config';
@@ -42,6 +42,14 @@ export async function createUserWithCredentials(email: string, password: string)
 
 export async function updateUser(userId: UserId, data: Omit<Partial<User>, 'id'>) {
   await db.update(usersTable).set(data).where(eq(usersTable.id, userId));
+}
+
+export async function updatePassword(userId: UserId, password: string, tx = db) {
+  const hashedPassword = await hashPassword(password);
+  await tx
+    .update(usersTable)
+    .set({ password_hash: hashedPassword })
+    .where(and(eq(usersTable.id, userId), eq(usersTable.provider, 'credentials')));
 }
 
 export async function verifyPassword(password: string, passwordHash: string) {

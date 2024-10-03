@@ -54,6 +54,21 @@ export const emailVerificationTokensTable = pgTable(
   })
 );
 
+export const passwordResetTokensTable = pgTable(
+  'password_reset_tokens',
+  {
+    user_id: uuid('user_id')
+      .notNull()
+      .references(() => usersTable.id, { onDelete: 'cascade' })
+      .primaryKey(),
+    token: text('token').notNull(),
+    expires_at: timestamp('expires_at').notNull()
+  },
+  table => ({
+    passwordResetTokenIdx: index('password_reset_tokens_token_idx').on(table.token)
+  })
+);
+
 export const sessionsTable = pgTable('sessions', {
   id: text('id').primaryKey(),
   userId: uuid('user_id')
@@ -84,5 +99,6 @@ export const magicLinks = pgTable(
 export type User = typeof usersTable.$inferSelect;
 export type UserProfile = typeof usersProfileTable.$inferSelect;
 export type EmailVerificationToken = typeof emailVerificationTokensTable.$inferSelect;
+export type PasswordResetToken = typeof passwordResetTokensTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;
 export type MagicLink = typeof magicLinks.$inferSelect;
