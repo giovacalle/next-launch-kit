@@ -16,7 +16,7 @@ export function LayoutLinks() {
           Google
         </Link>
         <Link
-          href="/magic-link"
+          href="/sign-in/magic-link"
           className="flex-1 rounded-md bg-orange-300 p-2 text-center text-black hover:bg-orange-200">
           Magic Link
         </Link>
@@ -66,7 +66,7 @@ export function LayoutLinks() {
     );
   }
 
-  if (pathname === '/magic-link') {
+  if (pathname === '/sign-in/magic-link') {
     return (
       <>
         <hr />
