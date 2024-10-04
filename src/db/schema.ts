@@ -1,13 +1,4 @@
-import {
-  index,
-  pgEnum,
-  pgTable,
-  serial,
-  text,
-  timestamp,
-  uniqueIndex,
-  uuid
-} from 'drizzle-orm/pg-core';
+import { index, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 const providers = pgEnum('auth_providers', ['credentials', 'google', 'magic-link']);
 
@@ -80,16 +71,16 @@ export const sessionsTable = pgTable('sessions', {
   created_at: timestamp('created_at').defaultNow()
 });
 
-export const magicLinks = pgTable(
+export const magicLinksTable = pgTable(
   'magic_links',
   {
-    id: serial('id').primaryKey(),
     user_id: uuid('user_id')
       .notNull()
-      .references(() => usersTable.id, { onDelete: 'cascade' }),
-    token: text('token'),
+      .references(() => usersTable.id, { onDelete: 'cascade' })
+      .primaryKey(),
+    token: text('token').notNull(),
     expires_at: timestamp('expires_at').notNull(),
-    usedAt: timestamp('used_at')
+    used_at: timestamp('used_at')
   },
   table => ({
     magicLinkTokenIdx: index('magic_links_token_idx').on(table.token)
@@ -101,4 +92,4 @@ export type UserProfile = typeof usersProfileTable.$inferSelect;
 export type EmailVerificationToken = typeof emailVerificationTokensTable.$inferSelect;
 export type PasswordResetToken = typeof passwordResetTokensTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;
-export type MagicLink = typeof magicLinks.$inferSelect;
+export type MagicLink = typeof magicLinksTable.$inferSelect;

@@ -40,6 +40,17 @@ export async function createUserWithCredentials(email: string, password: string)
   return user;
 }
 
+export async function createUserWithMagicLink(email: string) {
+  const [user] = await db
+    .insert(usersTable)
+    .values({
+      provider: 'magic-link',
+      email
+    })
+    .returning();
+  return user;
+}
+
 export async function updateUser(userId: UserId, data: Omit<Partial<User>, 'id'>) {
   await db.update(usersTable).set(data).where(eq(usersTable.id, userId));
 }
