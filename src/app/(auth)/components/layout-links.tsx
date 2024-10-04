@@ -11,7 +11,7 @@ export function LayoutLinks() {
       <p className="text-center">or with</p>
       <div className="flex gap-2 max-sm:flex-col">
         <Link
-          href="#"
+          href="/api/auth/google"
           className="flex-1 rounded-md bg-blue-600 p-2 text-center text-white hover:bg-blue-500">
           Google
         </Link>

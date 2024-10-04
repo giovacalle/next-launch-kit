@@ -19,6 +19,7 @@
     "@lucia-auth/adapter-drizzle": "^1.1.0",
     "@node-rs/argon2": "^1.8.3",
     "@react-email/components": "0.0.25",
+    "arctic": "^1.9.2",
     "drizzle-orm": "^0.33.0",
     "lucia": "^3.2.0",
     "next": "14.2.12",

@@ -27,6 +27,12 @@ export async function getUserById(userId: UserId) {
   });
 }
 
+export async function getUserByGoogleId(googleId: string) {
+  return await db.query.usersTable.findFirst({
+    where: and(eq(usersTable.providerId, googleId), eq(usersTable.provider, 'google'))
+  });
+}
+
 export async function createUserWithCredentials(email: string, password: string) {
   const hashedPassword = await hashPassword(password);
   const [user] = await db
@@ -47,6 +53,19 @@ export async function createUserWithMagicLink(email: string) {
       provider: 'magic-link',
       email
     })
+    .returning();
+  return user;
+}
+
+export async function createUserWithGoogle(googleId: string, email: string) {
+  const [user] = await db
+    .insert(usersTable)
+    .values({
+      provider: 'google',
+      providerId: googleId,
+      email
+    })
+    .onConflictDoNothing()
     .returning();
   return user;
 }
