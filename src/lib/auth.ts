@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
+import { Google } from 'arctic';
 import { Lucia } from 'lucia';
 import { User } from 'lucia';
 import { Session } from 'lucia';
@@ -9,6 +10,12 @@ import { db } from '@/db/config';
 import { sessionsTable, usersTable } from '@/db/schema';
 
 const adapter = new DrizzlePostgreSQLAdapter(db, sessionsTable, usersTable);
+
+export const google = new Google(
+  process.env.GOOGLE_CLIENT_ID!,
+  process.env.GOOGLE_CLIENT_SECRET!,
+  `${process.env.BASE_URL}/api/auth/google/callback`
+);
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {

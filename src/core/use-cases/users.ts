@@ -13,6 +13,7 @@ import {
 import { deleteSessionsByUserId } from '@/core/data-source/sessions';
 import {
   createUserWithCredentials,
+  createUserWithGoogle,
   createUserWithMagicLink,
   getUserByEmail,
   getUserById,
@@ -20,7 +21,8 @@ import {
   updateUser,
   verifyPassword
 } from '@/core/data-source/users';
-import { createUserProfile } from '@/core/data-source/users-profile';
+import { createUserProfile, upsertUserProfile } from '@/core/data-source/users-profile';
+import { GoogleUser } from '@/core/types';
 import { dbTransaction } from '@/core/utils';
 import MagicLinkEmail from '@/emails/magic-link';
 import ResetPasswordEmail from '@/emails/reset-password';
@@ -63,6 +65,14 @@ export async function createUserWithMagicLinkUseCase(email: string) {
   await sendEmail(email, `Your magic login link for ${applicationName}`, MagicLinkEmail({ token }));
 
   return { id: newUser.id };
+}
+
+export async function createUserWithGoogleUseCase(googleUser: GoogleUser) {
+  const user = await createUserWithGoogle(googleUser.sub, googleUser.email);
+
+  await upsertUserProfile(user.id, { name: googleUser.name, avatar: googleUser.picture });
+
+  return user.id;
 }
 
 export async function verifyEmailUseCase(token: string) {
@@ -130,4 +140,8 @@ export async function changePasswordUseCase(token: string, password: string) {
     await updatePassword(passwordResetToken.user_id, password, tx);
     await deleteSessionsByUserId(passwordResetToken.user_id, tx);
   });
+}
+
+export async function getUserByGoogleIdUseCase(googleId: string) {
+  return await getUserByGoogleIdUseCase(googleId);
 }
