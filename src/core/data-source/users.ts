@@ -29,7 +29,7 @@ export async function getUserById(userId: UserId) {
 
 export async function getUserByGoogleId(googleId: string) {
   return await db.query.usersTable.findFirst({
-    where: and(eq(usersTable.providerId, googleId), eq(usersTable.provider, 'google'))
+    where: and(eq(usersTable.provider_id, googleId), eq(usersTable.provider, 'google'))
   });
 }
 
@@ -62,7 +62,7 @@ export async function createUserWithGoogle(googleId: string, email: string) {
     .insert(usersTable)
     .values({
       provider: 'google',
-      providerId: googleId,
+      provider_id: googleId,
       email
     })
     .onConflictDoNothing()
