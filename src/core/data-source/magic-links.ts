@@ -7,7 +7,7 @@ import { magicLinksTable } from '@/db/schema';
 
 import { MAGIC_LINK_TOKEN_EXPIRES_IN, MAGIC_LINK_TOKEN_LENGTH } from '../consts';
 
-export async function createMagicLink(userId: UserId) {
+export async function upsertMagicLink(userId: UserId) {
   const token = await generateRandomToken(MAGIC_LINK_TOKEN_LENGTH);
   const expiresAt = new Date(Date.now() + MAGIC_LINK_TOKEN_EXPIRES_IN);
 

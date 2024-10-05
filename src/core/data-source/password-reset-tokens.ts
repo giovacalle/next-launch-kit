@@ -6,7 +6,7 @@ import { generateRandomToken } from '@/core/utils';
 import { db } from '@/db/config';
 import { passwordResetTokensTable } from '@/db/schema';
 
-export async function createPasswordResetToken(userId: UserId) {
+export async function upsertPasswordResetToken(userId: UserId) {
   const token = await generateRandomToken(PASSWORD_RESET_TOKEN_LENGTH);
   const expiresAt = new Date(Date.now() + PASSWORD_RESET_TOKEN_EXPIRES_IN);
 

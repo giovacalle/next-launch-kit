@@ -9,7 +9,7 @@ import { generateRandomToken } from '@/core/utils';
 import { db } from '@/db/config';
 import { emailVerificationTokensTable } from '@/db/schema';
 
-export async function createEmailVerificationToken(userId: UserId) {
+export async function upsertEmailVerificationToken(userId: UserId) {
   const token = await generateRandomToken(EMAIL_VERIFICATION_TOKEN_LENGTH);
   const expiresAt = new Date(Date.now() + EMAIL_VERIFICATION_TOKEN_EXPIRES_IN);
 
