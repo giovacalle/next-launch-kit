@@ -12,5 +12,5 @@ export async function sendEmail(email: string, subject: string, body: ReactNode)
     react: body
   });
 
-  if (error) throw error;
+  if (error) throw new Error(error.message);
 }

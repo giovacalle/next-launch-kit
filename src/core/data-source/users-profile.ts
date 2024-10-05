@@ -1,13 +1,21 @@
+import { eq } from 'drizzle-orm';
+
 import { UserId } from '@/core/types';
 import { db } from '@/db/config';
 import { UserProfile, usersProfileTable } from '@/db/schema';
 
-export const createUserProfile = async (
+export async function getUserProfile(userId: UserId) {
+  return await db.query.usersProfileTable.findFirst({
+    where: eq(usersProfileTable.user_id, userId)
+  });
+}
+
+export async function createUserProfile(
   userId: UserId,
   name: string,
   surname?: string,
   avatar?: string
-) => {
+) {
   const [userProfile] = await db
     .insert(usersProfileTable)
     .values({
@@ -19,12 +27,12 @@ export const createUserProfile = async (
     .onConflictDoNothing()
     .returning();
   return userProfile;
-};
+}
 
-export const upsertUserProfile = async (
+export async function upsertUserProfile(
   userId: UserId,
   profile: Partial<UserProfile> & Required<Pick<UserProfile, 'name'>>
-) => {
+) {
   await db
     .insert(usersProfileTable)
     .values({
@@ -35,4 +43,4 @@ export const upsertUserProfile = async (
       target: usersProfileTable.user_id,
       set: profile
     });
-};
+}
