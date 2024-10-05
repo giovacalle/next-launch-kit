@@ -106,7 +106,7 @@ export async function signInUseCase(email: string, password: string) {
   if (!user.verified_at)
     throw new Error('Email/password not valid or not verified (check your email)');
 
-  const isPasswordValid = await verifyPassword(password, user.password_hash!);
+  const isPasswordValid = await verifyPassword(user.password_hash!, password);
 
   if (!isPasswordValid)
     throw new Error('Email/password not valid or not verified (check your email)');

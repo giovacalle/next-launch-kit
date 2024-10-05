@@ -1,4 +1,4 @@
-import { hash } from '@node-rs/argon2';
+import { hash, verify } from '@node-rs/argon2';
 import { and, eq } from 'drizzle-orm';
 
 import { UserId } from '@/core/types';
@@ -7,6 +7,16 @@ import { User, usersTable } from '@/db/schema';
 
 async function hashPassword(password: string) {
   return await hash(password, {
+    // recommended minimum parameters from Lucia docs
+    memoryCost: 19456,
+    timeCost: 2,
+    outputLen: 32,
+    parallelism: 1
+  });
+}
+
+export async function verifyPassword(passwordHash: string, password: string) {
+  return await verify(passwordHash, password, {
     // recommended minimum parameters from Lucia docs
     memoryCost: 19456,
     timeCost: 2,
@@ -80,8 +90,4 @@ export async function updatePassword(userId: UserId, password: string, tx = db) 
     .update(usersTable)
     .set({ password_hash: hashedPassword })
     .where(and(eq(usersTable.id, userId), eq(usersTable.provider, 'credentials')));
-}
-
-export async function verifyPassword(password: string, passwordHash: string) {
-  return (await hashPassword(password)) === passwordHash;
 }
