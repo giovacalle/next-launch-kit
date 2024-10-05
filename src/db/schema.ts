@@ -1,13 +1,13 @@
 import { index, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
-const providers = pgEnum('auth_providers', ['credentials', 'google', 'magic-link']);
+export const providersEnum = pgEnum('user_provider', ['credentials', 'google', 'magic-link']);
 
 export const usersTable = pgTable(
   'users',
   {
     id: uuid('id').defaultRandom().primaryKey(),
-    provider: providers('provider').notNull(),
-    providerId: text('providerId').unique(),
+    provider: providersEnum('provider').notNull(),
+    provider_id: text('provider_id').unique(),
     email: text('email').notNull(),
     password_hash: text('password_hash'),
     verified_at: timestamp('verified_at'),
