@@ -49,7 +49,6 @@ export async function createUserProviderWithCredentials(userId: UserId, password
       provider: 'credentials',
       password_hash: hashedPassword
     })
-    .onConflictDoNothing()
     .returning();
   return userProvider;
 }
