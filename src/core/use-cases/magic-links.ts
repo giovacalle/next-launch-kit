@@ -1,6 +1,7 @@
 import { dbTransaction } from '@/core//utils';
 import { deleteMagicLink, getMagicLink, updateUsedAt } from '@/core/data-source/magic-links';
-import { updateUser } from '@/core/data-source/users';
+
+import { updateUserProvider } from '../data-source/users-providers';
 
 export async function signInUseCase(token: string) {
   const magicLink = await getMagicLink(token);
@@ -19,7 +20,8 @@ export async function signInUseCase(token: string) {
       isolationLevel: 'serializable'
     }
   );
-  await updateUser(magicLink.user_id, { verified_at: new Date() });
+
+  await updateUserProvider(magicLink.user_id, 'credentials', { verified_at: new Date() });
   await deleteMagicLink(token);
 
   return { id: magicLink.user_id };
