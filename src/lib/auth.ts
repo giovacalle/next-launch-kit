@@ -19,6 +19,7 @@ export const google = new Google(
 
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
+    name: 'auth-session',
     expires: false,
     attributes: {
       secure: process.env.NODE_ENV === 'production',
