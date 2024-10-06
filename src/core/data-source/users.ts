@@ -1,29 +1,8 @@
-import { hash, verify } from '@node-rs/argon2';
-import { and, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 
 import { UserId } from '@/core/types';
 import { db } from '@/db/config';
 import { User, usersTable } from '@/db/schema';
-
-async function hashPassword(password: string) {
-  return await hash(password, {
-    // recommended minimum parameters from Lucia docs
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1
-  });
-}
-
-export async function verifyPassword(passwordHash: string, password: string) {
-  return await verify(passwordHash, password, {
-    // recommended minimum parameters from Lucia docs
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1
-  });
-}
 
 export async function getUserByEmail(email: string) {
   return await db.query.usersTable.findFirst({
@@ -37,57 +16,16 @@ export async function getUserById(userId: UserId) {
   });
 }
 
-export async function getUserByGoogleId(googleId: string) {
-  return await db.query.usersTable.findFirst({
-    where: and(eq(usersTable.provider_id, googleId), eq(usersTable.provider, 'google'))
-  });
-}
-
-export async function createUserWithCredentials(email: string, password: string) {
-  const hashedPassword = await hashPassword(password);
+export async function createUser(email: string) {
   const [user] = await db
     .insert(usersTable)
     .values({
-      provider: 'credentials',
-      email,
-      password_hash: hashedPassword
-    })
-    .returning();
-  return user;
-}
-
-export async function createUserWithMagicLink(email: string) {
-  const [user] = await db
-    .insert(usersTable)
-    .values({
-      provider: 'magic-link',
       email
     })
-    .returning();
-  return user;
-}
-
-export async function createUserWithGoogle(googleId: string, email: string) {
-  const [user] = await db
-    .insert(usersTable)
-    .values({
-      provider: 'google',
-      provider_id: googleId,
-      email
-    })
-    .onConflictDoNothing()
     .returning();
   return user;
 }
 
 export async function updateUser(userId: UserId, data: Omit<Partial<User>, 'id'>) {
   await db.update(usersTable).set(data).where(eq(usersTable.id, userId));
-}
-
-export async function updatePassword(userId: UserId, password: string, tx = db) {
-  const hashedPassword = await hashPassword(password);
-  await tx
-    .update(usersTable)
-    .set({ password_hash: hashedPassword })
-    .where(and(eq(usersTable.id, userId), eq(usersTable.provider, 'credentials')));
 }

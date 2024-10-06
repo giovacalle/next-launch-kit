@@ -1,20 +1,28 @@
-import { index, pgEnum, pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
+import { index, pgEnum, pgTable, primaryKey, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+
+export const usersTable = pgTable('users', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  email: text('email').unique().notNull()
+});
 
 export const providersEnum = pgEnum('user_provider', ['credentials', 'google', 'magic-link']);
-
-export const usersTable = pgTable(
-  'users',
+export const usersProvidersTable = pgTable(
+  'users_providers',
   {
-    id: uuid('id').defaultRandom().primaryKey(),
+    user_id: uuid('user_id')
+      .notNull()
+      .references(() => usersTable.id, {
+        onDelete: 'cascade'
+      }),
     provider: providersEnum('provider').notNull(),
     provider_id: text('provider_id').unique(),
-    email: text('email').notNull(),
     password_hash: text('password_hash'),
     verified_at: timestamp('verified_at'),
     created_at: timestamp('created_at').defaultNow()
   },
   table => ({
-    userProviderEmailIdx: uniqueIndex('users_provider_email_idx').on(table.provider, table.email)
+    pk: primaryKey({ columns: [table.user_id, table.provider] }),
+    userIdProviderIdx: index('users_provider_id_provider_idx').on(table.user_id, table.provider)
   })
 );
 
@@ -88,6 +96,8 @@ export const magicLinksTable = pgTable(
 );
 
 export type User = typeof usersTable.$inferSelect;
+export type Provider = (typeof providersEnum.enumValues)[number];
+export type UserProvider = typeof usersProvidersTable.$inferSelect;
 export type UserProfile = typeof usersProfileTable.$inferSelect;
 export type EmailVerificationToken = typeof emailVerificationTokensTable.$inferSelect;
 export type PasswordResetToken = typeof passwordResetTokensTable.$inferSelect;

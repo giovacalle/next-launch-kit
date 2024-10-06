@@ -3,7 +3,7 @@ import { NextRequest } from 'next/server';
 
 import { OAuth2RequestError } from 'arctic';
 
-import { getUserByGoogleId } from '@/core/data-source/users';
+import { getUserProviderWithGoogleId } from '@/core/data-source/users-providers';
 import { GoogleUser } from '@/core/types';
 import { createUserWithGoogleUseCase } from '@/core/use-cases/users';
 import { google } from '@/lib/auth';
@@ -30,10 +30,10 @@ export async function GET(request: NextRequest): Promise<Response> {
     });
     const googleUser = (await googleResponse.json()) as GoogleUser;
 
-    const user = await getUserByGoogleId(googleUser.sub);
+    const user = await getUserProviderWithGoogleId(googleUser.sub);
 
     if (user) {
-      await setSession(user.id);
+      await setSession(user.user_id);
       return new Response(null, {
         status: 302,
         headers: {
@@ -42,9 +42,9 @@ export async function GET(request: NextRequest): Promise<Response> {
       });
     }
 
-    const userId = await createUserWithGoogleUseCase(googleUser);
+    const { id } = await createUserWithGoogleUseCase(googleUser);
 
-    await setSession(userId);
+    await setSession(id);
     return new Response(null, {
       status: 302,
       headers: {
