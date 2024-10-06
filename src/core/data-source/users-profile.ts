@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm';
 
 import { UserId } from '@/core/types';
 import { db } from '@/db/config';
-import { UserProfile, usersProfileTable } from '@/db/schema';
+import { usersProfileTable } from '@/db/schema';
 
 export async function getUserProfile(userId: UserId) {
   return await db.query.usersProfileTable.findFirst({
@@ -27,20 +27,4 @@ export async function createUserProfile(
     .onConflictDoNothing()
     .returning();
   return userProfile;
-}
-
-export async function upsertUserProfile(
-  userId: UserId,
-  profile: Partial<UserProfile> & Required<Pick<UserProfile, 'name'>>
-) {
-  await db
-    .insert(usersProfileTable)
-    .values({
-      user_id: userId,
-      ...profile
-    })
-    .onConflictDoUpdate({
-      target: usersProfileTable.user_id,
-      set: profile
-    });
 }
