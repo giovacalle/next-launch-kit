@@ -27,9 +27,9 @@ export const lucia = new Lucia(adapter, {
   }
 });
 
-export const validateRequest = async (): Promise<
+export async function validateRequest(): Promise<
   { user: User; session: Session } | { user: null; session: null }
-> => {
+> {
   const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null;
   if (!sessionId) {
     return {
@@ -52,7 +52,7 @@ export const validateRequest = async (): Promise<
     }
   } catch {}
   return result;
-};
+}
 
 declare module 'lucia' {
   interface Register {
