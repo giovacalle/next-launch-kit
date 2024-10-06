@@ -7,21 +7,24 @@ import { getUserProviderWithGoogleId } from '@/core/data-source/users-providers'
 import { GoogleUser } from '@/core/types';
 import { createUserWithGoogleUseCase } from '@/core/use-cases/users';
 import { google } from '@/lib/auth';
+import { rateLimitByIp } from '@/lib/rate-limit';
 import { setSession } from '@/lib/session';
 
 export async function GET(request: NextRequest): Promise<Response> {
-  const code = request.nextUrl.searchParams.get('code');
-  const state = request.nextUrl.searchParams.get('state');
-  const stateCookie = cookies().get('google_oauth_state')?.value ?? null;
-  const codeCookie = cookies().get('google_code_verifier')?.value ?? null;
-
-  if (!code || !state || !stateCookie || state !== stateCookie || !codeCookie) {
-    return new Response(null, {
-      status: 400
-    });
-  }
-
   try {
+    await rateLimitByIp({ key: 'google-callback', limit: 5, interval: 60000 });
+
+    const code = request.nextUrl.searchParams.get('code');
+    const state = request.nextUrl.searchParams.get('state');
+    const stateCookie = cookies().get('google_oauth_state')?.value ?? null;
+    const codeCookie = cookies().get('google_code_verifier')?.value ?? null;
+
+    if (!code || !state || !stateCookie || state !== stateCookie || !codeCookie) {
+      return new Response(null, {
+        status: 400
+      });
+    }
+
     const { accessToken } = await google.validateAuthorizationCode(code, codeCookie);
     const googleResponse = await fetch('https://openidconnect.googleapis.com/v1/userinfo', {
       headers: {
