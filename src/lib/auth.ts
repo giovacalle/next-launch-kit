@@ -22,8 +22,7 @@ export const lucia = new Lucia(adapter, {
     name: 'auth-session',
     expires: false,
     attributes: {
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict'
+      secure: process.env.NODE_ENV === 'production'
     }
   }
 });
