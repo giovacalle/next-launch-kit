@@ -39,7 +39,7 @@ export async function createUserWithCredentialsUseCase(
   if (!user) user = await createUser(email);
 
   const provider = await getUserProvider(user.id, 'credentials');
-  if (provider) throw new Error('Impossible to create user with credentials');
+  if (provider) throw new Error('Impossible to create user with these credentials');
   await createUserProviderWithCredentials(user.id, password);
 
   await createUserProfile(user.id, name, surname);
@@ -54,8 +54,6 @@ export async function createUserWithMagicLinkUseCase(email: string) {
   let user = await getUserByEmail(email);
   if (!user) user = await createUser(email);
 
-  const provider = await getUserProvider(user.id, 'magic-link');
-  if (provider) throw new Error('Impossible to create user with magic link');
   await createUserProviderWithMagicLink(user.id);
 
   await createUserProfile(user.id, 'Guest', 'Magic link');
@@ -70,8 +68,6 @@ export async function createUserWithGoogleUseCase(googleUser: GoogleUser) {
   let user = await getUserByEmail(googleUser.email);
   if (!user) user = await createUser(googleUser.email);
 
-  const provider = await getUserProvider(user.id, 'google');
-  if (provider) throw new Error('Impossible to create user with google');
   await createUserProviderWithGoogle(user.id, googleUser.sub);
 
   await createUserProfile(
