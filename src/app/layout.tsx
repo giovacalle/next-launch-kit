@@ -32,7 +32,7 @@ export default function RootLayout({
       />
       <body className="text-foreground flex h-screen w-screen flex-col gap-5 bg-background">
         <Header />
-        <main className="min-h-[70vh]">{children}</main>
+        <main className="max-h-screen min-h-[70vh] overflow-auto p-5">{children}</main>
         <Footer />
       </body>
     </html>
