@@ -24,7 +24,7 @@
     "@react-email/components": "0.0.25",
     "arctic": "^1.9.2",
     "clsx": "^2.1.1",
-    "drizzle-orm": "^0.33.0",
+    "drizzle-orm": "^0.34.1",
     "lucia": "^3.2.0",
     "next": "14.2.14",
     "postgres": "3.3",
