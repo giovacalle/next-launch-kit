@@ -1,6 +1,8 @@
 # Next launch kit
 
-This is a starter template for [Next.js](https://nextjs.org/) projects with [TypeScript](https://www.typescriptlang.org/).
+This is a GitHub template that aims to be a sort of 'blueprint' with Next.js, Typescript and other super cool technologies!
+We're not superheroes, so we make mistakes! If you find any issues in this template, feel free to submit a pull request or open an issue.
+We prefer to keep this project simple with certain packages/features, so any new feature requests will be discussed first.
 
 - 🏁 [Next launch kit](#title)
   - 🛠 [Stack](#stack)
