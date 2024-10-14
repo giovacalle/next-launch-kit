@@ -30,7 +30,7 @@ Right now you are in `base`: eslint, prettier, commitlint and tailwind-css base 
 
 ## Usage
 
-1. Clone the repository
+1. Click `use this template`, then `create a new repository`, and clone it to your local machine
 2. Run `pnpm install` to install dependencies
 3. Run `pnpm dev` to start the development server
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
