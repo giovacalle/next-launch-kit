@@ -10,7 +10,7 @@ dependencies:
     version: 3.9.0(react-hook-form@7.53.0)
   '@lucia-auth/adapter-drizzle':
     specifier: ^1.1.0
-    version: 1.1.0(drizzle-orm@0.33.0)(lucia@3.2.1)
+    version: 1.1.0(drizzle-orm@0.36.4)(lucia@3.2.1)
   '@node-rs/argon2':
     specifier: ^1.8.3
     version: 1.8.3
@@ -33,8 +33,8 @@ dependencies:
     specifier: ^2.1.1
     version: 2.1.1
   drizzle-orm:
-    specifier: ^0.33.0
-    version: 0.33.0(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1)
+    specifier: ^0.36.4
+    version: 0.36.4(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1)
   lucia:
     specifier: ^3.2.0
     version: 3.2.1
@@ -1352,13 +1352,13 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  /@lucia-auth/adapter-drizzle@1.1.0(drizzle-orm@0.33.0)(lucia@3.2.1):
+  /@lucia-auth/adapter-drizzle@1.1.0(drizzle-orm@0.36.4)(lucia@3.2.1):
     resolution: {integrity: sha512-iCTnZWvfI5lLZOdUHZYiXA1jaspIFEeo2extLxQ3DjP3uOVys7IPwBi7zezLIRu9dhro4H4Kji+7gSYyjcef2A==}
     peerDependencies:
       drizzle-orm: '>= 0.29 <1'
       lucia: 3.x
     dependencies:
-      drizzle-orm: 0.33.0(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1)
+      drizzle-orm: 0.36.4(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1)
       lucia: 3.2.1
     dev: false
 
@@ -3761,14 +3761,15 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.33.0(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1):
-    resolution: {integrity: sha512-SHy72R2Rdkz0LEq0PSG/IdvnT3nGiWuRk+2tXZQ90GVq/XQhpCzu/EFT3V2rox+w8MlkBQxifF8pCStNYnERfA==}
+  /drizzle-orm@0.36.4(@types/react@18.3.11)(postgres@3.3.5)(react@18.3.1):
+    resolution: {integrity: sha512-1OZY3PXD7BR00Gl61UUOFihslDldfH4NFRH2MbP54Yxi0G/PKn4HfO65JYZ7c16DeP3SpM3Aw+VXVG9j6CRSXA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
-      '@electric-sql/pglite': '>=0.1.1'
-      '@libsql/client': '*'
-      '@neondatabase/serverless': '>=0.1'
+      '@electric-sql/pglite': '>=0.2.0'
+      '@libsql/client': '>=0.10.0'
+      '@libsql/client-wasm': '>=0.10.0'
+      '@neondatabase/serverless': '>=0.10.0'
       '@op-engineering/op-sqlite': '>=2'
       '@opentelemetry/api': ^1.4.1
       '@planetscale/database': '>=1'
@@ -3782,7 +3783,7 @@ packages:
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
       bun-types: '*'
-      expo-sqlite: '>=13.2.0'
+      expo-sqlite: '>=14.0.0'
       knex: '*'
       kysely: '*'
       mysql2: '>=2'
@@ -3800,6 +3801,8 @@ packages:
       '@electric-sql/pglite':
         optional: true
       '@libsql/client':
+        optional: true
+      '@libsql/client-wasm':
         optional: true
       '@neondatabase/serverless':
         optional: true
