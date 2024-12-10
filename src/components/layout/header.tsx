@@ -25,24 +25,17 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-10 flex min-h-16 items-center gap-4 border-b border-gray-400 bg-gray-100 px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-        <Link href="#">
+        <Link href="/">
           <Icon icon="streamline-emojis:rocket" width={30} height={30} />
           <span className="sr-only">Acme Inc</span>
         </Link>
-        <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+        <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
           Home
         </Link>
-        <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-          Categories
-        </Link>
-        <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-          Products
-        </Link>
-        <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-          Orders
-        </Link>
-        <Link href="#" className="text-foreground hover:text-foreground transition-colors">
-          Settings
+        <Link
+          href="/pricing"
+          className="text-muted-foreground hover:text-foreground transition-colors">
+          Pricing
         </Link>
       </nav>
       <Sheet.Root>
@@ -54,24 +47,15 @@ export default async function Header() {
         </Sheet.SheetTrigger>
         <Sheet.SheetContent side="left">
           <nav className="grid gap-6 text-lg font-medium">
-            <Link href="#" className="flex items-center gap-2 text-lg font-semibold">
+            <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
               <Icon icon="streamline-emojis:rocket" width={30} height={30} />
               <span className="sr-only">Acme Inc</span>
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link href="/" className="text-muted-foreground hover:text-foreground">
               Home
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              Categories
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              Products
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              Orders
-            </Link>
-            <Link href="#" className="hover:text-foreground">
-              Settings
+            <Link href="/pricing" className="text-muted-foreground hover:text-foreground">
+              Pricing
             </Link>
           </nav>
         </Sheet.SheetContent>
@@ -97,9 +81,12 @@ export default async function Header() {
       ) : (
         <DropdownMenu.Root>
           <DropdownMenu.DropdownMenuTrigger asChild>
-            <Button variant="secondary" rounded="full" className="p-2">
+            <Button
+              variant="secondary"
+              rounded="full"
+              className="relative h-9 w-9 overflow-hidden p-2">
               {profile.avatar ? (
-                <Image src={profile.avatar} alt={profile.name} width={25} height={25} />
+                <Image src={profile.avatar} alt={profile.name} fill className="object-cover" />
               ) : (
                 <Icon icon="mdi:user" width={25} height={25} />
               )}
@@ -112,7 +99,7 @@ export default async function Header() {
             </DropdownMenu.DropdownMenuLabel>
             <DropdownMenu.DropdownMenuSeparator />
             <DropdownMenu.DropdownMenuItem>
-              <Link href="#" className="underline">
+              <Link href="/profile" className="underline">
                 Profile
               </Link>
             </DropdownMenu.DropdownMenuItem>

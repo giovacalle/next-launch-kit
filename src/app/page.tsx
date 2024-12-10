@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 
 import { Button } from '@/components/ui/button';
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex flex-col items-center justify-center gap-5">
       <h2 className="text-2xl">A bunch of buttons</h2>

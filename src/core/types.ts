@@ -1,5 +1,7 @@
 import { UserId as LuciaUserId } from 'lucia';
 
+import { Subscription as SubscriptionDb } from '@/db/schema';
+
 export type UserId = LuciaUserId;
 
 export type GoogleUser = {
@@ -12,3 +14,6 @@ export type GoogleUser = {
   email_verified: boolean;
   locale: string;
 };
+
+export type Subscription = Omit<SubscriptionDb, 'created_at'>;
+export type SubscriptionPlan = 'free' | 'basic' | 'premium';

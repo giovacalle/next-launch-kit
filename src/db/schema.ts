@@ -95,6 +95,25 @@ export const magicLinksTable = pgTable(
   })
 );
 
+export const subscriptionsTable = pgTable(
+  'subscriptions',
+  {
+    stripe_subscription_id: text('stripe_subscription_id').notNull().primaryKey(),
+    user_id: uuid('user_id')
+      .notNull()
+      .references(() => usersTable.id, { onDelete: 'cascade' }),
+    stripe_customer_id: text('stripe_customer_id').notNull(),
+    stripe_price_id: text('stripe_price_id').notNull(),
+    next_billing_at: timestamp('next_billing_at', { mode: 'date' }).notNull(),
+    created_at: timestamp('created_at').defaultNow()
+  },
+  table => ({
+    stripeSubscriptionIdx: index('subscriptions_stripe_subscription_id_idx').on(
+      table.stripe_subscription_id
+    )
+  })
+);
+
 export type User = typeof usersTable.$inferSelect;
 export type Provider = (typeof providersEnum.enumValues)[number];
 export type UserProvider = typeof usersProvidersTable.$inferSelect;
@@ -103,3 +122,4 @@ export type EmailVerificationToken = typeof emailVerificationTokensTable.$inferS
 export type PasswordResetToken = typeof passwordResetTokensTable.$inferSelect;
 export type Session = typeof sessionsTable.$inferSelect;
 export type MagicLink = typeof magicLinksTable.$inferSelect;
+export type Subscription = typeof subscriptionsTable.$inferSelect;
