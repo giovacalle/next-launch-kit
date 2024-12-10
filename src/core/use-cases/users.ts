@@ -23,11 +23,16 @@ import {
   verifyPassword
 } from '@/core/data-source/users-providers';
 import { GoogleUser } from '@/core/types';
+import { UserId } from '@/core/types';
 import { dbTransaction } from '@/core/utils';
 import MagicLinkEmail from '@/emails/magic-link';
 import ResetPasswordEmail from '@/emails/reset-password';
 import VerifyEmail from '@/emails/verify-email';
 import { sendEmail } from '@/lib/email';
+
+export async function getUserByIdUseCase(userId: UserId) {
+  return await getUserById(userId);
+}
 
 export async function createUserWithCredentialsUseCase(
   email: string,
