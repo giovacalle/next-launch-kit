@@ -1,19 +1,18 @@
-# Next launch kit
+# 🏁 Next launch kit
 
-This is a GitHub template that aims to be a sort of 'blueprint' with Next.js, Typescript and other super cool technologies!
+This is a GitHub template that aims to be a sort of "blueprint" with Next.js, Typescript and other super cool technologies!
 We're not superheroes, so we make mistakes! If you find any issues in this template, feel free to submit a pull request or open an issue.
 We prefer to keep this project simple with certain packages/features, so any new feature requests will be discussed first.
 
 ## Table of contents
 
-- 🏁 [Next launch kit](#title)
-  - 🛠 [Stack](#stack)
-  - 🌱 [Branches](#branches)
-    - 🌟 [More about this branch](#more-about-this-branch)
-  - 🧪 [Usage](#usage)
-  - 📚 [Resources](#resources)
+- 🏁 [Next launch kit](#🏁-next-launch-kit)
+  - 🛠 [Stack](#🛠-stack)
+  - 🤓 [More about](#🤓-more-about)
+  - 🧪 [Usage](#🧪-usage)
+  - 📚 [Resources](#📚-resources)
 
-## Stack
+## 🛠 Stack
 
 - Linting / Formatting
   - [eslint](https://www.npmjs.com/package/eslint)
@@ -45,47 +44,55 @@ We prefer to keep this project simple with certain packages/features, so any new
   - [docker](https://www.docker.com/)
 - Auth
   - [lucia](https://www.npmjs.com/package/lucia)
+- Payments
+  - [stripe](http://stripe.com/)
 
-## Branches
+## 🤓 More about
 
-All branches are derived from the `base` branch: the idea is to divide the various topics by individual branch, and then merge all the features of the other branches into `main`.
+<details>
+<summary>UI choices</summary>
 
-- `main`: entire project (you are here 😁)
-- `with-lucia/drizzle/postgres`: auth with postgres and drizzle (with local db in docker)
+Here we extends tailwind configuration with a random palette generator (thanks to [coolors.co](https://coolors.co/visualizer/dcdcdd-c5c3c6-46494c-4c5c68-1985a1) ✨), and add 2 utilities: `tailwind-animate` (for animations) and a custom one to hide scrollbars.
+In addition, we wrap the configuration with `tailwind-variants/transformer` because we want to use the superpowers of `tailwind-variants` that allow us to define responsive variants (based on tailwind breakpoints).
 
-## More about this branch
+We also replace `lucide-react` (that comes with `shadcn` components) with `@iconify/react`, because we like the multi-repos approach of iconify and its implementation of icons.
 
-Here we set basic auth flows for:
+#### Why we are using `tailwind-variants` ?
 
-- Sign in/Sign up
-  - email + password
-  - magic link
-  - OAuth (Google)
-- Forgot password (for email + password)
-  - Reset password
+`tailwind-variants` is a plugin built on top of `class-variance-authority` and provides some features like:
+
+- [slots](https://www.tailwind-variants.org/docs/slots)
+- [responsive variants](https://www.tailwind-variants.org/docs/variants#responsive-variants)
+
+So, when we import shadcn components, we replaced the default class-variance-authority with tailwind-variants.
+
+#### Why not use `shadcn CLI` ?
+
+We are aware of fantastic [shadcn CLI](https://ui.shadcn.com/docs/cli) that generates all the components and blocks for us, but we want to keep the implementation more flexible and modular, without all the boilerplate code.
+
+</details>
+<br/>
+<details>
+<summary>Core pattern</summary>
 
 We reproduced the concepts of [layered architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html).
-This is encapsulated within the [core](https://github.com/giovacalle/next-launch-kit/tree/with-lucia/drizzle/postgres/src/core) folder of the repository and is divided into: [use-cases](https://github.com/giovacalle/next-launch-kit/tree/with-lucia/drizzle/postgres/src/core/use-cases) (Application Layer) and [data-source](https://github.com/giovacalle/next-launch-kit/tree/with-lucia/drizzle/postgres/src/core/data-source] (Data Access Layer).
+This is encapsulated within the [core](https://github.com/giovacalle/next-launch-kit/tree/main/src/core) folder of the repository and is divided into: [use-cases](https://github.com/giovacalle/next-launch-kit/tree/main/src/core/use-cases) (Application Layer) and [data-source](https://github.com/giovacalle/next-launch-kit/tree/main/src/core/data-source) (Data Access Layer).
 
 In the `use-cases` folder, we handle all the cases needed at the application level, which are used to connect the UI layer to the business logic.
 In the `data-source` folder, we define all interactions with the various data sources (currently only with the database).
 
-The idea behind this is **separation of concerns**, where each layer is responsible only for specific aspects of the system:
+This **separation of concerns** into layers enhances the maintainability and reusability of the code, allowing for local changes without impacting other parts of the system
 
-1. This separation into layers enhances the maintainability and reusability of the code, allowing for local changes without impacting other parts of the system
-2. Each layer is autonomous and interacts only with the layer immediately above or below it
+</details>
 
-- `with-radix/shadcn`: UI components, icons, fonts
-- `with-lucia/drizzle/postgres`: auth with postgres and drizzle (with local db in docker)
-
-## Usage
+## 🧪 Usage
 
 1. Click `use this template`, then `create a new repository`, and clone it to your local machine
 2. Run `pnpm install` to install dependencies
 3. Run `pnpm local-db:up` to start the local db (in docker, so check that it is running or it will give an error)
 
-   1. In the Docker container, besides the Postgres instance, there's also a PgAdmin instance to interact with the database via SQL. The various database settings are defined in the [.yml](https://github.com/giovacalle/next-launch-kit/blob/with-lucia/drizzle/postgres/src/db/local-db.yml) file.
-   2. Then, as you can see, in the [.env](https://github.com/giovacalle/next-launch-kit/blob/with-lucia/drizzle/postgres/.env) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
+   1. In the Docker container, besides the Postgres instance, there's also a PgAdmin instance to interact with the database via SQL. The various database settings are defined in the [.yml](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file.
+   2. Then, as you can see, in the [.env](https://github.com/giovacalle/next-launch-kit/blob/main/.env) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
    3. Run `pnpm run migrate` to create the database (in the instance of Postgres defined in env variable at previous step)
 
 4. Run `pnpm dev` to start the development server
@@ -120,7 +127,7 @@ The idea behind this is **separation of concerns**, where each layer is responsi
 
    4. Insert the **Client ID** and **Client Secret** into the env variables (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`).
 
-## Resources
+## 📚 Resources
 
 This project was inspired by:
 
@@ -129,41 +136,3 @@ This project was inspired by:
 - [Airbnb's JavaScript Style Guide](https://github.com/airbnb/javascript/tree/master/react)
 - [Wdc's SaaS starter kit](https://github.com/webdevcody/wdc-saas-starter-kit)
 - [Layered architecture](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
-
-3. Run `pnpm local-db:up` to start the local db (in docker, so check that it is running or it will give an error)
-
-   1. In the Docker container, besides the Postgres instance, there's also a PgAdmin instance to interact with the database via SQL. The various database settings are defined in the [.yml](https://github.com/giovacalle/next-launch-kit/blob/with-lucia/drizzle/postgres/src/db/local-db.yml) file.
-   2. Then, as you can see, in the [.env](https://github.com/giovacalle/next-launch-kit/blob/with-lucia/drizzle/postgres/.env) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
-   3. Run `pnpm run migrate` to create the database (in the instance of Postgres defined in env variable at previous step)
-
-4. Run `pnpm dev` to start the development server
-5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
-6. In order to use [Resend](https://resend.com), the service we use to send emails, you will need to:
-
-   1. Create an account
-   2. Define the domain from which to send emails (follow [Resend docs](https://resend.com/docs/dashboard/domains/introduction))
-   3. Generate an API key and insert it into the `RESEND_API_KEY` env variable
-   4. In the `EMAIL_FROM` env variable, insert the email address from which emails will be sent
-
-7. In order to use `Google OAuth`, you will need to:
-
-   1. **Create a Google Cloud Project**
-
-   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
-   - Create a new project or select an existing one.
-
-   2. **Enable OAuth 2.0 API**
-
-   - Navigate to the API & Services section.
-   - Click on **Library** and search for "Google Identity Services".
-   - Enable the **Google Identity Services API** for your project.
-
-   3. **Create OAuth 2.0 Credentials**
-
-   - Go to **APIs & Services** > **Credentials**.
-   - Click on **Create Credentials** and select **OAuth 2.0 Client IDs**.
-   - Choose the application type (e.g., Web application).
-   - Define **Authorized JavaScript origins** (`http://localhost:3000`).
-   - Define the **Authorized redirect URIs** (`http://localhost:3000/api/auth/google/callback`).
-
-   4. Insert the **Client ID** and **Client Secret** into the env variables (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`).
