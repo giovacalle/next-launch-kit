@@ -1,6 +1,6 @@
 'use server';
 
-import { unAuthenticatedAction } from '@/lib/action-procedurest';
+import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByIp } from '@/lib/rate-limit';
 
 import { changePasswordUseCase } from '@/core/use-cases/users';

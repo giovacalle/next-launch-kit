@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
-import { unAuthenticatedAction } from '@/lib/action-procedurest';
+import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByKey } from '@/lib/rate-limit';
 
 import { createUserWithMagicLinkUseCase } from '@/core/use-cases/users';

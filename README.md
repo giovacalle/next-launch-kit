@@ -71,7 +71,6 @@ So, when we import shadcn components, we replaced the default class-variance-aut
 We are aware of fantastic [shadcn CLI](https://ui.shadcn.com/docs/cli) that generates all the components and blocks for us, but we want to keep the implementation more flexible and modular, without all the boilerplate code.
 
 </details>
-<br/>
 <details>
 <summary>Core pattern</summary>
 
@@ -87,7 +86,7 @@ This **separation of concerns** into layers enhances the maintainability and reu
 
 ## 🧪 Usage
 
-1. Click `use this template`, then `create a new repository`, and clone it to your local machine
+1. Click `use this template`, then **[create a new repository](https://github.com/new?template_name=next-launch-kit&template_owner=giovacalle)**, and clone it to your local machine
 2. Run `pnpm install` to install dependencies
 3. Run `pnpm local-db:up` to start the local db (in docker, so check that it is running or it will give an error)
 

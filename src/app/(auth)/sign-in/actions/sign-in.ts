@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
-import { unAuthenticatedAction } from '@/lib/action-procedurest';
+import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByKey } from '@/lib/rate-limit';
 import { setSession } from '@/lib/session';
 

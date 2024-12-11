@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 
 import { z } from 'zod';
 
-import { authenticatedAction } from '@/lib/action-procedurest';
+import { authenticatedAction } from '@/lib/action-procedures';
 import { stripe } from '@/lib/stripe';
 
 import { getUserByIdUseCase } from '@/core/use-cases/users';

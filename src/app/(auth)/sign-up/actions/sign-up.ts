@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 
-import { unAuthenticatedAction } from '@/lib/action-procedurest';
+import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByIp } from '@/lib/rate-limit';
 
 import { createUserWithCredentialsUseCase } from '@/core/use-cases/users';
