@@ -8,12 +8,15 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.9.0
     version: 3.9.0(react-hook-form@7.53.0)
-  '@lucia-auth/adapter-drizzle':
-    specifier: ^1.1.0
-    version: 1.1.0(drizzle-orm@0.33.0)(lucia@3.2.0)
   '@node-rs/argon2':
     specifier: ^1.8.3
     version: 1.8.3
+  '@oslojs/crypto':
+    specifier: ^1.0.1
+    version: 1.0.1
+  '@oslojs/encoding':
+    specifier: ^1.1.0
+    version: 1.1.0
   '@radix-ui/react-dialog':
     specifier: ^1.1.1
     version: 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.7)(react-dom@18.3.1)(react@18.3.1)
@@ -35,9 +38,6 @@ dependencies:
   drizzle-orm:
     specifier: ^0.33.0
     version: 0.33.0(@types/react@18.3.7)(postgres@3.3.5)(react@18.3.1)
-  lucia:
-    specifier: ^3.2.0
-    version: 3.2.0
   next:
     specifier: 14.2.14
     version: 14.2.14(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
@@ -1354,16 +1354,6 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  /@lucia-auth/adapter-drizzle@1.1.0(drizzle-orm@0.33.0)(lucia@3.2.0):
-    resolution: {integrity: sha512-iCTnZWvfI5lLZOdUHZYiXA1jaspIFEeo2extLxQ3DjP3uOVys7IPwBi7zezLIRu9dhro4H4Kji+7gSYyjcef2A==}
-    peerDependencies:
-      drizzle-orm: '>= 0.29 <1'
-      lucia: 3.x
-    dependencies:
-      drizzle-orm: 0.33.0(@types/react@18.3.7)(postgres@3.3.5)(react@18.3.1)
-      lucia: 3.2.0
-    dev: false
-
   /@napi-rs/wasm-runtime@0.2.5:
     resolution: {integrity: sha512-kwUxR7J9WLutBbulqg1dfOrMTwhMdXLdcGUhcbCcGwnPLt3gz19uHVdwH1syKVDbE022ZS2vZxOWflFLS0YTjw==}
     requiresBuild: true
@@ -2022,6 +2012,27 @@ packages:
 
   /@one-ini/wasm@0.1.1:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
+    dev: false
+
+  /@oslojs/asn1@1.0.0:
+    resolution: {integrity: sha512-zw/wn0sj0j0QKbIXfIlnEcTviaCzYOY3V5rAyjR6YtOByFtJiT574+8p9Wlach0lZH9fddD4yb9laEAIl4vXQA==}
+    dependencies:
+      '@oslojs/binary': 1.0.0
+    dev: false
+
+  /@oslojs/binary@1.0.0:
+    resolution: {integrity: sha512-9RCU6OwXU6p67H4NODbuxv2S3eenuQ4/WFLrsq+K/k682xrznH5EVWA7N4VFk9VYVcbFtKqur5YQQZc0ySGhsQ==}
+    dev: false
+
+  /@oslojs/crypto@1.0.1:
+    resolution: {integrity: sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ==}
+    dependencies:
+      '@oslojs/asn1': 1.0.0
+      '@oslojs/binary': 1.0.0
+    dev: false
+
+  /@oslojs/encoding@1.1.0:
+    resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
     dev: false
 
   /@pkgjs/parseargs@0.11.0:
@@ -5407,12 +5418,6 @@ packages:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
     dependencies:
       yallist: 3.1.1
-
-  /lucia@3.2.0:
-    resolution: {integrity: sha512-eXMxXwk6hqtjRTj4W/x3EnTUtAztLPm0p2N2TEBMDEbakDLXiYnDQ9z/qahjPdPdhPguQc+vwO0/88zIWxlpuw==}
-    dependencies:
-      oslo: 1.2.0
-    dev: false
 
   /marked@7.0.4:
     resolution: {integrity: sha512-t8eP0dXRJMtMvBojtkcsA7n48BkauktUKzfkPSCq85ZMTJ0v76Rke4DYz01omYpPTUh4p/f7HePgRo3ebG8+QQ==}

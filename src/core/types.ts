@@ -1,8 +1,6 @@
-import { UserId as LuciaUserId } from 'lucia';
-
 import { Subscription as SubscriptionDb } from '@/db/schema';
 
-export type UserId = LuciaUserId;
+export type UserId = string;
 
 export type GoogleUser = {
   sub: string;

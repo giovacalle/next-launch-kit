@@ -70,13 +70,12 @@ export const passwordResetTokensTable = pgTable(
 
 export const sessionsTable = pgTable('sessions', {
   id: text('id').primaryKey(),
-  userId: uuid('user_id')
+  user_id: uuid('user_id')
     .notNull()
     .references(() => usersTable.id, {
       onDelete: 'cascade'
-    }), // camelCased because it is required by the Lucia package
-  expiresAt: timestamp('expires_at').notNull(), // camelCased because it is required by the Lucia package
-  created_at: timestamp('created_at').defaultNow()
+    }),
+  expires_at: timestamp('expires_at').notNull()
 });
 
 export const magicLinksTable = pgTable(

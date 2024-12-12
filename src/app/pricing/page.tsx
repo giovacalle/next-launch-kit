@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/lib/session';
+import { getCurrentUser } from '@/lib/auth';
 
 import { SubscriptionPlan } from '@/core/types';
 import { getUserPlanUseCase } from '@/core/use-cases/subscriptions';

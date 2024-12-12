@@ -1,19 +1,15 @@
 'use server';
 
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { lucia, validateRequest } from '@/lib/auth';
+import { getSession, invalidateSession } from '@/lib/session';
 
 export async function signOut() {
-  const { session } = await validateRequest();
+  const { session } = await getSession();
 
   if (!session) redirect('/sign-in');
 
-  await lucia.invalidateSession(session.id);
-
-  const sessionCookie = lucia.createBlankSessionCookie();
-  cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+  await invalidateSession(session.id);
 
   redirect('/sign-out');
 }

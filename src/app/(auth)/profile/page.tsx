@@ -1,17 +1,15 @@
 import Link from 'next/link';
 
-import { getAuthenticatedUser } from '@/lib/session';
+import { enforceAuthenticatedUser } from '@/lib/auth';
 
 import { getUserPlanUseCase } from '@/core/use-cases/subscriptions';
-import { getUserByIdUseCase } from '@/core/use-cases/users';
 
 export default async function ProfilePage() {
-  const user = await getAuthenticatedUser();
+  const user = await enforceAuthenticatedUser();
 
-  const fullUser = await getUserByIdUseCase(user.id);
   const currrentPlan = await getUserPlanUseCase(user.id);
 
-  const link = `${process.env.NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL!}?prefilled_email=${encodeURIComponent(fullUser!.email)}`;
+  const link = `${process.env.NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL!}?prefilled_email=${encodeURIComponent(user.email)}`;
 
   return (
     <div className="flex w-full gap-10">

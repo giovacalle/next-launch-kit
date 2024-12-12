@@ -1,10 +1,10 @@
 import { createServerActionProcedure } from 'zsa';
 
+import { enforceAuthenticatedUser } from '@/lib/auth';
 import { rateLimitByKey } from '@/lib/rate-limit';
-import { getAuthenticatedUser } from '@/lib/session';
 
 export const authenticatedAction = createServerActionProcedure().handler(async () => {
-  const user = await getAuthenticatedUser();
+  const user = await enforceAuthenticatedUser();
   await rateLimitByKey({
     key: `${user.id}-app`,
     limit: 10,

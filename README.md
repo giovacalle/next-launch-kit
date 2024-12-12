@@ -43,7 +43,7 @@ We prefer to keep this project simple with certain packages/features, so any new
   - [postgres](https://www.npmjs.com/package/postgres)
   - [docker](https://www.docker.com/)
 - Auth
-  - [lucia](https://www.npmjs.com/package/lucia)
+  - [lucia](https://lucia-auth.com/)
 - Payments
   - [stripe](http://stripe.com/)
 

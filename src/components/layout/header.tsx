@@ -8,7 +8,7 @@ import * as DropdownMenu from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import * as Sheet from '@/components/ui/sheet';
 
-import { getCurrentUser } from '@/lib/session';
+import { getCurrentUser } from '@/lib/auth';
 
 import { getUserProfileUseCase } from '@/core/use-cases/users-profile';
 
