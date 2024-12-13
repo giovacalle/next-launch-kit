@@ -1,18 +1,27 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { SESSION_COOKIE_NAME } from './lib/session';
+import { authMiddleware } from '@/middlewares/auth-middleware';
+import { csrfMiddleware } from '@/middlewares/crsf-middleware';
 
 export async function middleware(request: NextRequest) {
-  // not the best way to check if user is logged in but in middleware we can't access db to check session status
-  const isLogged = request.cookies.has(SESSION_COOKIE_NAME);
+  const crsf = csrfMiddleware(request);
+  if (crsf) return crsf;
 
-  // if user already logged in, redirect to home page
-  if (isLogged) return NextResponse.redirect(new URL('/', request.url));
+  const auth = authMiddleware(request);
+  if (auth) return auth;
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/sign-in/:path*', '/sign-up/:path*', '/api/auth/:path*']
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
+     */
+    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'
+  ]
 };
