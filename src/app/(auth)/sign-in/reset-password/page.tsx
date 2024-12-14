@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { use } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,7 +10,8 @@ import { useServerAction } from 'zsa-react';
 import { resetPasswordAction } from './actions/reset-password';
 import { ResetPasswordSchema, resetPasswordSchema } from './types/schema';
 
-export default function ResetPassword({ searchParams }: { searchParams: { token: string } }) {
+export default function ResetPassword(props: { searchParams: Promise<{ token: string }> }) {
+  const searchParams = use(props.searchParams);
   const token = searchParams.token;
 
   const {

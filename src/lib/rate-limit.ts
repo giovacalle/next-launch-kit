@@ -2,9 +2,11 @@ import { headers } from 'next/headers';
 
 const CLEANUP_INTERVAL = 1000 * 60; // 1 minute
 
-export function getIp() {
-  const forwardedFor = headers().get('x-forwarded-for');
-  const realIp = headers().get('x-real-ip');
+export async function getIp() {
+  const headersList = await headers();
+
+  const forwardedFor = headersList.get('x-forwarded-for');
+  const realIp = headersList.get('x-real-ip');
 
   if (forwardedFor) return forwardedFor.split(',')[0].trim();
 
@@ -69,7 +71,7 @@ export async function rateLimitByIp({
   limit?: number;
   interval?: number;
 }) {
-  const ip = getIp();
+  const ip = await getIp();
 
   if (!ip) throw new Error('Rate limit exceeded (ip)');
 

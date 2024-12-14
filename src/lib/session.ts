@@ -18,8 +18,8 @@ const SESSION_MAX_DURATION_MS = SESSION_REFRESH_INTERVAL_MS * 2;
 // session cookie management
 export const SESSION_COOKIE_NAME = 'session';
 
-function setSessionTokenCookie(token: string, expiresAt: Date): void {
-  cookies().set(SESSION_COOKIE_NAME, token, {
+async function setSessionTokenCookie(token: string, expiresAt: Date): Promise<void> {
+  (await cookies()).set(SESSION_COOKIE_NAME, token, {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
@@ -28,12 +28,12 @@ function setSessionTokenCookie(token: string, expiresAt: Date): void {
   });
 }
 
-function getSessionTokenCookie(): string | undefined {
-  return cookies().get(SESSION_COOKIE_NAME)?.value;
+async function getSessionTokenCookie(): Promise<string | undefined> {
+  return (await cookies()).get(SESSION_COOKIE_NAME)?.value;
 }
 
-function deleteSessionTokenCookie(): void {
-  cookies().set(SESSION_COOKIE_NAME, '', {
+async function deleteSessionTokenCookie(): Promise<void> {
+  (await cookies()).set(SESSION_COOKIE_NAME, '', {
     httpOnly: true,
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production',
@@ -64,11 +64,11 @@ async function createSession(token: string, userId: UserId): Promise<Session> {
 export async function setSession(userId: UserId) {
   const token = generateSessionToken();
   const session = await createSession(token, userId);
-  setSessionTokenCookie(token, session.expires_at);
+  await setSessionTokenCookie(token, session.expires_at);
 }
 
 export async function getSession(): Promise<SessionValidationResult> {
-  const sessionToken = getSessionTokenCookie();
+  const sessionToken = await getSessionTokenCookie();
   if (!sessionToken) return { session: null, user: null };
   return validateSessionToken(sessionToken);
 }
@@ -111,5 +111,5 @@ async function validateSessionToken(token: string): Promise<SessionValidationRes
 
 export async function invalidateSession(sessionId: string): Promise<void> {
   await db.delete(sessionsTable).where(eq(sessionsTable.id, sessionId));
-  deleteSessionTokenCookie();
+  await deleteSessionTokenCookie();
 }

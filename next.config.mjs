@@ -10,9 +10,7 @@ const nextConfig = {
       }
     ]
   },
-  experimental: {
-    serverComponentsExternalPackages: ['@node-rs/argon2']
-  }
+  serverExternalPackages: ['arctic'] // since arctic use oslo under the hood
 };
 
 export default nextConfig;
