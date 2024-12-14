@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Ref } from 'react';
 
 import { type VariantProps, tv } from 'tailwind-variants';
 
@@ -26,20 +26,20 @@ const inputVariants = tv({
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
-    VariantProps<typeof inputVariants> {}
+    VariantProps<typeof inputVariants> {
+  ref?: Ref<HTMLInputElement>;
+}
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, variant, size, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(inputVariants({ variant, size }), className)}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
+const Input = ({ className, variant, size, type, ref, ...props }: InputProps) => {
+  return (
+    <input
+      type={type}
+      className={cn(inputVariants({ variant, size }), className)}
+      ref={ref}
+      {...props}
+    />
+  );
+};
 Input.displayName = 'Input';
 
 export { Input };
