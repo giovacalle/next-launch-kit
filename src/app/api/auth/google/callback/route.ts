@@ -17,6 +17,17 @@ export async function GET(request: NextRequest): Promise<Response> {
 
     const cookieStore = await cookies();
 
+    const error = request.nextUrl.searchParams.get('error');
+    if (error) {
+      // something went wrong: could be user denied access
+      return new Response(null, {
+        status: 302,
+        headers: {
+          Location: '/sign-in'
+        }
+      });
+    }
+
     const code = request.nextUrl.searchParams.get('code');
     const state = request.nextUrl.searchParams.get('state');
     const stateCookie = cookieStore.get('google_oauth_state')?.value ?? null;
