@@ -4,8 +4,6 @@ import { rateLimitByIp } from '@/lib/rate-limit';
 
 import { verifyEmailUseCase } from '@/core/use-cases/users';
 
-export const dynamic = 'force-dynamic';
-
 export async function GET(request: NextRequest): Promise<Response> {
   try {
     await rateLimitByIp({ key: 'verify-email', limit: 5, interval: 60000 });

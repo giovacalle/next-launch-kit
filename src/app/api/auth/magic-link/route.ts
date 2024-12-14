@@ -5,8 +5,6 @@ import { setSession } from '@/lib/session';
 
 import { signInUseCase } from '@/core/use-cases/magic-links';
 
-export const dynamic = 'force-dynamic';
-
 export async function GET(request: NextRequest): Promise<Response> {
   try {
     await rateLimitByIp({ key: 'magic-token', limit: 5, interval: 60000 });

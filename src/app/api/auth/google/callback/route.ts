@@ -15,10 +15,12 @@ export async function GET(request: NextRequest): Promise<Response> {
   try {
     await rateLimitByIp({ key: 'google-callback', limit: 5, interval: 60000 });
 
+    const cookieStore = await cookies();
+
     const code = request.nextUrl.searchParams.get('code');
     const state = request.nextUrl.searchParams.get('state');
-    const stateCookie = cookies().get('google_oauth_state')?.value ?? null;
-    const codeCookie = cookies().get('google_code_verifier')?.value ?? null;
+    const stateCookie = cookieStore.get('google_oauth_state')?.value ?? null;
+    const codeCookie = cookieStore.get('google_code_verifier')?.value ?? null;
 
     if (!code || !state || !stateCookie || state !== stateCookie || !codeCookie) {
       return new Response(null, {

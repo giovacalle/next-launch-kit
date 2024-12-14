@@ -16,14 +16,16 @@ export async function GET(): Promise<Response> {
       scopes: ['email', 'profile']
     });
 
-    cookies().set('google_oauth_state', state, {
+    const cookieStore = await cookies();
+
+    cookieStore.set('google_oauth_state', state, {
       secure: process.env.NODE_ENV === 'production',
       path: '/',
       httpOnly: true,
       maxAge: 60 * 10
     });
 
-    cookies().set('google_code_verifier', codeVerifier, {
+    cookieStore.set('google_code_verifier', codeVerifier, {
       secure: process.env.NODE_ENV === 'production',
       path: '/',
       httpOnly: true,

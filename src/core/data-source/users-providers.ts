@@ -16,13 +16,7 @@ async function hashPassword(password: string) {
 }
 
 export async function verifyPassword(passwordHash: string, password: string) {
-  return await verify(passwordHash, password, {
-    // recommended minimum parameters from Lucia docs
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1
-  });
+  return await verify(passwordHash, password);
 }
 
 export async function getUserProvider(userId: UserId, provider: Provider) {

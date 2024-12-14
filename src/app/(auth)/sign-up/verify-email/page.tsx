@@ -1,13 +1,11 @@
 import Link from 'next/link';
 
-export default async function VerifyEmail({
-  searchParams
-}: {
-  searchParams: {
+export default async function VerifyEmail(props: {
+  searchParams: Promise<{
     verified: string;
-  };
+  }>;
 }) {
-  const { verified } = searchParams;
+  const { verified } = await props.searchParams;
 
   if (verified) {
     return (
