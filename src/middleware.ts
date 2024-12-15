@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { type NextRequest } from 'next/server';
 
+import { routing } from '@/i18n/routing';
 import { authMiddleware } from '@/middlewares/auth-middleware';
 import { csrfMiddleware } from '@/middlewares/crsf-middleware';
 
@@ -11,17 +12,10 @@ export async function middleware(request: NextRequest) {
   const auth = authMiddleware(request);
   if (auth) return auth;
 
-  return NextResponse.next();
+  const response = createMiddleware(routing)(request);
+  return response;
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-     */
-    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'
-  ]
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };

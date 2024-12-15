@@ -15,8 +15,24 @@ export function authMiddleware(request: NextRequest): NextResponse | null {
   // if authenticated, we hide some pages
   const { pathname } = request.nextUrl;
 
-  const matcher = /^\/(sign-in|sign-up|api\/auth)(\/.*|$)/;
-  if (matcher.test(pathname)) return NextResponse.redirect(new URL('/', request.url));
+  const protectedPathsRegex = new RegExp(
+    `(${PROTECTED_PATHS.map(path => path.replace(/\//g, '\\/')).join('|')})`
+  );
+
+  if (protectedPathsRegex.test(pathname)) return NextResponse.redirect(new URL('/', request.url));
 
   return null;
 }
+
+const PROTECTED_PATHS = [
+  '/sign-in',
+  '/accedi',
+  '/sign-in/magic-link',
+  '/accedi/magic-link',
+  '/sign-in/forgot-password',
+  '/accedi/password-dimenticata',
+  '/sign-in/reset-password',
+  '/accedi/reset-password',
+  '/sign-up',
+  '/registrati'
+];

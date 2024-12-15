@@ -1,17 +1,17 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { Icon } from '@iconify/react';
 
 import { Button } from '@/components/ui/button';
 import * as DropdownMenu from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import * as Sheet from '@/components/ui/sheet';
 
 import { getCurrentUser } from '@/lib/auth';
 
 import { getUserProfileUseCase } from '@/core/use-cases/users-profile';
+import { Link } from '@/i18n/routing';
 
+import { LangSelector } from './lang-selector/lang-selector';
 import { SignOut } from './sign-out';
 
 export default async function Header() {
@@ -46,6 +46,7 @@ export default async function Header() {
           </Button>
         </Sheet.SheetTrigger>
         <Sheet.SheetContent side="left">
+          <Sheet.SheetTitle>Menu</Sheet.SheetTitle>
           <nav className="grid gap-6 text-lg font-medium">
             <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
               <Icon icon="streamline-emojis:rocket" width={30} height={30} />
@@ -57,23 +58,11 @@ export default async function Header() {
             <Link href="/pricing" className="text-muted-foreground hover:text-foreground">
               Pricing
             </Link>
+            <LangSelector isMobile />
           </nav>
         </Sheet.SheetContent>
       </Sheet.Root>
-      <form className="max-md:mx-auto md:ml-auto">
-        <div className="relative">
-          <Icon
-            icon="mdi:magnify"
-            className="text-muted-foreground absolute left-2.5 top-2 h-4 w-4"
-          />
-          <Input
-            variant="outline"
-            type="search"
-            placeholder="Search products..."
-            className="pl-8 max-md:w-44"
-          />
-        </div>
-      </form>
+      <LangSelector />
       {!profile ? (
         <Button variant="primary" rounded="full" className="p-2" asChild>
           <Link href="/sign-in">Sign in</Link>

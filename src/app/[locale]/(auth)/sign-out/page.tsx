@@ -1,8 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+
+import { Link } from '@/i18n/routing';
+import { useRouter } from '@/i18n/routing';
 
 export default function SignedOutPage() {
   const router = useRouter();

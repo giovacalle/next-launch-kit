@@ -1,7 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import NextLink from 'next/link';
+
+import { Link, routing } from '@/i18n/routing';
+import { usePathname } from '@/i18n/routing';
 
 export function LayoutLinks() {
   const pathname = usePathname();
@@ -10,11 +12,12 @@ export function LayoutLinks() {
     <>
       <p className="text-center">or with</p>
       <div className="flex gap-2 max-sm:flex-col">
-        <Link
+        <NextLink
           href="/api/auth/google"
+          locale={routing.defaultLocale}
           className="flex-1 rounded-md bg-blue-600 p-2 text-center text-white hover:bg-blue-500">
           Google
-        </Link>
+        </NextLink>
         <Link
           href="/sign-in/magic-link"
           className="flex-1 rounded-md bg-orange-300 p-2 text-center text-black hover:bg-orange-200">
@@ -24,7 +27,7 @@ export function LayoutLinks() {
     </>
   );
 
-  if (pathname === '/sign-up') {
+  if (pathname.endsWith('/sign-up')) {
     return (
       <>
         <hr />
@@ -38,7 +41,7 @@ export function LayoutLinks() {
     );
   }
 
-  if (pathname === '/sign-in') {
+  if (pathname.endsWith('/sign-in')) {
     return (
       <>
         <hr />
@@ -52,7 +55,7 @@ export function LayoutLinks() {
     );
   }
 
-  if (pathname === '/sign-in/forgot-password') {
+  if (pathname.includes('/sign-in/forgot-password')) {
     return (
       <>
         <hr />
@@ -66,7 +69,7 @@ export function LayoutLinks() {
     );
   }
 
-  if (pathname === '/sign-in/magic-link') {
+  if (pathname.includes('/sign-in/magic-link')) {
     return (
       <>
         <hr />

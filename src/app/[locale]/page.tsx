@@ -1,16 +1,20 @@
+import { getTranslations } from 'next-intl/server';
+
 import { Icon } from '@iconify/react';
 
 import { Button } from '@/components/ui/button';
 
 export default async function Home() {
+  const t = await getTranslations('pages.home');
+
   return (
     <div className="flex flex-col items-center justify-center gap-5">
-      <h2 className="text-2xl">A bunch of buttons</h2>
+      <h2 className="text-2xl">{t('title')}</h2>
       <div className="flex flex-wrap items-center justify-center gap-2">
-        <Button>Click me</Button>
-        <Button variant="secondary">Click me</Button>
-        <Button variant="outline">Click me</Button>
-        <Button variant="danger">Click me</Button>
+        <Button>{t('test')}</Button>
+        <Button variant="secondary">{t('test')}</Button>
+        <Button variant="outline">{t('test')}</Button>
+        <Button variant="danger">{t('test')}</Button>
         <Button
           variant="unstyled"
           rounded="full"

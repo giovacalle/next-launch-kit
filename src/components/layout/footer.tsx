@@ -1,6 +1,6 @@
-import Link from 'next/link';
-
 import { Icon } from '@iconify/react';
+
+import { Link } from '@/i18n/routing';
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center justify-between">
           <div className="mb-6 w-full md:mb-0 md:w-1/3">
-            <Link href="#">
+            <Link href="/">
               <Icon icon="streamline-emojis:rocket" width={40} height={40} />
               <span className="sr-only">Acme Inc</span>
             </Link>
@@ -19,22 +19,22 @@ export default function Footer() {
           <nav className="mb-6 w-full md:mb-0 md:w-1/3">
             <ul className="flex flex-wrap justify-center space-x-6 md:justify-end">
               <li>
-                <Link href="#" className="hover:text-gray-900">
+                <Link href="/" className="hover:text-gray-900">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-gray-900">
+                <Link href="/" className="hover:text-gray-900">
                   Categories
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-gray-900">
+                <Link href="/" className="hover:text-gray-900">
                   Products
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-gray-900">
+                <Link href="/" className="hover:text-gray-900">
                   Orders
                 </Link>
               </li>

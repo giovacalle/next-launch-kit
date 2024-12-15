@@ -2,6 +2,7 @@
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
   "plugins": ["check-file"],
   "rules": {
+    "no-console": "warn",
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
     "@typescript-eslint/no-empty-interface": "off",

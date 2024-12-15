@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 
 import { SubscriptionPlan } from '@/core/types';
+import { Link } from '@/i18n/routing';
 
 import { CheckoutForm } from './components/checkout-form';
 import { PlanPeriodSwitch } from './components/plan-period-switch';

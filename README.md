@@ -46,6 +46,8 @@ We prefer to keep this project simple with certain packages/features, so any new
   - [lucia](https://lucia-auth.com/)
 - Payments
   - [stripe](http://stripe.com/)
+- i18n
+  - [next-intl](https://next-intl.dev/)
 
 ## 🤓 More about
 

@@ -2,12 +2,23 @@ import { cookies } from 'next/headers';
 
 import { generateCodeVerifier, generateState } from 'arctic';
 
-import { google } from '@/lib/auth';
+import { getCurrentUser, google } from '@/lib/auth';
 import { rateLimitByIp } from '@/lib/rate-limit';
 
 export async function GET(): Promise<Response> {
   try {
     await rateLimitByIp({ key: 'google', limit: 5, interval: 60000 });
+
+    // redirect to the sign-in page if the user is already signed in
+    const user = await getCurrentUser();
+    if (user) {
+      return new Response(null, {
+        status: 302,
+        headers: {
+          Location: '/sign-in'
+        }
+      });
+    }
 
     const state = generateState();
     const codeVerifier = generateCodeVerifier();

@@ -1,10 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useServerAction } from 'zsa-react';
+
+import { Link } from '@/i18n/routing';
 
 import { signInAction } from './actions/sign-in';
 import { SignInSchema, signInSchema } from './types/schema';
