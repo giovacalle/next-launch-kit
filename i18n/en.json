@@ -1,5 +1,12 @@
 {
   "pages": {
+    "404": {
+      "title": "404",
+      "subtitle": "Oops! Page Not Found",
+      "description": "Looks like this page took a vacation without telling us!",
+      "quote": "I swear it was here just a moment ago...",
+      "back": "Back to Home"
+    },
     "home": {
       "title": "Home",
       "test": "Click me"

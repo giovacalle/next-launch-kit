@@ -1,5 +1,12 @@
 {
   "pages": {
+    "404": {
+      "title": "404",
+      "subtitle": "Oops! Pagina non trovata",
+      "description": "Sembra che questa pagina abbia preso una vacanza senza dircelo!",
+      "quote": "Giuro che era qui solo un attimo fa...",
+      "back": "Torna a casa"
+    },
     "home": {
       "title": "Casa",
       "test": "Clicca su di me"

@@ -8,7 +8,7 @@ export default async function Home() {
   const t = await getTranslations('pages.home');
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
+    <div className="flex flex-col items-center justify-center gap-5 p-10">
       <h2 className="text-2xl">{t('title')}</h2>
       <div className="flex flex-wrap items-center justify-center gap-2">
         <Button>{t('test')}</Button>
