@@ -3,13 +3,14 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Montserrat } from 'next/font/google';
 
+import { cn } from '@/lib/tailwind';
+
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 
-import { cn } from '@/lib/tailwind';
+import { Locale, routing } from '@/i18n/routing';
 
 import '@/assets/globals.css';
-import { Locale, routing } from '@/i18n/routing';
 
 export const metadata: Metadata = {
   title: 'Next.js Base Template',

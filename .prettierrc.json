@@ -12,12 +12,14 @@
   "tailwindFunctions": ["tv"],
   "importOrder": [
     "^(react|next)/?(.*)$",
+    "^@/(core|db)/(.*)$",
+    "^@/(hooks|stores)/(.*)$",
+    "^@/(lib|utils)/(.*)$",
     "<THIRD_PARTY_MODULES>",
     "^@/components/(.*)$",
-    "^@/(hooks|stores)/(.*)$",
-    "^@/(config|lib|types|utils)/(.*)$",
-    "^@/(.*)$",
-    "^[./]"
+    "^@/(?!.*\\.css$).*$",
+    "^[./]",
+    "^@/.*\\.css$"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
