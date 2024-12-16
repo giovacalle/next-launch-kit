@@ -88,45 +88,92 @@ This **separation of concerns** into layers enhances the maintainability and reu
 
 ## 🧪 Usage
 
-1. Click `use this template`, then **[create a new repository](https://github.com/new?template_name=next-launch-kit&template_owner=giovacalle)**, and clone it to your local machine
-2. Run `pnpm install` to install dependencies
-3. Run `pnpm local-db:up` to start the local db (in docker, so check that it is running or it will give an error)
+1.  Click `use this template`, then **[create a new repository](https://github.com/new?template_name=next-launch-kit&template_owner=giovacalle)**, and clone it to your local machine
+2.  Run `pnpm install` to install dependencies
+3.  Run `pnpm local-db:up` to start the local db (in docker, so check that it is running or it will give an error)
 
-   1. In the Docker container, besides the Postgres instance, there's also a PgAdmin instance to interact with the database via SQL. The various database settings are defined in the [.yml](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file.
-   2. Then, as you can see, in the [.env](https://github.com/giovacalle/next-launch-kit/blob/main/.env) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
-   3. Run `pnpm run migrate` to create the database (in the instance of Postgres defined in env variable at previous step)
+    1. In the Docker container, besides the Postgres instance, there's also a PgAdmin instance to interact with the database via SQL. The various database settings are defined in the [.yml](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file.
+    2. Then, as you can see, in the [.env](https://github.com/giovacalle/next-launch-kit/blob/main/.env) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
+    3. Run `pnpm run migrate` to create the database (in the instance of Postgres defined in env variable at previous step)
 
-4. Run `pnpm dev` to start the development server
-5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
-6. In order to use [Resend](https://resend.com), the service we use to send emails, you will need to:
+4.  Run `pnpm dev` to start the development server
+5.  Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
+6.  In order to use [Resend](https://resend.com), the service we use to send emails, you will need to:
 
-   1. Create an account
-   2. Define the domain from which to send emails (follow [Resend docs](https://resend.com/docs/dashboard/domains/introduction))
-   3. Generate an API key and insert it into the `RESEND_API_KEY` env variable
-   4. In the `EMAIL_FROM` env variable, insert the email address from which emails will be sent
+    1. Create an account
+    2. Define the domain from which to send emails (follow [Resend docs](https://resend.com/docs/dashboard/domains/introduction))
+    3. Generate an API key and insert it into the `RESEND_API_KEY` env variable
+    4. In the `EMAIL_FROM` env variable, insert the email address from which emails will be sent
 
-7. In order to use `Google OAuth`, you will need to:
+7.  In order to use `Google OAuth`, you will need to:
 
-   1. **Create a Google Cloud Project**
+    1. **Create a Google Cloud Project**
 
-   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
-   - Create a new project or select an existing one.
+       - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+       - Create a new project or select an existing one.
 
-   2. **Enable OAuth 2.0 API**
+    2. **Enable OAuth 2.0 API**
 
-   - Navigate to the API & Services section.
-   - Click on **Library** and search for "Google Identity Services".
-   - Enable the **Google Identity Services API** for your project.
+       - Navigate to the API & Services section.
+       - Click on **Library** and search for "Google Identity Services".
+       - Enable the **Google Identity Services API** for your project.
 
-   3. **Create OAuth 2.0 Credentials**
+    3. **Create OAuth 2.0 Credentials**
 
-   - Go to **APIs & Services** > **Credentials**.
-   - Click on **Create Credentials** and select **OAuth 2.0 Client IDs**.
-   - Choose the application type (e.g., Web application).
-   - Define **Authorized JavaScript origins** (`http://localhost:3000`).
-   - Define the **Authorized redirect URIs** (`http://localhost:3000/api/auth/google/callback`).
+       - Go to **APIs & Services** > **Credentials**.
+       - Click on **Create Credentials** and select **OAuth 2.0 Client IDs**.
+       - Choose the application type (e.g., Web application).
+       - Define **Authorized JavaScript origins** (`http://localhost:3000`).
+       - Define the **Authorized redirect URIs** (`http://localhost:3000/api/auth/google/callback`).
 
-   4. Insert the **Client ID** and **Client Secret** into the env variables (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`).
+    4. Insert the **Client ID** and **Client Secret** into the env variables (`GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`).
+
+8.  In order to use `Stripe`, you will need to:
+
+    1. **Create a Stripe account**
+
+       - Go to the [Stripe website](https://stripe.com/).
+       - Create an account or sign in.
+
+    2. **Get the API keys**
+
+       - Go to the [API Keys](https://dashboard.stripe.com/test/apikeys).
+       - Copy the **Publishable key** and **Secret key**.
+       - Insert them into the env variables (`NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_SECRET_KEY`).
+
+    3. **Create a product**
+
+       Here you can create a subscription product to test the payment flow. In this template we set 2 subscription products, and each one has 2 prices: monthly and yearly.
+       Follow these steps:
+
+       - Go to the [Create Products](https://dashboard.stripe.com/products/create).
+       - Add product details
+       - Copy the **Price ID** and insert it into the env variable (`NEXT_PUBLIC_STRIPE_BASIC_MONTHLY`)
+
+    4. **Test webhooks**
+
+       For testing payment flows, you will need to set up webhooks:
+
+       - **Local development**
+
+         - Install [Stripe CLI](https://stripe.com/docs/stripe-cli)
+         - Run `stripe login` to log in to your Stripe account
+         - Run `stripe listen --forward-to localhost:3000/api/webhooks/stripe` to listen for events (it will forward them to the local server)
+         - This will give you a webhook secret that you need to insert into the env variable (`STRIPE_WEBHOOK_SECRET`)
+
+       - **Production**
+         - Go to the [Webhooks](https://dashboard.stripe.com/test/webhooks) section
+         - Create a new endpoint and insert the URL (`https://your-domain.com/api/webhooks/stripe`)
+         - Listen for the events `checkout.session.completed` and `customer.subscription.updated`
+         - Copy the secret key and insert it into the env variable (`STRIPE_WEBHOOK_SECRET`)
+
+    5. **Customer portal**
+
+       Stripe provides a customer portal that allows customers to manage their subscriptions:
+
+       - Go to the [Billing Portal](https://dashboard.stripe.com/settings/billing/portal)
+       - Enable the portal
+       - Copy the URL and insert it into the env variable (`NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL`)
 
 ## 📚 Resources
 
