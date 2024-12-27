@@ -12,6 +12,10 @@ export const routing = defineRouting({
   localePrefix: 'as-needed',
   pathnames: {
     '/': '/',
+    '/maintenance': {
+      it: '/manutenzione',
+      en: '/maintenance'
+    },
     '/checkout': '/checkout',
     '/profile': {
       it: '/profilo',

@@ -7,9 +7,20 @@
       "quote": "I swear it was here just a moment ago...",
       "back": "Back to Home"
     },
+    "maintenance": {
+      "title": "Maintenance",
+      "subtitle": "We are under maintenance",
+      "description": "We are working to improve our site and will be back soon!",
+      "quote": "Don't worry, we'll be back soon!"
+    },
     "home": {
       "title": "Home",
       "test": "Click me"
+    }
+  },
+  "common": {
+    "loading": {
+      "title": "Loading"
     }
   }
 }

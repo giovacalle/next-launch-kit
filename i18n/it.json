@@ -7,9 +7,20 @@
       "quote": "Giuro che era qui solo un attimo fa...",
       "back": "Torna a casa"
     },
+    "maintenance": {
+      "title": "Manutenzione",
+      "subtitle": "Siamo in manutenzione",
+      "description": "Stiamo lavorando per migliorare il nostro sito e torneremo presto!",
+      "quote": "Non preoccuparti, torneremo presto!"
+    },
     "home": {
       "title": "Casa",
       "test": "Clicca su di me"
+    }
+  },
+  "common": {
+    "loading": {
+      "title": "Caricamento"
     }
   }
 }

@@ -4,8 +4,12 @@ import { type NextRequest } from 'next/server';
 import { routing } from '@/i18n/routing';
 import { authMiddleware } from '@/middlewares/auth-middleware';
 import { csrfMiddleware } from '@/middlewares/crsf-middleware';
+import { maintenanceMiddleware } from '@/middlewares/maintenance-middleware';
 
 export async function middleware(request: NextRequest) {
+  const maintenance = maintenanceMiddleware(request);
+  if (maintenance) return maintenance;
+
   const crsf = csrfMiddleware(request);
   if (crsf) return crsf;
 

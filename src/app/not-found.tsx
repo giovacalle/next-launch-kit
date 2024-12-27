@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { Icon } from '@iconify/react';
 
-import BaseLayout from '@/components/layout/base-layout';
+import BaseLayout from '@/components/layout/layouts/base-layout';
 import { Button } from '@/components/ui/button';
 
 import { Link } from '@/i18n/routing';
