@@ -85,6 +85,14 @@ In the `data-source` folder, we define all interactions with the various data so
 This **separation of concerns** into layers enhances the maintainability and reusability of the code, allowing for local changes without impacting other parts of the system
 
 </details>
+<details>
+<summary>What about "maintenance mode"?</summary>
+
+We have implemented a "maintenance mode" that allows you to show a message to users when the site is under maintenance.
+
+To enable it, you need to set the `MAINTENANCE_MODE` env variable to `1`, then in i18n files you can define the message to show to users.
+
+</details>
 
 ## 🧪 Usage
 
