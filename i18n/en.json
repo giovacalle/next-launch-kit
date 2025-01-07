@@ -14,13 +14,61 @@
       "quote": "Don't worry, we'll be back soon!"
     },
     "home": {
-      "title": "Home",
-      "test": "Click me"
+      "title": "Team Resource Management",
+      "subtitle": "Optimize your team's resource usage. Book rooms, PCs, and tools easily and efficiently.",
+      "cta": "Get Started Now",
+      "more": "Learn More",
+      "features": {
+        "title": "Key Features",
+        "subtitle": "Discover how TeamResources can improve your team's efficiency",
+        "rooms": {
+          "title": "Room Booking",
+          "description": "Easily manage meeting room bookings"
+        },
+        "pcs": {
+          "title": "PC Allocation",
+          "description": "Track and allocate available computers to your team"
+        },
+        "tools": {
+          "title": "Tool Management",
+          "description": "Monitor the usage and availability of company tools"
+        }
+      },
+      "pricing": {
+        "title": "Affordable Pricing for Every Team",
+        "subtitle": "Optimize your resources without emptying your wallet. With TeamResources, efficiency is just a click and a budget away.",
+        "startFreeTrial": "Start Free Trial",
+        "noCardRequired": "No credit card required"
+      }
     }
   },
   "common": {
     "loading": {
       "title": "Loading"
+    },
+    "header": {
+      "navbar": {
+        "home": "Home",
+        "pricing": "Pricing",
+        "signIn": "Sign In",
+        "logged": {
+          "hi": "Hi {name}",
+          "profile": "Profile",
+          "signOut": "Sign Out"
+        }
+      }
+    },
+    "footer": {
+      "rightReserved": "All rights reserved",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
+    },
+    "langSelector": {
+      "title": "Change Language",
+      "options": {
+        "en": "English",
+        "it": "Italian"
+      }
     }
   }
 }

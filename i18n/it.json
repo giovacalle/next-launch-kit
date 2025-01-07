@@ -14,13 +14,61 @@
       "quote": "Non preoccuparti, torneremo presto!"
     },
     "home": {
-      "title": "Casa",
-      "test": "Clicca su di me"
+      "title": "Gestione Risorse di Team",
+      "subtitle": "Ottimizza l'utilizzo delle risorse del tuo team. Prenota stanze, PC e strumenti in modo semplice ed efficiente.",
+      "cta": "Inizia subito",
+      "more": "Scopri di più",
+      "features": {
+        "title": "Caratteristiche Principali",
+        "subtitle": "Scopri come TeamResources può migliorare l'efficienza del tuo team",
+        "rooms": {
+          "title": "Prenotazione Stanze",
+          "description": "Gestisci facilmente le prenotazioni delle sale riunioni"
+        },
+        "pcs": {
+          "title": "Assegnazione PC",
+          "description": "Traccia e assegna i computer disponibili al tuo team"
+        },
+        "tools": {
+          "title": "Gestione Strumenti",
+          "description": "Monitora l'uso e la disponibilità degli strumenti aziendali"
+        }
+      },
+      "pricing": {
+        "title": "Prezzi Accessibili per Ogni Team",
+        "subtitle": "Ottimizza le tue risorse senza svuotare il portafoglio. Con TeamResources,l'efficienza è a portata di click e di budget.",
+        "startFreeTrial": "Inizia la prova gratuita",
+        "noCardRequired": "Nessuna carta di credito richiesta"
+      }
     }
   },
   "common": {
     "loading": {
       "title": "Caricamento"
+    },
+    "header": {
+      "navbar": {
+        "home": "Home",
+        "pricing": "Prezzi",
+        "signIn": "Accedi",
+        "logged": {
+          "hi": "Ciao {name}",
+          "profile": "Profilo",
+          "signOut": "Esci"
+        }
+      }
+    },
+    "footer": {
+      "rightReserved": "Tutti i diritti riservati",
+      "privacyPolicy": "Informativa sulla privacy",
+      "termsOfService": "Termini di servizio"
+    },
+    "langSelector": {
+      "title": "Cambia lingua",
+      "options": {
+        "en": "Inglese",
+        "it": "Italiano"
+      }
     }
   }
 }
