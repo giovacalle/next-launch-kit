@@ -40,6 +40,36 @@
         "startFreeTrial": "Start Free Trial",
         "noCardRequired": "No credit card required"
       }
+    },
+    "pricing": {
+      "title": "Simple and Transparent Pricing",
+      "subtitle": "Choose the plan that best fits your needs and budget",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "month": "month",
+      "year": "year",
+      "whatsIncluded": "What's Included",
+      "popular": "Popular",
+      "currentPlan": "Current Plan",
+      "upgrade": "Upgrade now",
+      "getStarted": "Get Started",
+      "plans": {
+        "free": {
+          "name": "Free",
+          "description": "For teams that want to try the service",
+          "features": "Max 1 room, Max 1 PC, Max 1 tool"
+        },
+        "basic": {
+          "name": "Basic",
+          "description": "For teams that need a helping hand to get started",
+          "features": "Max 10 rooms, Max 20 PCs, Max 40 tools"
+        },
+        "premium": {
+          "name": "Premium",
+          "description": "For teams that want maximum control",
+          "features": "Max 100 rooms, Max 200 PCs, Max 100 tools"
+        }
+      }
     }
   },
   "common": {

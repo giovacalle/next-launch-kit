@@ -22,13 +22,17 @@ export default async function Home() {
               </p>
             </div>
             <div className="space-x-4">
-              <Button>{t('cta')}</Button>
-              <Button variant="outline">{t('more')}</Button>
+              <Button asChild>
+                <Link href="/pricing">{t('cta')}</Link>
+              </Button>
+              <Button variant="outline" asChild>
+                <Link href="#more">{t('more')}</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
-      <section className="w-full bg-background py-12 md:py-24 lg:py-32">
+      <section id="more" className="w-full bg-background py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6">
             <div className="flex flex-col justify-center space-y-8 text-center">
@@ -64,7 +68,7 @@ export default async function Home() {
                   icon="material-symbols:headphones-outline-rounded"
                   width={50}
                   height={50}
-                  className="text-tertiary"
+                  className="text-primary/60"
                 />
                 <h3 className="text-xl font-bold">{t('features.tools.title')}</h3>
                 <p className="text-center text-sm text-gray-500">

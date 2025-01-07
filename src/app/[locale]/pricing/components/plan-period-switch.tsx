@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { memo, useState } from 'react';
 
 type PlanPeriodSwitchProps = {
@@ -7,16 +8,18 @@ type PlanPeriodSwitchProps = {
 };
 
 function Component({ onChange }: PlanPeriodSwitchProps) {
+  const t = useTranslations('pages.pricing');
+
   const [isYearly, setIsYearly] = useState(false);
 
   return (
     <div className="mt-12 flex justify-center">
       <div className="relative flex items-center">
-        <span className="mr-3 text-sm font-medium text-gray-900">Monthly</span>
+        <span className="mr-3 text-sm font-medium text-gray-900">{t('monthly')}</span>
         <button
           type="button"
           className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-            isYearly ? 'bg-indigo-600' : 'bg-gray-200'
+            isYearly ? 'bg-primary' : 'bg-gray-200'
           }`}
           onClick={() => {
             setIsYearly(!isYearly);
@@ -28,7 +31,7 @@ function Component({ onChange }: PlanPeriodSwitchProps) {
             }`}
           />
         </button>
-        <span className="ml-3 text-sm font-medium text-gray-900">Yearly</span>
+        <span className="ml-3 text-sm font-medium text-gray-900">{t('yearly')}</span>
       </div>
     </div>
   );

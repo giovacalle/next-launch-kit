@@ -40,6 +40,36 @@
         "startFreeTrial": "Inizia la prova gratuita",
         "noCardRequired": "Nessuna carta di credito richiesta"
       }
+    },
+    "pricing": {
+      "title": "Prezzi semplici e trasparenti",
+      "subtitle": "Scegli il piano che meglio si adatta alle tue esigenze e al tuo budget",
+      "monthly": "Mensile",
+      "yearly": "Annuale",
+      "month": "mese",
+      "year": "anno",
+      "whatsIncluded": "Cosa è incluso",
+      "popular": "Preferito",
+      "currentPlan": "Piano attuale",
+      "upgrade": "Aggiorna ora",
+      "getStarted": "Inizia ora",
+      "plans": {
+        "free": {
+          "name": "Gratuito",
+          "description": "Per team che vogliono provare il servizio",
+          "features": "Max 1 stanza, Max 1 PC, Max 1 strumento"
+        },
+        "basic": {
+          "name": "Base",
+          "description": "Per team che hanno bisogno di un aiuto per iniziare",
+          "features": "Max 10 stanze, Max 20 PC, Max 40 strumenti"
+        },
+        "premium": {
+          "name": "Premium",
+          "description": "Per team che vogliono il massimo controllo",
+          "features": "Max 100 stanze, Max 200 PC, Max 100 strumenti"
+        }
+      }
     }
   },
   "common": {

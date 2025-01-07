@@ -1,13 +1,13 @@
 import { Ref } from 'react';
 
+import { cn } from '@/lib/tailwind';
+
 import { Slot } from '@radix-ui/react-slot';
 import { type VariantProps, tv } from 'tailwind-variants';
 
-import { cn } from '@/lib/tailwind';
-
 const buttonVariants = tv(
   {
-    base: 'focus-visible:ring-ring inline-flex h-max w-auto items-center justify-center px-4 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50',
+    base: 'focus-visible:ring-ring inline-flex h-max w-auto items-center justify-center px-4 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
     variants: {
       variant: {
         primary: 'bg-primary text-white shadow hover:bg-primary/90',
@@ -51,15 +51,7 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-const Button = ({
-  className,
-  variant,
-  size,
-  rounded,
-  asChild = false,
-  ref,
-  ...rest
-}: ButtonProps) => {
+function Button({ className, variant, size, rounded, asChild = false, ref, ...rest }: ButtonProps) {
   const Comp = asChild ? Slot : 'button';
   return (
     <Comp
@@ -68,7 +60,7 @@ const Button = ({
       {...rest}
     />
   );
-};
+}
 Button.displayName = 'Button';
 
 export { Button, buttonVariants };
