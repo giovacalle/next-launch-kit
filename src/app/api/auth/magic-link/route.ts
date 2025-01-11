@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server';
 
+import { signInUseCase } from '@/core/use-cases/magic-links';
+
 import { rateLimitByIp } from '@/lib/rate-limit';
 import { setSession } from '@/lib/session';
-
-import { signInUseCase } from '@/core/use-cases/magic-links';
 
 export async function GET(request: NextRequest): Promise<Response> {
   try {
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: '/sign-in/magic-link/error'
+        Location: '/sign-in/error'
       }
     });
   }

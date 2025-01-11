@@ -1,11 +1,11 @@
 'use server';
 
+import { resetPasswordUseCase } from '@/core/use-cases/users';
+
 import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByKey } from '@/lib/rate-limit';
 
-import { resetPasswordUseCase } from '@/core/use-cases/users';
-
-import { forgotPasswordSchema } from '../types/schema';
+import { forgotPasswordSchema } from './schema';
 
 export const forgotPasswordAction = unAuthenticatedAction
   .createServerAction()

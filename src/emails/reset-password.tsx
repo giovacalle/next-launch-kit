@@ -1,3 +1,5 @@
+import { applicationName } from '@/core/consts';
+
 import {
   Body,
   Container,
@@ -11,8 +13,6 @@ import {
   Tailwind,
   Text
 } from '@react-email/components';
-
-import { applicationName } from '@/core/consts';
 
 const BASE_URL = process.env.BASE_URL;
 
@@ -35,7 +35,7 @@ export default function ResetPasswordEmail({ token }: { token: string }) {
                 </Text>
                 <Text className="text-base font-medium">
                   <Link
-                    href={`${BASE_URL}/sign-in/reset-password/?token=${token}`}
+                    href={`${BASE_URL}/sign-in/account/reset-password/?token=${token}`}
                     target="_blank"
                     className="text-[#2754C5]">
                     Reset password

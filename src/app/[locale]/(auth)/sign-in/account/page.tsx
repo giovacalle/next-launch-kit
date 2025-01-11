@@ -17,15 +17,21 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { signUpAction } from './actions';
-import { SignUpSchema, signUpSchema } from './schema';
+import { Link } from '@/i18n/routing';
 
-export default function Signup() {
-  const form = useForm<SignUpSchema>({
-    resolver: zodResolver(signUpSchema)
+import { signInAction } from './actions';
+import { SignInSchema, signInSchema } from './schema';
+
+export default function Account() {
+  const form = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: '',
+      password: ''
+    }
   });
 
-  const { isPending, execute, error } = useServerAction(signUpAction, {
+  const { isPending, execute, error } = useServerAction(signInAction, {
     onError: ({ err }) => {
       alert(`Error: ${err.message}`);
     }
@@ -37,45 +43,17 @@ export default function Signup() {
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Login with account</CardTitle>
-          <CardDescription>Create an account filling the form below</CardDescription>
+          <CardDescription>Login with your email and password</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(data => execute(data))}
-              className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <form onSubmit={form.handleSubmit(data => execute(data))} className="grid gap-6">
               <input type="hidden" value="" {...form.register('accept')} />
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input type="text" variant="outline" placeholder="John" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="surname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Surname</FormLabel>
-                    <FormControl>
-                      <Input type="text" variant="outline" placeholder="Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem className="col-span-full">
+                  <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
@@ -93,8 +71,13 @@ export default function Signup() {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem className="col-span-full">
-                    <FormLabel>Password</FormLabel>
+                  <FormItem>
+                    <div className="flex items-center justify-between">
+                      <FormLabel>Password</FormLabel>
+                      <Link href="/sign-in/account/forgot-password" className="text-xs underline">
+                        Forgot password?
+                      </Link>
+                    </div>
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
@@ -102,9 +85,12 @@ export default function Signup() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="col-span-full" disabled={isPending}>
-                {isPending ? 'Loading...' : 'Sign up'}
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? 'Loading...' : 'Login'}
               </Button>
+              <Link href="/sign-up" className="text-right text-xs underline">
+                I don&apos;t have an account
+              </Link>
             </form>
           </Form>
         </CardContent>

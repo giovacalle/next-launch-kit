@@ -1,6 +1,6 @@
-import { z } from 'zod';
-
 import { addHoneyPot } from '@/utils/forms';
+
+import { z } from 'zod';
 
 export const signUpSchema = addHoneyPot(
   z.object({

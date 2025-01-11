@@ -2,12 +2,12 @@
 
 import { redirect } from 'next/navigation';
 
+import { createUserWithCredentialsUseCase } from '@/core/use-cases/users';
+
 import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByIp } from '@/lib/rate-limit';
 
-import { createUserWithCredentialsUseCase } from '@/core/use-cases/users';
-
-import { signUpSchema } from '../types/schema';
+import { signUpSchema } from './schema';
 
 export const signUpAction = unAuthenticatedAction
   .createServerAction()

@@ -25,17 +25,17 @@ export const routing = defineRouting({
       it: '/accedi',
       en: '/sign-in'
     },
-    '/sign-in/magic-link': {
-      it: '/accedi/magic-link',
-      en: '/sign-in/magic-link'
+    '/sign-in/account': {
+      it: '/accedi/account',
+      en: '/sign-in/account'
     },
-    '/sign-in/forgot-password': {
-      it: '/accedi/password-dimenticata',
-      en: '/sign-in/forgot-password'
+    '/sign-in/account/forgot-password': {
+      it: '/accedi/account/password-dimenticata',
+      en: '/sign-in//account/forgot-password'
     },
-    '/sign-in/reset-password': {
-      it: '/accedi/reset-password',
-      en: '/sign-in/reset-password'
+    '/sign-in/account/reset-password': {
+      it: '/accedi/account/reset-password',
+      en: '/sign-in/account/reset-password'
     },
     '/sign-up': {
       it: '/registrati',

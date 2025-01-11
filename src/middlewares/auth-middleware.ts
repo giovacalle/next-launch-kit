@@ -27,12 +27,14 @@ export function authMiddleware(request: NextRequest): NextResponse | null {
 const PROTECTED_PATHS = [
   '/sign-in',
   '/accedi',
-  '/sign-in/magic-link',
-  '/accedi/magic-link',
-  '/sign-in/forgot-password',
-  '/accedi/password-dimenticata',
-  '/sign-in/reset-password',
-  '/accedi/reset-password',
+  '/sign-in',
+  '/accedi',
+  '/sign-in/account',
+  '/accedi/account',
+  '/sign-in/account/forgot-password',
+  '/accedi/account/password-dimenticata',
+  '/sign-in/account/reset-password',
+  '/accedi/account/reset-password',
   '/sign-up',
   '/registrati'
 ];

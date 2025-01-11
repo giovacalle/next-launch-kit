@@ -1,11 +1,11 @@
 import { Ref } from 'react';
 
-import { type VariantProps, tv } from 'tailwind-variants';
-
 import { cn } from '@/lib/tailwind';
 
+import { type VariantProps, tv } from 'tailwind-variants';
+
 const inputVariants = tv({
-  base: 'border-input file:text-foreground placeholder:text-muted-foreground focus-visible:ring-ring flex w-max rounded-md border bg-transparent px-3 py-1 shadow-sm transition-colors file:border-0 file:bg-transparent file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50',
+  base: 'border-input file:text-foreground placeholder:text-muted-foreground flex w-full rounded-md border bg-transparent px-3 py-2 shadow-sm ring-gray-400 transition-colors file:border-0 file:bg-transparent file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:!border-red-500 aria-[invalid=true]:!ring-red-400',
   variants: {
     variant: {
       primary: 'bg-primary text-white',
@@ -16,11 +16,17 @@ const inputVariants = tv({
       sm: 'text-sm',
       md: 'text-md',
       lg: 'text-lg'
+    },
+    rounded: {
+      sm: 'rounded',
+      md: 'rounded-md',
+      lg: 'rounded-lg'
     }
   },
   defaultVariants: {
+    variant: 'primary',
     size: 'sm',
-    variant: 'primary'
+    rounded: 'sm'
   }
 });
 
@@ -30,7 +36,7 @@ export interface InputProps
   ref?: Ref<HTMLInputElement>;
 }
 
-const Input = ({ className, variant, size, type, ref, ...props }: InputProps) => {
+function Input({ className, variant, size, type, ref, ...props }: InputProps) {
   return (
     <input
       type={type}
@@ -39,7 +45,7 @@ const Input = ({ className, variant, size, type, ref, ...props }: InputProps) =>
       {...props}
     />
   );
-};
+}
 Input.displayName = 'Input';
 
 export { Input };

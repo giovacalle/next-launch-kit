@@ -2,13 +2,13 @@
 
 import { redirect } from 'next/navigation';
 
+import { signInUseCase } from '@/core/use-cases/users';
+
 import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByKey } from '@/lib/rate-limit';
 import { setSession } from '@/lib/session';
 
-import { signInUseCase } from '@/core/use-cases/users';
-
-import { signInSchema } from '../types/schema';
+import { signInSchema } from './schema';
 
 export const signInAction = unAuthenticatedAction
   .createServerAction()
