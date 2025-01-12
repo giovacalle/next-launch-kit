@@ -70,6 +70,69 @@
           "features": "Max 100 stanze, Max 200 PC, Max 100 strumenti"
         }
       }
+    },
+    "auth": {
+      "fields": {
+        "email": {
+          "label": "Email"
+        },
+        "password": {
+          "label": "Password"
+        },
+        "confirmPassword": {
+          "label": "Conferma password"
+        },
+        "forgotPassword": {
+          "label": "Ho dimenticato la password"
+        },
+        "name": {
+          "label": "Nome"
+        },
+        "surname": {
+          "label": "Cognome"
+        }
+      },
+      "sign-in": {
+        "title": "Bentornato",
+        "description": "Accedi al tuo account per continuare",
+        "login": "Accedi",
+        "loginWithGoogle": "Accedi con Google",
+        "continueWithEmail": "o continua con l'email",
+        "otherOptions": "Altre opzioni",
+        "loginWithAccount": "Accedi con account",
+        "sendMagicLink": "Invia link magico",
+        "accountDescription": "Accedi con email e password",
+        "dontHaveAccount": "Non ho un account",
+        "forgotPassword": "Password dimenticata",
+        "forgotPasswordDescription": "Inserisci la tua email per reimpostare la password",
+        "resetPassword": "Reimposta password",
+        "tokenNotFound": "Token non trovato. Controlla la tua mail e riprova",
+        "passwordChanged": "Password cambiata con successo",
+        "passwordChangedDescription": "Ora puoi accedere con la tua nuova password",
+        "resetPasswordDescription": "Inserisci la tua nuova password"
+      },
+      "sign-out": {
+        "title": "Disconnesso",
+        "description": "Sei stato disconnesso con successo. A presto!"
+      },
+      "sign-up": {
+        "title": "Crea un account",
+        "description": "Crea un account compilando i campi sottostanti",
+        "submit": "Registrati",
+        "verifyEmail": "Verifica la tua email",
+        "verifyEmailDescription": "Abbiamo inviato un link di verifica all'indirizzo email che hai fornito. Controlla la tua casella di posta e conferma il tuo account.",
+        "emailVerified": "Email verificata",
+        "emailVerifiedDescription": "La tua email è stata verificata con successo. Ora puoi accedere al tuo account."
+      },
+      "profile": {
+        "role": {
+          "label": "Ruolo",
+          "manager": "Manager",
+          "user": "Utente"
+        },
+        "plan": "Piano",
+        "manageSubscription": "Gestisci abbonamento"
+      }
     }
   },
   "common": {

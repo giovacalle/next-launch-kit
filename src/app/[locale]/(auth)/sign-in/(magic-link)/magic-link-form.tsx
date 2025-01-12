@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,6 +21,8 @@ import { signInWithMagicLinkAction } from './actions';
 import { SignInWithMagicLinkSchema, signInWithMagicLinkSchema } from './schema';
 
 export function MagicLinkForm() {
+  const t = useTranslations('pages.auth');
+
   const form = useForm<SignInWithMagicLinkSchema>({
     resolver: zodResolver(signInWithMagicLinkSchema),
     defaultValues: {
@@ -43,7 +46,7 @@ export function MagicLinkForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t('fields.email.label')}</FormLabel>
               <FormControl>
                 <Input type="email" variant="outline" placeholder="john@example.com" {...field} />
               </FormControl>
@@ -52,7 +55,7 @@ export function MagicLinkForm() {
           )}
         />
         <Button type="submit" className="w-full" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Send magic link'}
+          {t('sign-in.sendMagicLink')}
         </Button>
       </form>
     </Form>

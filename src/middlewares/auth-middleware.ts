@@ -34,7 +34,7 @@ const PROTECTED_PATHS = [
   '/sign-in/account/forgot-password',
   '/accedi/account/password-dimenticata',
   '/sign-in/account/reset-password',
-  '/accedi/account/reset-password',
+  '/accedi/account/reimposta-password',
   '/sign-up',
   '/registrati'
 ];

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,6 +24,8 @@ import { signInAction } from './actions';
 import { SignInSchema, signInSchema } from './schema';
 
 export default function Account() {
+  const t = useTranslations('pages.auth');
+
   const form = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -42,8 +45,8 @@ export default function Account() {
       {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Login with account</CardTitle>
-          <CardDescription>Login with your email and password</CardDescription>
+          <CardTitle className="text-xl">{t('sign-in.loginWithAccount')}</CardTitle>
+          <CardDescription>{t('sign-in.accountDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -54,7 +57,7 @@ export default function Account() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('fields.email.label')}</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
@@ -73,9 +76,9 @@ export default function Account() {
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex items-center justify-between">
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel>{t('fields.password.label')}</FormLabel>
                       <Link href="/sign-in/account/forgot-password" className="text-xs underline">
-                        Forgot password?
+                        {t('fields.forgotPassword.label')}
                       </Link>
                     </div>
                     <FormControl>
@@ -86,10 +89,10 @@ export default function Account() {
                 )}
               />
               <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? 'Loading...' : 'Login'}
+                {t('sign-in.login')}
               </Button>
               <Link href="/sign-up" className="text-right text-xs underline">
-                I don&apos;t have an account
+                {t('sign-in.dontHaveAccount')}
               </Link>
             </form>
           </Form>

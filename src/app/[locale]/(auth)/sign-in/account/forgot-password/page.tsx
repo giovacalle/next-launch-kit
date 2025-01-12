@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,6 +22,8 @@ import { forgotPasswordAction } from './actions';
 import { ForgotPasswordSchema, forgotPasswordSchema } from './schema';
 
 export default function ForgotPassword() {
+  const t = useTranslations('pages.auth');
+
   const form = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
@@ -39,8 +42,8 @@ export default function ForgotPassword() {
       {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Forgot password</CardTitle>
-          <CardDescription>Enter your email to reset your password</CardDescription>
+          <CardTitle className="text-xl">{t('sign-in.forgotPassword')}</CardTitle>
+          <CardDescription>{t('sign-in.forgotPasswordDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -51,7 +54,7 @@ export default function ForgotPassword() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('fields.email.label')}</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
@@ -65,7 +68,7 @@ export default function ForgotPassword() {
                 )}
               />
               <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? 'Loading...' : 'Reset password'}
+                {t('sign-in.resetPassword')}
               </Button>
             </form>
           </Form>

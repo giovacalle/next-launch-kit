@@ -34,7 +34,7 @@ export const routing = defineRouting({
       en: '/sign-in//account/forgot-password'
     },
     '/sign-in/account/reset-password': {
-      it: '/accedi/account/reset-password',
+      it: '/accedi/account/reimposta-password',
       en: '/sign-in/account/reset-password'
     },
     '/sign-up': {

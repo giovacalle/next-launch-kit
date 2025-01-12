@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,6 +22,8 @@ import { signUpAction } from './actions';
 import { SignUpSchema, signUpSchema } from './schema';
 
 export default function Signup() {
+  const t = useTranslations('pages.auth');
+
   const form = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema)
   });
@@ -36,8 +39,8 @@ export default function Signup() {
       {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Login with account</CardTitle>
-          <CardDescription>Create an account filling the form below</CardDescription>
+          <CardTitle className="text-xl">{t('sign-up.title')}</CardTitle>
+          <CardDescription>{t('sign-up.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -50,7 +53,7 @@ export default function Signup() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>{t('fields.name.label')}</FormLabel>
                     <FormControl>
                       <Input type="text" variant="outline" placeholder="John" {...field} />
                     </FormControl>
@@ -63,7 +66,7 @@ export default function Signup() {
                 name="surname"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Surname</FormLabel>
+                    <FormLabel>{t('fields.surname.label')}</FormLabel>
                     <FormControl>
                       <Input type="text" variant="outline" placeholder="Doe" {...field} />
                     </FormControl>
@@ -76,7 +79,7 @@ export default function Signup() {
                 name="email"
                 render={({ field }) => (
                   <FormItem className="col-span-full">
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t('fields.email.label')}</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
@@ -94,7 +97,7 @@ export default function Signup() {
                 name="password"
                 render={({ field }) => (
                   <FormItem className="col-span-full">
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('fields.password.label')}</FormLabel>
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
@@ -103,7 +106,7 @@ export default function Signup() {
                 )}
               />
               <Button type="submit" className="col-span-full" disabled={isPending}>
-                {isPending ? 'Loading...' : 'Sign up'}
+                {t('sign-up.submit')}
               </Button>
             </form>
           </Form>

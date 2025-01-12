@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
 import { getUserPlanUseCase } from '@/core/use-cases/subscriptions';
@@ -9,7 +10,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default async function ProfilePage2() {
+export default async function ProfilePage() {
+  const t = await getTranslations('pages.auth');
+
   const user = await enforceAuthenticatedUser();
 
   const profile = await getUserProfileUseCase(user.id);
@@ -33,17 +36,17 @@ export default async function ProfilePage2() {
         <CardContent>
           <div className="space-y-4">
             <div>
-              <h3 className="text-lg font-semibold">Email</h3>
+              <h3 className="text-lg font-semibold">{t('fields.email.label')}</h3>
               <p className="text-gray-600">{user.email}</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">Ruolo</h3>
+              <h3 className="text-lg font-semibold">{t('profile.role.label')}</h3>
               <Badge variant="secondary" className="capitalize">
-                {'member'}
+                {t(`profile.role.user`)}
               </Badge>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">Plan</h3>
+              <h3 className="text-lg font-semibold">{t('profile.plan')}</h3>
               <Badge variant="primary" className="capitalize">
                 {currrentPlan}
               </Badge>
@@ -52,7 +55,7 @@ export default async function ProfilePage2() {
                 className="mt-1 block underline"
                 target="_blank"
                 rel="noopener noreferrer">
-                Manage subscription
+                {t('profile.manageSubscription')}
               </Link>
             </div>
           </div>

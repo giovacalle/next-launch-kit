@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { use } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -24,6 +25,8 @@ import { resetPasswordAction } from './actions';
 import { ResetPasswordSchema, resetPasswordSchema } from './schema';
 
 export default function ResetPassword(props: { searchParams: Promise<{ token: string }> }) {
+  const t = useTranslations('pages.auth');
+
   const { token } = use(props.searchParams);
 
   const form = useForm<ResetPasswordSchema>({
@@ -46,10 +49,8 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
       <div className="flex min-h-screen flex-col gap-6 bg-white">
         <Card className="mx-auto mt-20 w-full max-w-sm">
           <CardHeader>
-            <CardTitle className="text-xl">Forgot password</CardTitle>
-            <CardDescription>
-              Token not found. Please check your email for the reset link.
-            </CardDescription>
+            <CardTitle className="text-xl">{t('sign-in.forgotPassword')}</CardTitle>
+            <CardDescription>{t('sign-in.tokenNotFound')}</CardDescription>
           </CardHeader>
         </Card>
       </div>
@@ -61,14 +62,12 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
       <div className="flex min-h-screen flex-col gap-6 bg-white">
         <Card className="mx-auto mt-20 w-full max-w-sm">
           <CardHeader>
-            <CardTitle className="text-xl">Password successfully changed</CardTitle>
-            <CardDescription>
-              You can now sign in to your account with your new password.
-            </CardDescription>
+            <CardTitle className="text-xl">{t('sign-in.passwordChanged')}</CardTitle>
+            <CardDescription>{t('sign-in.passwordChangedDescription')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Button className="w-full" asChild>
-              <Link href="/sign-in">Sign in</Link>
+              <Link href="/sign-in">{t('sign-in.login')}</Link>
             </Button>
           </CardContent>
         </Card>
@@ -81,8 +80,8 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
       {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Reset password</CardTitle>
-          <CardDescription>Enter your new password</CardDescription>
+          <CardTitle className="text-xl">{t('sign-in.resetPassword')}</CardTitle>
+          <CardDescription>{t('sign-in.resetPasswordDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -94,7 +93,7 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('fields.password.label')}</FormLabel>
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
@@ -107,7 +106,7 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
+                    <FormLabel>{t('fields.confirmPassword.label')}</FormLabel>
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
@@ -116,7 +115,7 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
                 )}
               />
               <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? 'Loading...' : 'Change password'}
+                {t('sign-in.resetPassword')}
               </Button>
             </form>
           </Form>

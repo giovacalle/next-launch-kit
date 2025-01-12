@@ -70,6 +70,69 @@
           "features": "Max 100 rooms, Max 200 PCs, Max 100 tools"
         }
       }
+    },
+    "auth": {
+      "fields": {
+        "email": {
+          "label": "Email"
+        },
+        "password": {
+          "label": "Password"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password"
+        },
+        "forgotPassword": {
+          "label": "Forgot Password?"
+        },
+        "name": {
+          "label": "Name"
+        },
+        "surname": {
+          "label": "Surname"
+        }
+      },
+      "sign-in": {
+        "title": "Welcome Back",
+        "description": "Sign in to your account to continue",
+        "login": "Sign In",
+        "loginWithGoogle": "Sign in with Google",
+        "continueWithEmail": "or continue with email",
+        "otherOptions": "Other options",
+        "loginWithAccount": "Create an account",
+        "sendMagicLink": "Send magic link",
+        "accountDescription": "Sign in with email and password",
+        "dontHaveAccount": "Don't have an account",
+        "forgotPassword": "Forgot password",
+        "forgotPasswordDescription": "Enter your email to reset your password",
+        "resetPassword": "Reset password",
+        "tokenNotFound": "Token not found. Please check your email for the reset link.",
+        "passwordChanged": "Password changed successfully",
+        "passwordChangedDescription": "You can now sign in to your account with your new password.",
+        "resetPasswordDescription": "Enter your new password"
+      },
+      "sign-out": {
+        "title": "Signed Out",
+        "description": "You have been successfully signed out. See you soon!"
+      },
+      "sign-up": {
+        "title": "Create an Account",
+        "description": "Create an account by filling out the fields below",
+        "submit": "Sign Up",
+        "verifyEmail": "Verify your email",
+        "verifyEmailDescription": "We have sent a verification link to the email address you provided. Check your inbox and confirm your account.",
+        "emailVerified": "Email Verified",
+        "emailVerifiedDescription": "Your email has been successfully verified. You can now sign in to your account."
+      },
+      "profile": {
+        "role": {
+          "label": "Role",
+          "manager": "Manager",
+          "user": "User"
+        },
+        "plan": "Plan",
+        "manageSubscription": "Manage subscription"
+      }
     }
   },
   "common": {
