@@ -1,5 +1,4 @@
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
 
 import { getUserProfileUseCase } from '@/core/use-cases/users-profile';
 
@@ -7,6 +6,7 @@ import { getCurrentUser } from '@/lib/auth';
 
 import { Icon } from '@iconify/react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import * as DropdownMenu from '@/components/ui/dropdown-menu';
 import * as Sheet from '@/components/ui/sheet';
@@ -63,17 +63,10 @@ export default async function Header() {
       ) : (
         <DropdownMenu.Root>
           <DropdownMenu.DropdownMenuTrigger asChild>
-            <Button
-              variant="secondary"
-              rounded="full"
-              className="relative h-9 w-9 overflow-hidden p-2">
-              {profile.avatar ? (
-                <Image src={profile.avatar} alt={profile.name} fill className="object-cover" />
-              ) : (
-                <Icon icon="mdi:user" width={25} height={25} />
-              )}
-              <span className="sr-only">Toggle user menu</span>
-            </Button>
+            <Avatar className="h-9 w-9 cursor-pointer">
+              <AvatarImage src={profile.avatar ?? ''} alt={profile.name} />
+              <AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
+            </Avatar>
           </DropdownMenu.DropdownMenuTrigger>
           <DropdownMenu.DropdownMenuContent align="end">
             <DropdownMenu.DropdownMenuLabel>
