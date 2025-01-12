@@ -25,7 +25,13 @@ export default function Signup() {
   const t = useTranslations('pages.auth');
 
   const form = useForm<SignUpSchema>({
-    resolver: zodResolver(signUpSchema)
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      name: '',
+      surname: '',
+      email: '',
+      password: ''
+    }
   });
 
   const { isPending, execute, error } = useServerAction(signUpAction, {
