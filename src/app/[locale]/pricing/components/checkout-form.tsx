@@ -1,7 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-
 import { twMerge } from 'tailwind-merge';
 import { useServerAction } from 'zsa-react';
 
@@ -18,8 +16,6 @@ type CheckoutFormProps = {
 };
 
 export function CheckoutForm({ plan, label, isYearly, isActive }: CheckoutFormProps) {
-  const t = useTranslations('common');
-
   const { isPending, execute } = useServerAction(createCheckoutSessionAction, {
     onError: ({ err }) => {
       alert(`Error: ${err.message}`);
@@ -41,7 +37,7 @@ export function CheckoutForm({ plan, label, isYearly, isActive }: CheckoutFormPr
         type="submit"
         disabled={disabled}
         className={twMerge('mt-8 w-full', disabled && 'bg-tertiary')}>
-        {isPending ? t('loading.title') : label}
+        {label}
       </Button>
     </form>
   );

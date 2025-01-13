@@ -1,15 +1,15 @@
 import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 
-import { OAuth2RequestError } from 'arctic';
+import { getUserProviderWithGoogleId } from '@/core/data-source/users-providers';
+import { GoogleUser } from '@/core/types';
+import { createUserWithGoogleUseCase } from '@/core/use-cases/users';
 
 import { google } from '@/lib/auth';
 import { rateLimitByIp } from '@/lib/rate-limit';
 import { setSession } from '@/lib/session';
 
-import { getUserProviderWithGoogleId } from '@/core/data-source/users-providers';
-import { GoogleUser } from '@/core/types';
-import { createUserWithGoogleUseCase } from '@/core/use-cases/users';
+import { OAuth2RequestError } from 'arctic';
 
 export async function GET(request: NextRequest): Promise<Response> {
   try {
@@ -69,8 +69,6 @@ export async function GET(request: NextRequest): Promise<Response> {
       }
     });
   } catch (err) {
-    console.error(err);
-
     if (err instanceof OAuth2RequestError) {
       // invalid code
       return new Response(null, {

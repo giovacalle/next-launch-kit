@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 
 import { Button } from '@/components/ui/button';
@@ -30,16 +31,20 @@ export function MagicLinkForm() {
     }
   });
 
-  const { isPending, execute, error } = useServerAction(signInWithMagicLinkAction, {
+  const { isPending, execute } = useServerAction(signInWithMagicLinkAction, {
     onError: ({ err }) => {
-      alert(`Error: ${err.message}`);
+      toast.error(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{err.title}</span>
+          <p>{err.message}</p>
+        </div>
+      );
     }
   });
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(data => execute(data))} className="grid gap-6">
-        {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
         <input type="hidden" value="" {...form.register('accept')} />
         <FormField
           control={form.control}
@@ -50,7 +55,7 @@ export function MagicLinkForm() {
               <FormControl>
                 <Input type="email" variant="outline" placeholder="john@example.com" {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage<'pages.auth.fields.email'> t={key => t(`fields.email.${key}`)} />
             </FormItem>
           )}
         />

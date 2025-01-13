@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 export const forgotPasswordSchema = addHoneyPot(
   z.object({
-    email: z.string().email('Email not valid')
+    email: z.string().email('notValid')
   })
 );
 

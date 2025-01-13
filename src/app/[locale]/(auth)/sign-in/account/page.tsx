@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 
 import { Button } from '@/components/ui/button';
@@ -34,15 +35,19 @@ export default function Account() {
     }
   });
 
-  const { isPending, execute, error } = useServerAction(signInAction, {
+  const { isPending, execute } = useServerAction(signInAction, {
     onError: ({ err }) => {
-      alert(`Error: ${err.message}`);
+      toast.error(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{err.title}</span>
+          <p>{err.message}</p>
+        </div>
+      );
     }
   });
 
   return (
     <div className="flex min-h-screen flex-col gap-6 bg-white">
-      {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">{t('sign-in.loginWithAccount')}</CardTitle>
@@ -66,7 +71,7 @@ export default function Account() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage<'pages.auth.fields.email'> t={key => t(`fields.email.${key}`)} />
                   </FormItem>
                 )}
               />
@@ -78,13 +83,15 @@ export default function Account() {
                     <div className="flex items-center justify-between">
                       <FormLabel>{t('fields.password.label')}</FormLabel>
                       <Link href="/sign-in/account/forgot-password" className="text-xs underline">
-                        {t('fields.forgotPassword.label')}
+                        {t('sign-in.forgotPassword')}
                       </Link>
                     </div>
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage<'pages.auth.fields.password'>
+                      t={key => t(`fields.password.${key}`)}
+                    />
                   </FormItem>
                 )}
               />

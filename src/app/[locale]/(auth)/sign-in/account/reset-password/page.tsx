@@ -5,6 +5,7 @@ import { use } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 
 import { Button } from '@/components/ui/button';
@@ -38,9 +39,14 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
     }
   });
 
-  const { isPending, execute, error, isSuccess } = useServerAction(resetPasswordAction, {
+  const { isPending, execute, isSuccess } = useServerAction(resetPasswordAction, {
     onError: ({ err }) => {
-      alert(`Error: ${err.message}`);
+      toast.error(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{err.title}</span>
+          <p>{err.message}</p>
+        </div>
+      );
     }
   });
 
@@ -77,7 +83,6 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
 
   return (
     <div className="flex min-h-screen flex-col gap-6 bg-white">
-      {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">{t('sign-in.resetPassword')}</CardTitle>
@@ -97,7 +102,9 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage<'pages.auth.fields.password'>
+                      t={key => t(`fields.password.${key}`)}
+                    />
                   </FormItem>
                 )}
               />
@@ -110,7 +117,9 @@ export default function ResetPassword(props: { searchParams: Promise<{ token: st
                     <FormControl>
                       <Input type="password" variant="outline" {...field} />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage<'pages.auth.fields.confirmPassword'>
+                      t={key => t(`fields.confirmPassword.${key}`)}
+                    />
                   </FormItem>
                 )}
               />

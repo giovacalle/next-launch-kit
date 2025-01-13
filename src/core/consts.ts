@@ -7,4 +7,4 @@ export const PASSWORD_RESET_TOKEN_EXPIRES_IN = 1000 * 60 * 10; // 10 minutes
 export const MAGIC_LINK_TOKEN_LENGTH = 32;
 export const MAGIC_LINK_TOKEN_EXPIRES_IN = 1000 * 60 * 10; // 10 minutes
 
-export const applicationName = 'Next.js template';
+export const applicationName = 'TeamResources';

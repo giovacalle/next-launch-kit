@@ -22,7 +22,7 @@ export default function Signin() {
         </CardHeader>
         <CardContent>
           <Button variant="outline" className="w-full gap-2" asChild>
-            <NextLink href="/api/auth/google" locale={routing.defaultLocale}>
+            <NextLink href="/api/auth/google">
               <Icon icon="mdi:google" width={24} height={24} />
               {t('loginWithGoogle')}
             </NextLink>

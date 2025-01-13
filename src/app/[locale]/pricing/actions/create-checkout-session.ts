@@ -2,12 +2,10 @@
 
 import { redirect } from 'next/navigation';
 
-import { z } from 'zod';
-
 import { authenticatedAction } from '@/lib/action-procedures';
 import { stripe } from '@/lib/stripe';
 
-import { getUserByIdUseCase } from '@/core/use-cases/users';
+import { z } from 'zod';
 
 const schema = z.object({
   priceId: z.union([
@@ -22,16 +20,11 @@ export const createCheckoutSessionAction = authenticatedAction
   .createServerAction()
   .input(schema)
   .handler(async ({ input: { priceId }, ctx: { user } }) => {
-    if (!user.id) throw new Error('No user found');
-
-    const fullUser = await getUserByIdUseCase(user.id);
-    if (!fullUser) throw new Error('No user found');
-
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: `${process.env.BASE_URL}/checkout/success`,
       cancel_url: `${process.env.BASE_URL}/checkout/cancel`,
       payment_method_types: ['card'],
-      customer_email: fullUser.email,
+      customer_email: user.email,
       mode: 'subscription',
       line_items: [
         {

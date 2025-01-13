@@ -1,5 +1,7 @@
 import { cache } from 'react';
 
+import { AuthenticationError } from '@/core/types';
+
 import { Google } from 'arctic';
 
 import { getSession } from './session';
@@ -17,6 +19,6 @@ export const getCurrentUser = cache(async () => {
 
 export async function enforceAuthenticatedUser() {
   const user = await getCurrentUser();
-  if (!user) throw new Error('Not authenticated');
+  if (!user) throw new AuthenticationError();
   return user;
 }

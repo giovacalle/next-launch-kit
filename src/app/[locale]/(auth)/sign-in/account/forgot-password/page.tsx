@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import { useServerAction } from 'zsa-react';
 
 import { Button } from '@/components/ui/button';
@@ -31,15 +32,23 @@ export default function ForgotPassword() {
     }
   });
 
-  const { isPending, execute, error } = useServerAction(forgotPasswordAction, {
+  const { isPending, execute } = useServerAction(forgotPasswordAction, {
     onError: ({ err }) => {
-      alert(`Error: ${err.message}`);
+      toast.error(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{err.title}</span>
+          <p>{err.message}</p>
+        </div>
+      );
+    },
+    onSuccess: () => {
+      toast.success(t('sign-in.forgotPasswordEmailSent'));
+      form.reset();
     }
   });
 
   return (
     <div className="flex min-h-screen flex-col gap-6 bg-white">
-      {error && <p className="mb-2 font-bold text-red-700">{error.message}</p>}
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">{t('sign-in.forgotPassword')}</CardTitle>
@@ -63,7 +72,7 @@ export default function ForgotPassword() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage<'pages.auth.fields.email'> t={key => t(`fields.email.${key}`)} />
                   </FormItem>
                 )}
               />

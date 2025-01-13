@@ -46,9 +46,7 @@ export function PricingContent({ plans, isLogged, activePlan }: PricingContentPr
                   {t('pages.pricing.popular')}
                 </div>
               )}
-              <h2 className="text-lg font-medium capitalize leading-6 text-gray-900">
-                {t(`pages.pricing.plans.${plan.id}.name`)}
-              </h2>
+              <h2 className="text-lg font-medium capitalize leading-6 text-gray-900">{plan.id}</h2>
               <p className="mt-4 text-sm text-gray-500">
                 {t(`pages.pricing.plans.${plan.id}.description`)}
               </p>

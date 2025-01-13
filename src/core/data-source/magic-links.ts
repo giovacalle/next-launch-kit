@@ -1,11 +1,10 @@
-import { eq } from 'drizzle-orm';
-
+import { MAGIC_LINK_TOKEN_EXPIRES_IN, MAGIC_LINK_TOKEN_LENGTH } from '@/core/consts';
 import { UserId } from '@/core/types';
 import { generateRandomToken } from '@/core/utils';
 import { db } from '@/db/config';
 import { magicLinksTable } from '@/db/schema';
 
-import { MAGIC_LINK_TOKEN_EXPIRES_IN, MAGIC_LINK_TOKEN_LENGTH } from '../consts';
+import { eq } from 'drizzle-orm';
 
 export async function upsertMagicLink(userId: UserId) {
   const token = await generateRandomToken(MAGIC_LINK_TOKEN_LENGTH);

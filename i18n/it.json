@@ -55,17 +55,14 @@
       "getStarted": "Inizia ora",
       "plans": {
         "free": {
-          "name": "Gratuito",
           "description": "Per team che vogliono provare il servizio",
           "features": "Max 1 stanza, Max 1 PC, Max 1 strumento"
         },
         "basic": {
-          "name": "Base",
           "description": "Per team che hanno bisogno di un aiuto per iniziare",
           "features": "Max 10 stanze, Max 20 PC, Max 40 strumenti"
         },
         "premium": {
-          "name": "Premium",
           "description": "Per team che vogliono il massimo controllo",
           "features": "Max 100 stanze, Max 200 PC, Max 100 strumenti"
         }
@@ -74,22 +71,25 @@
     "auth": {
       "fields": {
         "email": {
-          "label": "Email"
+          "label": "Email",
+          "notValid": "Non valida"
         },
         "password": {
-          "label": "Password"
+          "label": "Password",
+          "minLength6": "Minimo 6 caratteri"
         },
         "confirmPassword": {
-          "label": "Conferma password"
-        },
-        "forgotPassword": {
-          "label": "Ho dimenticato la password"
+          "label": "Conferma password",
+          "minLength6": "Minimo 6 caratteri",
+          "mustMatch": "Deve corrispondere alla password"
         },
         "name": {
-          "label": "Nome"
+          "label": "Nome",
+          "minLength3": "Minimo 3 caratteri"
         },
         "surname": {
-          "label": "Cognome"
+          "label": "Cognome",
+          "minLength3": "Minimo 3 caratteri"
         }
       },
       "sign-in": {
@@ -105,11 +105,16 @@
         "dontHaveAccount": "Non ho un account",
         "forgotPassword": "Password dimenticata",
         "forgotPasswordDescription": "Inserisci la tua email per reimpostare la password",
+        "forgotPasswordEmailSent": "Abbiamo inviato un'email con le istruzioni per reimpostare la password. Controlla la tua casella di posta.",
         "resetPassword": "Reimposta password",
         "tokenNotFound": "Token non trovato. Controlla la tua mail e riprova",
         "passwordChanged": "Password cambiata con successo",
         "passwordChangedDescription": "Ora puoi accedere con la tua nuova password",
-        "resetPasswordDescription": "Inserisci la tua nuova password"
+        "resetPasswordDescription": "Inserisci la tua nuova password",
+        "magicLinkCheckEmail": "Controlla la tua casella di posta",
+        "magicLinkCheckEmailDescription": "Abbiamo inviato un link magico all'indirizzo email che hai fornito. Clicca sul link per accedere al tuo account.",
+        "magicLinkError": "Magic link non valido",
+        "magicLinkErrorDescription": "Il link magico non è valido o è scaduto. Riprova ad accedere"
       },
       "sign-out": {
         "title": "Disconnesso",
@@ -136,9 +141,6 @@
     }
   },
   "common": {
-    "loading": {
-      "title": "Caricamento"
-    },
     "header": {
       "navbar": {
         "home": "Home",
@@ -161,6 +163,20 @@
       "options": {
         "en": "Inglese",
         "it": "Italiano"
+      }
+    },
+    "errors": {
+      "title": "Ops! qualcosa è andato storto.",
+      "unexpected": "Errore generico.",
+      "codes": {
+        "rateLimit": "Limite di richieste superato per ip. Riprova più tardi.",
+        "sendingEmail": "Errore nell'invio dell'email. Riprova più tardi.",
+        "notAuthenticated": "Devi essere autenticato per accedere a questa risorsa.",
+        "profileNotFound": "Profilo non trovato",
+        "emailAlreadyInUse": "Impossibile creare l'utente con queste credenziali",
+        "invalidToken": "Token non valido o scaduto.",
+        "invalidTokenAndResend": "Token non valido o scaduto. Ti abbiamo inviato una mail con un nuovo link.",
+        "invalidCredentials": "Email/password non validi o non verificati (controlla la tua email)"
       }
     }
   }

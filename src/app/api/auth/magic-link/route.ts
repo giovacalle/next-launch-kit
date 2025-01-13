@@ -30,9 +30,7 @@ export async function GET(request: NextRequest): Promise<Response> {
         Location: '/'
       }
     });
-  } catch (err) {
-    console.error(err);
-
+  } catch {
     return new Response(null, {
       status: 302,
       headers: {

@@ -1,5 +1,3 @@
-import { sendEmail } from '@/lib/email';
-
 import { applicationName } from '@/core/consts';
 import {
   deleteVerifyEmailToken,
@@ -24,9 +22,12 @@ import {
   updateUserProvider,
   verifyPassword
 } from '@/core/data-source/users-providers';
-import { GoogleUser } from '@/core/types';
+import { CredentialsError, GoogleUser, TokenError, i18nError } from '@/core/types';
 import { UserId } from '@/core/types';
 import { dbTransaction } from '@/core/utils';
+
+import { sendEmail } from '@/lib/email';
+
 import MagicLinkEmail from '@/emails/magic-link';
 import ResetPasswordEmail from '@/emails/reset-password';
 import VerifyEmail from '@/emails/verify-email';
@@ -45,7 +46,8 @@ export async function createUserWithCredentialsUseCase(
   if (!user) user = await createUser(email);
 
   const provider = await getUserProvider(user.id, 'credentials');
-  if (provider) throw new Error('Impossible to create user with these credentials');
+  if (provider)
+    throw new i18nError('emailAlreadyInUse', 'Impossible to create user with these credentials');
   await createUserProviderWithCredentials(user.id, password);
 
   await createUserProfile(user.id, name, surname);
@@ -89,12 +91,12 @@ export async function createUserWithGoogleUseCase(googleUser: GoogleUser) {
 export async function verifyEmailUseCase(token: string) {
   const verificationToken = await getVerifyEmailToken(token);
 
-  if (!verificationToken) throw new Error('Invalid token');
+  if (!verificationToken) throw new TokenError();
 
   if (verificationToken.expires_at < new Date()) {
     // since token is expired, we need to send a new one (otherwise, the user will not be able to access the app)
     const user = await getUserById(verificationToken.user_id);
-    if (!user) throw new Error('Impossible to re-send verification email');
+    if (!user) throw new TokenError(); // should never happen
 
     const newToken = await upsertEmailVerificationToken(user.id);
     await sendEmail(
@@ -103,7 +105,7 @@ export async function verifyEmailUseCase(token: string) {
       VerifyEmail({ token: newToken })
     );
 
-    throw new Error('Token expired');
+    throw new TokenError('invalidTokenAndResend');
   }
 
   await updateUserProvider(verificationToken.user_id, 'credentials', { verified_at: new Date() });
@@ -115,16 +117,14 @@ export async function verifyEmailUseCase(token: string) {
 export async function signInUseCase(email: string, password: string) {
   const user = await getUserByEmail(email);
 
-  if (!user) throw new Error('Email/password not valid or not verified (check your email)');
+  if (!user) throw new CredentialsError();
 
   const provider = await getUserProvider(user.id, 'credentials');
-  if (!provider || !provider.verified_at)
-    throw new Error('Email/password not valid or not verified (check your email)');
+  if (!provider || !provider.verified_at) throw new CredentialsError();
 
   const isPasswordValid = await verifyPassword(provider.password_hash!, password);
 
-  if (!isPasswordValid)
-    throw new Error('Email/password not valid or not verified (check your email)');
+  if (!isPasswordValid) throw new CredentialsError();
 
   return { id: user.id };
 }
@@ -132,7 +132,7 @@ export async function signInUseCase(email: string, password: string) {
 export async function resetPasswordUseCase(email: string) {
   const user = await getUserByEmail(email);
 
-  if (!user) return null;
+  if (!user) return new CredentialsError();
 
   const token = await upsertPasswordResetToken(user.id);
 
@@ -146,9 +146,9 @@ export async function resetPasswordUseCase(email: string) {
 export async function changePasswordUseCase(token: string, password: string) {
   const passwordResetToken = await getPasswordResetToken(token);
 
-  if (!passwordResetToken) throw new Error('Invalid token or expired');
+  if (!passwordResetToken) throw new TokenError();
 
-  if (passwordResetToken.expires_at < new Date()) throw new Error('Token expired');
+  if (passwordResetToken.expires_at < new Date()) throw new TokenError();
 
   await dbTransaction(async tx => {
     await deletePasswordResetToken(token, tx);

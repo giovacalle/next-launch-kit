@@ -55,17 +55,14 @@
       "getStarted": "Get Started",
       "plans": {
         "free": {
-          "name": "Free",
           "description": "For teams that want to try the service",
           "features": "Max 1 room, Max 1 PC, Max 1 tool"
         },
         "basic": {
-          "name": "Basic",
           "description": "For teams that need a helping hand to get started",
           "features": "Max 10 rooms, Max 20 PCs, Max 40 tools"
         },
         "premium": {
-          "name": "Premium",
           "description": "For teams that want maximum control",
           "features": "Max 100 rooms, Max 200 PCs, Max 100 tools"
         }
@@ -74,22 +71,25 @@
     "auth": {
       "fields": {
         "email": {
-          "label": "Email"
+          "label": "Email",
+          "notValid": "Not valid"
         },
         "password": {
-          "label": "Password"
+          "label": "Password",
+          "minLength6": "Minimum 6 characters"
         },
         "confirmPassword": {
-          "label": "Confirm Password"
-        },
-        "forgotPassword": {
-          "label": "Forgot Password?"
+          "label": "Confirm Password",
+          "minLength6": "Minimum 6 characters",
+          "mustMatch": "Passwords must match"
         },
         "name": {
-          "label": "Name"
+          "label": "Name",
+          "minLength3": "Minimum 3 characters"
         },
         "surname": {
-          "label": "Surname"
+          "label": "Surname",
+          "minLength3": "Minimum 3 characters"
         }
       },
       "sign-in": {
@@ -105,11 +105,16 @@
         "dontHaveAccount": "Don't have an account",
         "forgotPassword": "Forgot password",
         "forgotPasswordDescription": "Enter your email to reset your password",
+        "forgotPasswordEmailSent": "We have sent an email with instructions to reset your password. Check your inbox.",
         "resetPassword": "Reset password",
         "tokenNotFound": "Token not found. Please check your email for the reset link.",
         "passwordChanged": "Password changed successfully",
         "passwordChangedDescription": "You can now sign in to your account with your new password.",
-        "resetPasswordDescription": "Enter your new password"
+        "resetPasswordDescription": "Enter your new password",
+        "magicLinkCheckEmail": "Check your inbox",
+        "magicLinkCheckEmailDescription": "We have sent a magic link to the email address you provided. Click the link to access your account.",
+        "magicLinkError": "Invalid magic link",
+        "magicLinkErrorDescription": "The magic link is either invalid or expired. Please try signing in again."
       },
       "sign-out": {
         "title": "Signed Out",
@@ -136,9 +141,6 @@
     }
   },
   "common": {
-    "loading": {
-      "title": "Loading"
-    },
     "header": {
       "navbar": {
         "home": "Home",
@@ -161,6 +163,20 @@
       "options": {
         "en": "English",
         "it": "Italian"
+      }
+    },
+    "errors": {
+      "title": "Oops! Something went wrong.",
+      "unexpected": "An unexpected error occurred.",
+      "codes": {
+        "rateLimit": "Request limit exceeded for IP. Please try again later.",
+        "sendingEmail": "Error sending email. Please try again later.",
+        "notAuthenticated": "You must be authenticated to access this resource.",
+        "profileNotFound": "Profile not found",
+        "emailAlreadyInUse": "Unable to create user with these credentials",
+        "invalidToken": "Invalid or expired token.",
+        "invalidTokenAndResend": "Invalid or expired token. We have sent you an email with a new link.",
+        "invalidCredentials": "Email/password not valid or not verified (check your email)"
       }
     }
   }

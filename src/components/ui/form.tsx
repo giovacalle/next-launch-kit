@@ -1,5 +1,6 @@
 'use client';
 
+import { NestedKeyOf, NestedValueOf } from 'next-intl';
 import {
   ComponentPropsWithRef,
   HTMLAttributes,
@@ -53,9 +54,7 @@ const useFormField = () => {
 
   const fieldState = getFieldState(fieldContext.name, formState);
 
-  if (!fieldContext) {
-    throw new Error('useFormField should be used within <FormField>');
-  }
+  if (!fieldContext) throw new Error('useFormField should be used within <FormField>');
 
   const { id } = itemContext;
 
@@ -137,14 +136,19 @@ function FormDescription({
 }
 FormDescription.displayName = 'FormDescription';
 
-function FormMessage({
+function FormMessage<T extends NestedKeyOf<IntlMessages>>({
   className,
   children,
   ref,
+  t,
   ...rest
-}: HTMLAttributes<HTMLParagraphElement> & { ref?: Ref<HTMLParagraphElement> }) {
+}: HTMLAttributes<HTMLParagraphElement> & {
+  ref?: Ref<HTMLParagraphElement>;
+  t?: (key: keyof NestedValueOf<IntlMessages, T>) => string;
+}) {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
+  // @ts-expect-error custom handling error between zod and zsa-react
+  const body = error ? (t ? t(String(error.message)) : String(error.message)) : children;
 
   if (!body) return null;
 

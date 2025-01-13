@@ -1,5 +1,7 @@
 import { headers } from 'next/headers';
 
+import { RateLimitError } from '@/core/types';
+
 const CLEANUP_INTERVAL = 1000 * 60; // 1 minute
 
 export async function getIp() {
@@ -44,7 +46,7 @@ export function rateLimit(limit: number, interval: number) {
       return Promise.resolve();
     } else {
       // If limit is reached, reject the call
-      return Promise.reject(new Error(`Rate limit exceeded for key: ${key}`));
+      return Promise.reject(new RateLimitError(`Rate limit exceeded for key: ${key}`));
     }
   };
 }
@@ -73,7 +75,7 @@ export async function rateLimitByIp({
 }) {
   const ip = await getIp();
 
-  if (!ip) throw new Error('Rate limit exceeded (ip)');
+  if (!ip) throw new RateLimitError();
 
   const limitReq = rateLimit(limit, interval);
 

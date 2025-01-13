@@ -1,5 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
+import { i18nErrorCode } from '@/core/types';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -8,25 +10,39 @@ import { Link } from '@/i18n/routing';
 export default async function VerifyEmail(props: {
   searchParams: Promise<{
     verified: string;
+    code: i18nErrorCode;
   }>;
 }) {
-  const t = await getTranslations('pages.auth');
+  const t = await getTranslations();
 
-  const { verified } = await props.searchParams;
+  const { verified, code } = await props.searchParams;
 
   if (verified) {
     return (
       <div className="flex min-h-screen flex-col gap-6 bg-white">
         <Card className="mx-auto mt-20 w-full max-w-sm">
           <CardHeader>
-            <CardTitle className="text-xl">{t('sign-up.emailVerified')}</CardTitle>
-            <CardDescription>{t('sign-up.emailVerifiedDescription')}</CardDescription>
+            <CardTitle className="text-xl">{t('pages.auth.sign-up.emailVerified')}</CardTitle>
+            <CardDescription>{t('pages.auth.sign-up.emailVerifiedDescription')}</CardDescription>
           </CardHeader>
           <CardContent>
             <Button className="w-full" asChild>
-              <Link href="/sign-in">{t('sign-in.login')}</Link>
+              <Link href="/sign-in">{t('pages.auth.sign-in.login')}</Link>
             </Button>
           </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (code) {
+    return (
+      <div className="flex min-h-screen flex-col gap-6 bg-white">
+        <Card className="mx-auto mt-20 w-full max-w-sm">
+          <CardHeader>
+            <CardTitle className="text-xl">{t('pages.auth.sign-up.verifyEmail')}</CardTitle>
+            <CardDescription>{t(`common.errors.codes.${code}`)}</CardDescription>
+          </CardHeader>
         </Card>
       </div>
     );
@@ -36,8 +52,8 @@ export default async function VerifyEmail(props: {
     <div className="flex min-h-screen flex-col gap-6 bg-white">
       <Card className="mx-auto mt-20 w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-xl">{t('sign-up.verifyEmail')}</CardTitle>
-          <CardDescription>{t('sign-up.verifyEmailDescription')}</CardDescription>
+          <CardTitle className="text-xl">{t('pages.auth.sign-up.verifyEmail')}</CardTitle>
+          <CardDescription>{t('pages.auth.sign-up.verifyEmailDescription')}</CardDescription>
         </CardHeader>
       </Card>
     </div>

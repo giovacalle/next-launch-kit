@@ -1,7 +1,6 @@
 import { dbTransaction } from '@/core//utils';
 import { deleteMagicLink, getMagicLink, updateUsedAt } from '@/core/data-source/magic-links';
-
-import { updateUserProvider } from '../data-source/users-providers';
+import { updateUserProvider } from '@/core/data-source/users-providers';
 
 export async function signInUseCase(token: string) {
   const magicLink = await getMagicLink(token);

@@ -1,9 +1,9 @@
 import { cookies } from 'next/headers';
 
-import { generateCodeVerifier, generateState } from 'arctic';
-
 import { getCurrentUser, google } from '@/lib/auth';
 import { rateLimitByIp } from '@/lib/rate-limit';
+
+import { generateCodeVerifier, generateState } from 'arctic';
 
 export async function GET(): Promise<Response> {
   try {
@@ -44,9 +44,7 @@ export async function GET(): Promise<Response> {
     });
 
     return Response.redirect(googleRedirectUrl);
-  } catch (err) {
-    console.error(err);
-
+  } catch {
     return new Response(null, {
       status: 302,
       headers: {

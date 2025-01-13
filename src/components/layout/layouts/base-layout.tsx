@@ -4,6 +4,8 @@ import { Montserrat } from 'next/font/google';
 
 import { cn } from '@/lib/tailwind';
 
+import { Toaster } from 'sonner';
+
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 
@@ -29,6 +31,7 @@ export default async function BaseLayout({
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
       />
       <body className="bg-background">
+        <Toaster richColors position="top-center" />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="min-h-screen">{children}</main>
