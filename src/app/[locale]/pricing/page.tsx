@@ -6,27 +6,24 @@ import { getUserPlanUseCase } from '@/core/use-cases/subscriptions';
 import { getCurrentUser } from '@/lib/auth';
 
 import { PricingContent } from './content';
-import { Plan } from './types/plan';
+import { Plan } from './plan';
 
 const plans: Plan[] = [
   {
     id: 'free',
     priceMonthly: { id: '-', value: 0 },
-    priceYearly: { id: '-', value: 0 },
-    href: '/sign-in'
+    priceYearly: { id: '-', value: 0 }
   },
   {
     id: 'basic',
     priceMonthly: { id: process.env.NEXT_PUBLIC_STRIPE_BASIC_MONTHLY!, value: 2.99 },
     priceYearly: { id: process.env.NEXT_PUBLIC_STRIPE_BASIC_YEARLY!, value: 29.99 },
-    href: '/signup/basic',
     highlight: true
   },
   {
     id: 'premium',
     priceMonthly: { id: process.env.NEXT_PUBLIC_STRIPE_PREMIUM_MONTHLY!, value: 5.99 },
-    priceYearly: { id: process.env.NEXT_PUBLIC_STRIPE_PREMIUM_YEARLY!, value: 59.99 },
-    href: '/signup/basic'
+    priceYearly: { id: process.env.NEXT_PUBLIC_STRIPE_PREMIUM_YEARLY!, value: 59.99 }
   }
 ];
 

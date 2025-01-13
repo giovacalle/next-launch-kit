@@ -1,12 +1,13 @@
 'use client';
 
+import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 import { useServerAction } from 'zsa-react';
 
 import { Button } from '@/components/ui/button';
 
-import { createCheckoutSessionAction } from '../actions/create-checkout-session';
-import { Plan } from '../types/plan';
+import { Plan } from '../plan';
+import { createCheckoutSessionAction } from './actions';
 
 type CheckoutFormProps = {
   plan: Plan;
@@ -18,7 +19,12 @@ type CheckoutFormProps = {
 export function CheckoutForm({ plan, label, isYearly, isActive }: CheckoutFormProps) {
   const { isPending, execute } = useServerAction(createCheckoutSessionAction, {
     onError: ({ err }) => {
-      alert(`Error: ${err.message}`);
+      toast.error(
+        <div className="flex flex-col gap-1">
+          <span className="font-bold">{err.title}</span>
+          <p>{err.message}</p>
+        </div>
+      );
     }
   });
 

@@ -14,7 +14,7 @@ import { Link } from '@/i18n/routing';
 
 import { CheckoutForm } from './components/checkout-form';
 import { PlanPeriodSwitch } from './components/plan-period-switch';
-import { Plan } from './types/plan';
+import { Plan } from './plan';
 
 type PricingContentProps = {
   plans: Plan[];
