@@ -15,7 +15,7 @@
     },
     "home": {
       "title": "Gestione Risorse di Team",
-      "subtitle": "Ottimizza l'utilizzo delle risorse del tuo team. Prenota stanze, PC e strumenti in modo semplice ed efficiente.",
+      "subtitle": "Ottimizza l'utilizzo delle risorse del tuo team. Prenota stanze, strumenti in modo semplice ed efficiente.",
       "cta": "Inizia subito",
       "more": "Scopri di più",
       "features": {
@@ -25,13 +25,9 @@
           "title": "Prenotazione Stanze",
           "description": "Gestisci facilmente le prenotazioni delle sale riunioni"
         },
-        "pcs": {
-          "title": "Assegnazione PC",
-          "description": "Traccia e assegna i computer disponibili al tuo team"
-        },
         "tools": {
           "title": "Gestione Strumenti",
-          "description": "Monitora l'uso e la disponibilità degli strumenti aziendali"
+          "description": "Traccia e assegna gli strumenti aziendali al tuo team"
         }
       },
       "pricing": {
@@ -56,15 +52,15 @@
       "plans": {
         "free": {
           "description": "Per team che vogliono provare il servizio",
-          "features": "Max 1 stanza, Max 1 PC, Max 1 strumento"
+          "features": "Max 1 stanza, Max 10 strumenti, Max 20 Utenti"
         },
         "basic": {
           "description": "Per team che hanno bisogno di un aiuto per iniziare",
-          "features": "Max 10 stanze, Max 20 PC, Max 40 strumenti"
+          "features": "Max 10 stanze, Max 100 strumenti, Max 40 Utenti"
         },
         "premium": {
           "description": "Per team che vogliono il massimo controllo",
-          "features": "Max 100 stanze, Max 200 PC, Max 100 strumenti"
+          "features": "Max 100 stanze, Max 1000 strumenti, Max 100 Utenti"
         }
       }
     },

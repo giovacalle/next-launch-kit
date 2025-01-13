@@ -45,7 +45,7 @@ export default async function Home() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 sm:grid-cols-2 md:gap-12 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-5xl items-center gap-6 sm:grid-cols-2 md:gap-12">
               <div className="flex flex-col items-center space-y-2 rounded-lg border-gray-800 p-4">
                 <Icon icon="ph:calendar-fill" width={50} height={50} className="text-primary" />
                 <h3 className="text-xl font-bold">{t('features.rooms.title')}</h3>
@@ -59,16 +59,6 @@ export default async function Home() {
                   width={50}
                   height={50}
                   className="text-secondary"
-                />
-                <h3 className="text-xl font-bold">{t('features.pcs.title')}</h3>
-                <p className="text-center text-sm text-gray-500">{t('features.pcs.description')}</p>
-              </div>
-              <div className="flex flex-col items-center space-y-2 rounded-lg border-gray-800 p-4">
-                <Icon
-                  icon="material-symbols:headphones-outline-rounded"
-                  width={50}
-                  height={50}
-                  className="text-primary/60"
                 />
                 <h3 className="text-xl font-bold">{t('features.tools.title')}</h3>
                 <p className="text-center text-sm text-gray-500">

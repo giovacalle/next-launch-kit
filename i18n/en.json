@@ -15,7 +15,7 @@
     },
     "home": {
       "title": "Team Resource Management",
-      "subtitle": "Optimize your team's resource usage. Book rooms, PCs, and tools easily and efficiently.",
+      "subtitle": "Optimize your team's resource usage. Book rooms and tools easily and efficiently.",
       "cta": "Get Started Now",
       "more": "Learn More",
       "features": {
@@ -24,10 +24,6 @@
         "rooms": {
           "title": "Room Booking",
           "description": "Easily manage meeting room bookings"
-        },
-        "pcs": {
-          "title": "PC Allocation",
-          "description": "Track and allocate available computers to your team"
         },
         "tools": {
           "title": "Tool Management",
@@ -56,15 +52,15 @@
       "plans": {
         "free": {
           "description": "For teams that want to try the service",
-          "features": "Max 1 room, Max 1 PC, Max 1 tool"
+          "features": "Max 1 room, Max 10 tools, Max 20 users"
         },
         "basic": {
           "description": "For teams that need a helping hand to get started",
-          "features": "Max 10 rooms, Max 20 PCs, Max 40 tools"
+          "features": "Max 10 rooms, Max 100 tools, Max 40 users"
         },
         "premium": {
           "description": "For teams that want maximum control",
-          "features": "Max 100 rooms, Max 200 PCs, Max 100 tools"
+          "features": "Max 100 rooms, Max 1000 tools, Max 100 users"
         }
       }
     },
