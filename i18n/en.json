@@ -138,6 +138,16 @@
         "plan": "Plan",
         "manageSubscription": "Manage subscription"
       }
+    },
+    "checkout": {
+      "success": {
+        "title": "Payment Completed",
+        "description": "Your payment has been successfully completed. Thank you for choosing TeamResources!"
+      },
+      "cancel": {
+        "title": "Payment Canceled",
+        "description": "Your payment has been canceled. If you need assistance, please contact us."
+      }
     }
   },
   "common": {

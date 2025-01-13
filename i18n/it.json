@@ -138,6 +138,16 @@
         "plan": "Piano",
         "manageSubscription": "Gestisci abbonamento"
       }
+    },
+    "checkout": {
+      "success": {
+        "title": "Pagamento completato",
+        "description": "Il tuo pagamento è stato completato con successo. Grazie per aver scelto TeamResources!"
+      },
+      "cancel": {
+        "title": "Pagamento annullato",
+        "description": "Il tuo pagamento è stato annullato. Se hai bisogno di assistenza, contattaci."
+      }
     }
   },
   "common": {

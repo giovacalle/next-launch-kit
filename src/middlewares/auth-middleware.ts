@@ -16,7 +16,7 @@ export function authMiddleware(request: NextRequest): NextResponse | null {
   const { pathname } = request.nextUrl;
 
   const protectedPathsRegex = new RegExp(
-    `(${PROTECTED_PATHS.map(path => path.replace(/\//g, '\\/')).join('|')})`
+    `^(${PROTECTED_PATHS.map(path => path.replace(/\//g, '\\/')).join('|')})`
   );
 
   if (protectedPathsRegex.test(pathname)) return NextResponse.redirect(new URL('/', request.url));
@@ -24,17 +24,4 @@ export function authMiddleware(request: NextRequest): NextResponse | null {
   return null;
 }
 
-const PROTECTED_PATHS = [
-  '/sign-in',
-  '/accedi',
-  '/sign-in',
-  '/accedi',
-  '/sign-in/account',
-  '/accedi/account',
-  '/sign-in/account/forgot-password',
-  '/accedi/account/password-dimenticata',
-  '/sign-in/account/reset-password',
-  '/accedi/account/reimposta-password',
-  '/sign-up',
-  '/registrati'
-];
+const PROTECTED_PATHS = ['/sign-in', '/accedi', '/sign-up', '/registrati'];
