@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -11,9 +11,8 @@ const labelVariants = tv({
   base: 'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
 });
 
-interface LabelProps
-  extends React.ComponentPropsWithRef<typeof LabelPrimitive.Root>,
-    VariantProps<typeof labelVariants> {}
+type LabelProps = ComponentPropsWithRef<typeof LabelPrimitive.Root> &
+  VariantProps<typeof labelVariants>;
 
 function Label({ className, ref, ...props }: LabelProps) {
   return <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />;

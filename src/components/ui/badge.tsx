@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -32,9 +32,7 @@ const badgeVariants = tv({
   }
 });
 
-export interface BadgeProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+type BadgeProps = ComponentPropsWithRef<'div'> & VariantProps<typeof badgeVariants>;
 
 function Badge({ className, variant, size, rounded, ...props }: BadgeProps) {
   return <div className={cn(badgeVariants({ variant, size, rounded }), className)} {...props} />;

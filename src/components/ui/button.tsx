@@ -1,4 +1,4 @@
-import { Ref } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -44,10 +44,7 @@ const buttonVariants = tv(
   }
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  ref?: Ref<HTMLButtonElement>;
+interface ButtonProps extends ComponentPropsWithRef<'button'>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 

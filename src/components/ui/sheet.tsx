@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentProps, Ref } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -16,7 +16,11 @@ const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = SheetPrimitive.Portal;
 
-function SheetOverlay({ className, ref, ...props }: ComponentProps<typeof SheetPrimitive.Overlay>) {
+function SheetOverlay({
+  className,
+  ref,
+  ...props
+}: ComponentPropsWithRef<typeof SheetPrimitive.Overlay>) {
   return (
     <SheetPrimitive.Overlay
       className={cn(
@@ -47,11 +51,8 @@ const sheetVariants = tv({
   }
 });
 
-interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {
-  ref?: Ref<HTMLDivElement>;
-}
+type SheetContentProps = ComponentPropsWithRef<typeof SheetPrimitive.Content> &
+  VariantProps<typeof sheetVariants>;
 
 function SheetContent({ side = 'right', className, children, ref, ...props }: SheetContentProps) {
   return (
@@ -72,14 +73,14 @@ function SheetContent({ side = 'right', className, children, ref, ...props }: Sh
 }
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
-function SheetHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function SheetHeader({ className, ...props }: ComponentPropsWithRef<'div'>) {
   return (
     <div className={cn('flex flex-col space-y-2 text-center sm:text-left', className)} {...props} />
   );
 }
 SheetHeader.displayName = 'SheetHeader';
 
-function SheetFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function SheetFooter({ className, ...props }: ComponentPropsWithRef<'div'>) {
   return (
     <div
       className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
@@ -89,7 +90,11 @@ function SheetFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 }
 SheetFooter.displayName = 'SheetFooter';
 
-function SheetTitle({ className, ref, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {
+function SheetTitle({
+  className,
+  ref,
+  ...props
+}: ComponentPropsWithRef<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
       ref={ref}
@@ -104,7 +109,7 @@ function SheetDescription({
   className,
   ref,
   ...props
-}: ComponentProps<typeof SheetPrimitive.Description>) {
+}: ComponentPropsWithRef<typeof SheetPrimitive.Description>) {
   return (
     <SheetPrimitive.Description
       ref={ref}

@@ -1,4 +1,4 @@
-import { Ref } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -30,11 +30,7 @@ const inputVariants = tv({
   }
 });
 
-export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
-    VariantProps<typeof inputVariants> {
-  ref?: Ref<HTMLInputElement>;
-}
+type InputProps = Omit<ComponentPropsWithRef<'input'>, 'size'> & VariantProps<typeof inputVariants>;
 
 function Input({ className, variant, size, type, ref, ...props }: InputProps) {
   return (

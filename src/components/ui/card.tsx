@@ -1,10 +1,8 @@
-import { HTMLAttributes, Ref } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
-interface DivProps extends HTMLAttributes<HTMLDivElement> {
-  ref?: Ref<HTMLDivElement>;
-}
+type DivProps = ComponentPropsWithRef<'div'>;
 
 function Card({ className, ref, ...rest }: DivProps) {
   return (

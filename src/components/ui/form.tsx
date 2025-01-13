@@ -1,14 +1,7 @@
 'use client';
 
 import { NestedKeyOf, NestedValueOf } from 'next-intl';
-import {
-  ComponentPropsWithRef,
-  HTMLAttributes,
-  Ref,
-  createContext,
-  useContext,
-  useId
-} from 'react';
+import { ComponentPropsWithRef, createContext, useContext, useId } from 'react';
 import {
   Controller,
   ControllerProps,
@@ -74,11 +67,7 @@ type FormItemContextValue = {
 
 const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue);
 
-function FormItem({
-  className,
-  ref,
-  ...rest
-}: HTMLAttributes<HTMLDivElement> & { ref?: Ref<HTMLDivElement> }) {
+function FormItem({ className, ref, ...rest }: ComponentPropsWithRef<'div'>) {
   const id = useId();
 
   return (
@@ -118,11 +107,7 @@ function FormControl({ ref, ...rest }: ComponentPropsWithRef<typeof Slot>) {
 }
 FormControl.displayName = 'FormControl';
 
-function FormDescription({
-  className,
-  ref,
-  ...rest
-}: HTMLAttributes<HTMLParagraphElement> & { ref?: Ref<HTMLParagraphElement> }) {
+function FormDescription({ className, ref, ...rest }: ComponentPropsWithRef<'p'>) {
   const { formDescriptionId } = useFormField();
 
   return (
@@ -136,16 +121,16 @@ function FormDescription({
 }
 FormDescription.displayName = 'FormDescription';
 
+type FormMessageProps<T extends NestedKeyOf<IntlMessages>> = ComponentPropsWithRef<'p'> & {
+  t?: (key: keyof NestedValueOf<IntlMessages, T>) => string;
+};
 function FormMessage<T extends NestedKeyOf<IntlMessages>>({
   className,
   children,
   ref,
   t,
   ...rest
-}: HTMLAttributes<HTMLParagraphElement> & {
-  ref?: Ref<HTMLParagraphElement>;
-  t?: (key: keyof NestedValueOf<IntlMessages, T>) => string;
-}) {
+}: FormMessageProps<T>) {
   const { error, formMessageId } = useFormField();
   // @ts-expect-error custom handling error between zod and zsa-react
   const body = error ? (t ? t(String(error.message)) : String(error.message)) : children;
