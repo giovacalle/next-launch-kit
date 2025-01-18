@@ -26,6 +26,7 @@ export const usersProvidersTable = pgTable(
   })
 );
 
+export const dashboardEnums = pgEnum('user_preferred_dashboard', ['member', 'manager']);
 export const usersProfileTable = pgTable('users_profile', {
   user_id: uuid('user_id')
     .notNull()
@@ -35,7 +36,8 @@ export const usersProfileTable = pgTable('users_profile', {
     .primaryKey(),
   name: text('name').notNull(),
   surname: text('surname'),
-  avatar: text('avatar')
+  avatar: text('avatar'),
+  preferredDashboard: dashboardEnums('preferred_dashboard').notNull().default('member')
 });
 
 export const emailVerificationTokensTable = pgTable(

@@ -126,10 +126,10 @@
         "emailVerifiedDescription": "La tua email è stata verificata con successo. Ora puoi accedere al tuo account."
       },
       "profile": {
-        "role": {
-          "label": "Ruolo",
-          "manager": "Manager",
-          "user": "Utente"
+        "preferredDashboard": {
+          "title": "Dashboard preferita",
+          "description": "Indica quale dashboard desideri essere reindirizzato dopo il login",
+          "managerAsDefault": "Manager come dashboard predefinita"
         },
         "plan": "Piano",
         "manageSubscription": "Gestisci abbonamento"
@@ -151,6 +151,7 @@
       "navbar": {
         "home": "Home",
         "pricing": "Prezzi",
+        "dashboard": "Dashboard",
         "signIn": "Accedi",
         "logged": {
           "hi": "Ciao {name}",

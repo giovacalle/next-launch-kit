@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { Montserrat } from 'next/font/google';
 
 import { cn } from '@/lib/tailwind';
+import { TRPCProvider } from '@/lib/trpc/client';
 
 import { Toaster } from 'sonner';
 
@@ -30,9 +31,11 @@ export default async function BaseLayout({
       <body className="bg-background">
         <Toaster richColors position="top-center" />
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <TRPCProvider>
+            <Header />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </TRPCProvider>
         </NextIntlClientProvider>
       </body>
     </html>

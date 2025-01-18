@@ -22,9 +22,7 @@ export default async function Header() {
   const user = await getCurrentUser();
   let profile = null;
 
-  if (user) {
-    profile = await getUserProfileUseCase(user.id);
-  }
+  if (user) profile = await getUserProfileUseCase(user.id);
 
   return (
     <header className="sticky top-0 z-10 flex min-h-16 items-center gap-4 bg-white px-4 md:px-6">
@@ -38,6 +36,13 @@ export default async function Header() {
           className="text-muted-foreground hover:text-foreground transition-colors">
           {t('navbar.pricing')}
         </Link>
+        {user && (
+          <Link
+            href="/dashboard"
+            className="text-muted-foreground hover:text-foreground transition-colors">
+            {t('navbar.dashboard')}
+          </Link>
+        )}
       </nav>
       <Sheet.Root>
         <Sheet.SheetTrigger asChild>
@@ -51,6 +56,7 @@ export default async function Header() {
           <nav className="mb-5 grid gap-5 text-lg font-medium">
             <Link href="/">{t('navbar.home')}</Link>
             <Link href="/pricing">{t('navbar.pricing')}</Link>
+            {user && <Link href="/dashboard">{t('navbar.dashboard')}</Link>}
           </nav>
           <LangSelector isMobile />
         </Sheet.SheetContent>
@@ -65,7 +71,9 @@ export default async function Header() {
           <DropdownMenu.DropdownMenuTrigger asChild>
             <Avatar className="h-9 w-9 cursor-pointer">
               <AvatarImage src={profile.avatar ?? ''} alt={profile.name} />
-              <AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
+              <AvatarFallback>
+                {profile.name.charAt(0) + (profile.surname ? profile.surname.charAt(0) : '')}
+              </AvatarFallback>
             </Avatar>
           </DropdownMenu.DropdownMenuTrigger>
           <DropdownMenu.DropdownMenuContent align="end">

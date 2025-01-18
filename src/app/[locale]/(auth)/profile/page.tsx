@@ -9,6 +9,7 @@ import { enforceAuthenticatedUser } from '@/lib/auth';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
 
 export default async function ProfilePage() {
   const t = await getTranslations('pages.auth');
@@ -28,10 +29,12 @@ export default async function ProfilePage() {
           <div className="mb-4 flex justify-center">
             <Avatar className="h-24 w-24">
               <AvatarImage src={profile.avatar ?? ''} alt={profile.name} />
-              <AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
+              <AvatarFallback>
+                {profile.name.charAt(0) + (profile.surname ? profile.surname.charAt(0) : '')}
+              </AvatarFallback>
             </Avatar>
           </div>
-          <CardTitle className="text-2xl font-bold">{profile.name}</CardTitle>
+          <CardTitle className="text-2xl font-bold">{`${profile.name} ${profile.surname}`}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -40,23 +43,27 @@ export default async function ProfilePage() {
               <p className="text-gray-600">{user.email}</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">{t('profile.role.label')}</h3>
-              <Badge variant="secondary" className="capitalize">
-                {t(`profile.role.user`)}
-              </Badge>
+              <h3 className="text-lg font-semibold">{t('profile.preferredDashboard.title')}</h3>
+              <p className="text-sm text-gray-600">{t('profile.preferredDashboard.description')}</p>
+              <div className="mt-2 flex items-center gap-2">
+                <span>{t('profile.preferredDashboard.managerAsDefault')}</span>
+                <Switch checked={profile.preferredDashboard === 'manager'} />
+              </div>
             </div>
             <div>
               <h3 className="text-lg font-semibold">{t('profile.plan')}</h3>
               <Badge variant="primary" className="capitalize">
                 {currrentPlan}
               </Badge>
-              <Link
-                href={link}
-                className="mt-1 block underline"
-                target="_blank"
-                rel="noopener noreferrer">
-                {t('profile.manageSubscription')}
-              </Link>
+              {currrentPlan !== 'free' && (
+                <Link
+                  href={link}
+                  className="mt-1 block underline"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  {t('profile.manageSubscription')}
+                </Link>
+              )}
             </div>
           </div>
         </CardContent>

@@ -11,6 +11,7 @@
   "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   "tailwindFunctions": ["tv"],
   "importOrder": [
+    "server-only|client-only",
     "^(react|next)/?(.*)$",
     "^@/(core|db)/(.*)$",
     "^@/(hooks|stores)/(.*)$",

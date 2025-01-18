@@ -126,10 +126,10 @@
         "emailVerifiedDescription": "Your email has been successfully verified. You can now sign in to your account."
       },
       "profile": {
-        "role": {
-          "label": "Role",
-          "manager": "Manager",
-          "user": "User"
+        "preferredDashboard": {
+          "title": "Favourite dashboard",
+          "description": "Indicate which dashboard you'd like to be redirected to after login",
+          "managerAsDefault": "Manager as default dashboard"
         },
         "plan": "Plan",
         "manageSubscription": "Manage subscription"
@@ -151,11 +151,12 @@
       "navbar": {
         "home": "Home",
         "pricing": "Pricing",
-        "signIn": "Sign In",
+        "dashboard": "Dashboard",
+        "signIn": "Sign in",
         "logged": {
           "hi": "Hi {name}",
           "profile": "Profile",
-          "signOut": "Sign Out"
+          "signOut": "Sign out"
         }
       }
     },

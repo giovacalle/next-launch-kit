@@ -17,5 +17,5 @@ export const signInAction = unAuthenticatedAction
     await rateLimitByKey({ key: input.email, limit: 3, interval: 10000 });
     const user = await signInUseCase(input.email, input.password);
     await setSession(user.id);
-    redirect('/');
+    redirect('/dashboard');
   });
