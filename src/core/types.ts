@@ -18,6 +18,14 @@ export type GoogleUser = {
 export type Subscription = Omit<SubscriptionDb, 'created_at'>;
 export type SubscriptionPlan = 'free' | 'basic' | 'premium';
 
+export type EquipmentMetadata = {
+  model: string | null;
+};
+export type RoomMetadata = {
+  capacity: number;
+  location: string | null;
+};
+
 export type i18nErrorCode = NestedKeyOf<IntlMessages['common']['errors']['codes']>;
 export class i18nError extends Error {
   code: i18nErrorCode;
@@ -63,5 +71,11 @@ export class TokenError extends i18nError {
 export class CredentialsError extends i18nError {
   constructor(message = 'Invalid credentials') {
     super('invalidCredentials', message);
+  }
+}
+
+export class ExceededPlanLimitError extends i18nError {
+  constructor(message = 'Exceeded plan limit') {
+    super('exceededPlanLimit', message);
   }
 }

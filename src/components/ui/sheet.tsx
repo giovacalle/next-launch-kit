@@ -121,7 +121,7 @@ function SheetDescription({
 SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 export {
-  Sheet as Root,
+  Sheet,
   SheetPortal,
   SheetOverlay,
   SheetTrigger,

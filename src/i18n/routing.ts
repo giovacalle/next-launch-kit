@@ -20,6 +20,8 @@ export const routing = defineRouting({
     '/checkout/success': '/checkout/success',
     '/checkout/cancel': '/checkout/cancel',
     '/dashboard': '/dashboard',
+    '/dashboard/member': '/dashboard/member',
+    '/dashboard/manager': '/dashboard/manager',
     '/pricing': {
       it: '/prezzi',
       en: '/pricing'

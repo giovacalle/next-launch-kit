@@ -52,7 +52,7 @@
       "plans": {
         "free": {
           "description": "For teams that want to try the service",
-          "features": "Max 1 room, Max 10 tools, Max 20 users"
+          "features": "Max 1 room, Max 10 tools, Max 5 users"
         },
         "basic": {
           "description": "For teams that need a helping hand to get started",
@@ -144,6 +144,51 @@
         "title": "Payment Canceled",
         "description": "Your payment has been canceled. If you need assistance, please contact us."
       }
+    },
+    "dashboard": {
+      "title": "{role} dashboard",
+      "manager": {
+        "subtitle": "Here you can manage your team's resources",
+        "inviteMember": "Invite member",
+        "addResource": {
+          "label": "Add resource",
+          "description": "Add a new room or equipment to your inventory",
+          "submit": "Add",
+          "success": {
+            "title": "Resource added",
+            "description": "The resource has been successfully added to your inventory."
+          },
+          "types": {
+            "room": "Room",
+            "equipment": "Equipment"
+          },
+          "fields": {
+            "optional": "optional",
+            "type": {
+              "label": "Type",
+              "placeholder": "Select a type"
+            },
+            "name": {
+              "label": "Name",
+              "minLength3": "Minimum 3 characters"
+            },
+            "model": {
+              "label": "Model"
+            },
+            "capacity": {
+              "label": "Capacity",
+              "positive": "Must be a positive number",
+              "minValue1": "Minimum value is 1"
+            },
+            "location": {
+              "label": "Location"
+            }
+          }
+        }
+      },
+      "member": {
+        "subtitle": "Here you can book rooms and tools"
+      }
     }
   },
   "common": {
@@ -151,7 +196,11 @@
       "navbar": {
         "home": "Home",
         "pricing": "Pricing",
-        "dashboard": "Dashboard",
+        "dashboard": {
+          "label": "Dashboard",
+          "member": "Member",
+          "manager": "Manager"
+        },
         "signIn": "Sign in",
         "logged": {
           "hi": "Hi {name}",
@@ -183,7 +232,8 @@
         "emailAlreadyInUse": "Unable to create user with these credentials",
         "invalidToken": "Invalid or expired token.",
         "invalidTokenAndResend": "Invalid or expired token. We have sent you an email with a new link.",
-        "invalidCredentials": "Email/password not valid or not verified (check your email)"
+        "invalidCredentials": "Email/password not valid or not verified (check your email)",
+        "exceededPlanLimit": "You have exceeded the limit for this resource"
       }
     }
   }

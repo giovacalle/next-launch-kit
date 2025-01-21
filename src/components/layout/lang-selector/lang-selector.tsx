@@ -3,7 +3,13 @@
 import { useLocale, useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
-import * as DropdownMenu from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
 import { Link } from '@/i18n/routing';
 import { Locale, routing, usePathname } from '@/i18n/routing';
@@ -18,38 +24,34 @@ export function LangSelector({ isMobile = false }: { isMobile?: boolean }) {
   if (isMobile) {
     return (
       <div className="flex flex-wrap items-center justify-center gap-x-5">
-        <span className="w-full shrink-0 text-sm font-medium">{t('title')}</span>
+        <span className="mb-3 w-full shrink-0 text-sm font-medium">{t('title')}</span>
         {routing.locales.map(lng => (
-          <Button key={lng} variant="unstyled">
-            <Link href={pathname}>
-              <FlagIcon code={lng} />
-            </Link>
-          </Button>
+          <Link key={lng} href={pathname}>
+            <FlagIcon code={lng} />
+          </Link>
         ))}
       </div>
     );
   }
 
   return (
-    <DropdownMenu.Root>
-      <DropdownMenu.DropdownMenuTrigger asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button variant="unstyled" className="ml-auto max-md:hidden">
           <FlagIcon code={locale as Locale} />
         </Button>
-      </DropdownMenu.DropdownMenuTrigger>
-      <DropdownMenu.DropdownMenuContent align="end">
-        <DropdownMenu.DropdownMenuLabel>{t('title')}</DropdownMenu.DropdownMenuLabel>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>{t('title')}</DropdownMenuLabel>
         {routing.locales.map(lng => (
-          <DropdownMenu.DropdownMenuItem key={lng}>
-            <Button variant="unstyled" asChild>
-              <Link href={pathname} locale={lng} className="flex items-center gap-x-1">
-                <FlagIcon code={lng} />
-                {t(`options.${lng}`)}
-              </Link>
-            </Button>
-          </DropdownMenu.DropdownMenuItem>
+          <DropdownMenuItem key={lng} className="mb-2">
+            <Link href={pathname} locale={lng} className="flex items-center gap-x-1 p-0">
+              <FlagIcon code={lng} />
+              {t(`options.${lng}`)}
+            </Link>
+          </DropdownMenuItem>
         ))}
-      </DropdownMenu.DropdownMenuContent>
-    </DropdownMenu.Root>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

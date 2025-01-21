@@ -1,8 +1,8 @@
-import { eq } from 'drizzle-orm';
-
 import { UserId } from '@/core/types';
 import { db } from '@/db/config';
 import { User, usersTable } from '@/db/schema';
+
+import { eq } from 'drizzle-orm';
 
 export async function getUserByEmail(email: string) {
   return await db.query.usersTable.findFirst({

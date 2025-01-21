@@ -1,13 +1,19 @@
+import { PLAN_LIMITS } from '@/core/consts';
 import {
   createSubscription,
   getSubscriptionByUserId,
   updateSubscription
 } from '@/core/data-source/subscriptions';
-import { Subscription, SubscriptionPlan } from '@/core/types';
+import { Subscription, SubscriptionPlan, UserId } from '@/core/types';
 
-export async function getUserPlanUseCase(userId: string): Promise<SubscriptionPlan> {
+export async function getUserPlanUseCase(userId: UserId): Promise<SubscriptionPlan> {
   const subscription = await getSubscriptionByUserId(userId);
   return getSubscriptionPlan(subscription);
+}
+
+export async function getUserPlanUsageLimitsUseCase(userId: UserId) {
+  const plan = await getUserPlanUseCase(userId);
+  return PLAN_LIMITS[plan];
 }
 
 export async function createSubscriptionUseCase(subscription: Subscription) {

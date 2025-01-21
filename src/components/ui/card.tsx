@@ -16,7 +16,7 @@ function Card({ className, ref, ...rest }: DivProps) {
 Card.displayName = 'Card';
 
 function CardHeader({ className, ref, ...rest }: DivProps) {
-  return <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...rest} />;
+  return <div ref={ref} className={cn('flex flex-col p-6', className)} {...rest} />;
 }
 CardHeader.displayName = 'CardHeader';
 
