@@ -1,0 +1,175 @@
+{
+  "pages": {
+    "404": {
+      "title": "404",
+      "subtitle": "Ops! Pagina non trovata",
+      "description": "Sembra che questa pagina sia andata in vacanza senza dircelo!",
+      "quote": "Giuro che era qui un attimo fa...",
+      "back": "Torna alla Home"
+    },
+    "maintenance": {
+      "title": "Manutenzione",
+      "subtitle": "Siamo in manutenzione",
+      "description": "Stiamo lavorando per migliorare il nostro sito e torneremo presto!",
+      "quote": "Non preoccuparti, torneremo presto!"
+    },
+    "home": {
+      "hero": {
+        "title": "Non solo “un altro“ Starter Kit 🚀",
+        "subtitle": "Questo Starter Kit per Next.js viene fornito con tutto ciò di cui hai bisogno per dare vita alle tue idee. È open source e gratuito da usare.",
+        "cta": "Inizia ora"
+      },
+      "howComposed": {
+        "title": "Com'è composto?",
+        "subtitle": "Quante volte ti sei trovato a dover creare un nuovo progetto e configurare l'intero ambiente di sviluppo da zero? Configurare l'autenticazione, il routing, lo stile, e così via... Ci sono passato anch'io, ed è per questo che ho deciso di semplificare il processo creando questo starter kit",
+        "whatsInside": "Quindi, cosa c'è dentro?",
+        "andMore": "🌝 e altro ancora..."
+      },
+      "more": {
+        "title": "In realtà c'è di più",
+        "subtitle": "Non voglio sopraffarti con un lungo elenco di funzionalità. Ti incoraggio a provarlo e vedere di persona. Se ti piace, considera di dargli una stella su GitHub e di condividerlo con i tuoi amici—significherebbe molto per me! :)",
+        "cta": "Dai un'occhiata al repository GitHub",
+        "ps": "P.S. Se trovi un bug o hai un suggerimento, sentiti libero di aprire un issue su GitHub. 🙏"
+      }
+    },
+    "privacy": {
+      "title": "Politica sulla Privacy"
+    },
+    "terms": {
+      "title": "Termini di Servizio"
+    },
+    "pricing": {
+      "title": "Prezzi semplici e trasparenti",
+      "subtitle": "Scegli il piano che meglio si adatta alle tue esigenze e al tuo budget",
+      "monthly": "Mensile",
+      "yearly": "Annuale",
+      "month": "mese",
+      "year": "anno",
+      "whatsIncluded": "Cosa è incluso",
+      "popular": "Popolare",
+      "included": "Incluso",
+      "currentPlan": "Piano attuale",
+      "upgrade": "Aggiorna ora",
+      "getStarted": "Inizia",
+      "plans": {
+        "free": {
+          "description": "Per chi vuole provare la piattaforma",
+          "features": "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+        },
+        "basic": {
+          "description": "Per chi vuole iniziare in piccolo",
+          "features": "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+        },
+        "premium": {
+          "description": "Per chi vuole fare le cose in grande",
+          "features": "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+        }
+      }
+    },
+    "auth": {
+      "fields": {
+        "email": {
+          "label": "Email",
+          "notValid": "Non valido"
+        },
+        "password": {
+          "label": "Password",
+          "minLength6": "Minimo 6 caratteri"
+        },
+        "confirmPassword": {
+          "label": "Conferma Password",
+          "minLength6": "Minimo 6 caratteri",
+          "mustMatch": "Le password devono coincidere"
+        },
+        "name": {
+          "label": "Nome",
+          "minLength3": "Minimo 3 caratteri"
+        },
+        "surname": {
+          "label": "Cognome",
+          "minLength3": "Minimo 3 caratteri"
+        }
+      },
+      "sign-in": {
+        "title": "Bentornato",
+        "description": "Accedi al tuo account per continuare",
+        "login": "Accedi",
+        "loginWithGoogle": "Accedi con Google",
+        "continueWithEmail": "o continua con email",
+        "otherOptions": "Altre opzioni",
+        "loginWithAccount": "Accedi con account",
+        "sendMagicLink": "Invia link magico",
+        "accountDescription": "Inserisci la tua email e password qui sotto per accedere al tuo account",
+        "dontHaveAccount": "Non ho un account",
+        "forgotPassword": "Password dimenticata",
+        "forgotPasswordDescription": "Inserisci la tua email per reimpostare la password",
+        "forgotPasswordEmailSent": "Abbiamo inviato un'email con le istruzioni per reimpostare la password. Controlla la tua casella di posta.",
+        "resetPassword": "Reimposta password",
+        "tokenNotFound": "Token non trovato. Controlla la tua email per il link di reimpostazione.",
+        "passwordChanged": "Password cambiata con successo",
+        "passwordChangedDescription": "Ora puoi accedere al tuo account con la tua nuova password.",
+        "resetPasswordDescription": "Inserisci la tua nuova password",
+        "magicLinkCheckEmail": "Controlla la tua casella di posta",
+        "magicLinkCheckEmailDescription": "Abbiamo inviato un link magico all'indirizzo email che hai fornito. Clicca sul link per accedere al tuo account.",
+        "magicLinkError": "Link magico non valido",
+        "magicLinkErrorDescription": "Il link magico è non valido o scaduto. Prova ad accedere di nuovo."
+      },
+      "sign-up": {
+        "title": "Crea un account",
+        "description": "Crea un account compilando i campi qui sotto",
+        "submit": "Iscriviti",
+        "verifyEmail": "Verifica la tua email",
+        "verifyEmailDescription": "Abbiamo inviato un link di verifica all'indirizzo email che hai fornito. Controlla la tua casella di posta e conferma il tuo account.",
+        "emailVerified": "Email verificata",
+        "emailVerifiedDescription": "La tua email è stata verificata con successo. Ora puoi accedere al tuo account."
+      }
+    },
+    "checkout": {
+      "success": {
+        "title": "Pagamento completato",
+        "description": "Il tuo pagamento è stato completato con successo. Grazie per aver scelto {applicationName}!"
+      },
+      "cancel": {
+        "title": "Pagamento annullato",
+        "description": "Il tuo pagamento è stato annullato. Se hai bisogno di assistenza, contattaci."
+      }
+    }
+  },
+  "common": {
+    "navbar": {
+      "home": "Home",
+      "pricing": "Prezzi",
+      "signIn": "Accedi",
+      "dashboard": "Dashboard",
+      "signOut": "Esci",
+      "toggleTheme": "Cambia tema",
+      "billing": "Fatturazione"
+    },
+    "footer": {
+      "rightReserved": "Tutti i diritti riservati",
+      "privacyPolicy": "Politica sulla Privacy",
+      "termsOfService": "Termini di Servizio"
+    },
+    "langSelector": {
+      "options": {
+        "en": "Inglese",
+        "it": "Italiano"
+      }
+    },
+    "errors": {
+      "title": "Ops! Qualcosa è andato storto.",
+      "unexpected": "Si è verificato un errore imprevisto.",
+      "codes": {
+        "rateLimit": "Limite di richieste superato per IP. Riprova più tardi.",
+        "sendingEmail": "Errore nell'invio dell'email. Riprova più tardi.",
+        "notAuthenticated": "Devi essere autenticato per accedere a questa risorsa.",
+        "profileNotFound": "Profilo non trovato",
+        "badCredentials": "Impossibile creare un utente con queste credenziali",
+        "invalidToken": "Token non valido o scaduto.",
+        "invalidTokenAndResend": "Token non valido o scaduto. Ti abbiamo inviato un'email con un nuovo link.",
+        "invalidCredentials": "Email/password non validi o non verificati (controlla la tua email)",
+        "exceededPlanLimit": "Hai superato il limite per questa risorsa"
+      }
+    }
+  }
+}

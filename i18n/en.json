@@ -1,0 +1,175 @@
+{
+  "pages": {
+    "404": {
+      "title": "404",
+      "subtitle": "Oops! Page Not Found",
+      "description": "Looks like this page took a vacation without telling us!",
+      "quote": "I swear it was here just a moment ago...",
+      "back": "Back to Home"
+    },
+    "maintenance": {
+      "title": "Maintenance",
+      "subtitle": "We are under maintenance",
+      "description": "We are working to improve our site and will be back soon!",
+      "quote": "Don't worry, we'll be back soon!"
+    },
+    "home": {
+      "hero": {
+        "title": "Not “just another“ Starter Kit 🚀",
+        "subtitle": "This Next.js Starter kit comes with everything you need to bring your ideas to life. It's open source and free to use.",
+        "cta": "Get Started Now"
+      },
+      "howComposed": {
+        "title": "How is it composed?",
+        "subtitle": "How many times have you found yourself needing to create a new project and configure the entire development environment from scratch? Setting up authentication, routing, styling, and so on... I've been there too, which is why I decided to streamline the process by creating this starter kit",
+        "whatsInside": "So, what's inside?",
+        "andMore": "🌝 and more..."
+      },
+      "more": {
+        "title": "Actually there's more",
+        "subtitle": "I don’t want to overwhelm you with a lengthy list of features. I encourage you to give it a try and see for yourself. If you enjoy it, please consider giving it a star on GitHub and sharing it with your friends—it would mean a lot to me! :)",
+        "cta": "Check out the GitHub repository",
+        "ps": "P.S. If you find a bug or have a suggestion, feel free to open an issue on GitHub. 🙏"
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy"
+    },
+    "terms": {
+      "title": "Terms of Service"
+    },
+    "pricing": {
+      "title": "Simple and Transparent Pricing",
+      "subtitle": "Choose the plan that best fits your needs and budget",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "month": "month",
+      "year": "year",
+      "whatsIncluded": "What's Included",
+      "popular": "Popular",
+      "included": "Included",
+      "currentPlan": "Current Plan",
+      "upgrade": "Upgrade now",
+      "getStarted": "Get Started",
+      "plans": {
+        "free": {
+          "description": "For those who want to try the platform",
+          "features": "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+        },
+        "basic": {
+          "description": "For those who want to start small",
+          "features": "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+        },
+        "premium": {
+          "description": "For those who want to go big",
+          "features": "Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+        }
+      }
+    },
+    "auth": {
+      "fields": {
+        "email": {
+          "label": "Email",
+          "notValid": "Not valid"
+        },
+        "password": {
+          "label": "Password",
+          "minLength6": "Minimum 6 characters"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password",
+          "minLength6": "Minimum 6 characters",
+          "mustMatch": "Passwords must match"
+        },
+        "name": {
+          "label": "Name",
+          "minLength3": "Minimum 3 characters"
+        },
+        "surname": {
+          "label": "Surname",
+          "minLength3": "Minimum 3 characters"
+        }
+      },
+      "sign-in": {
+        "title": "Welcome Back",
+        "description": "Sign in to your account to continue",
+        "login": "Login",
+        "loginWithGoogle": "Sign in with Google",
+        "continueWithEmail": "or continue with email",
+        "otherOptions": "Other options",
+        "loginWithAccount": "Login with account",
+        "sendMagicLink": "Send magic link",
+        "accountDescription": "Enter your email and password below to sign in to your account",
+        "dontHaveAccount": "I don't have an account",
+        "forgotPassword": "Forgot password",
+        "forgotPasswordDescription": "Enter your email to reset your password",
+        "forgotPasswordEmailSent": "We have sent an email with instructions to reset your password. Check your inbox.",
+        "resetPassword": "Reset password",
+        "tokenNotFound": "Token not found. Please check your email for the reset link.",
+        "passwordChanged": "Password changed successfully",
+        "passwordChangedDescription": "You can now sign in to your account with your new password.",
+        "resetPasswordDescription": "Enter your new password",
+        "magicLinkCheckEmail": "Check your inbox",
+        "magicLinkCheckEmailDescription": "We have sent a magic link to the email address you provided. Click the link to access your account.",
+        "magicLinkError": "Invalid magic link",
+        "magicLinkErrorDescription": "The magic link is either invalid or expired. Please try signing in again."
+      },
+      "sign-up": {
+        "title": "Create an account",
+        "description": "Create an account by filling out the fields below",
+        "submit": "Sign up",
+        "verifyEmail": "Verify your email",
+        "verifyEmailDescription": "We have sent a verification link to the email address you provided. Check your inbox and confirm your account.",
+        "emailVerified": "Email verified",
+        "emailVerifiedDescription": "Your email has been successfully verified. You can now sign in to your account."
+      }
+    },
+    "checkout": {
+      "success": {
+        "title": "Payment completed",
+        "description": "Your payment has been successfully completed. Thank you for choosing {applicationName}!"
+      },
+      "cancel": {
+        "title": "Payment canceled",
+        "description": "Your payment has been canceled. If you need assistance, please contact us."
+      }
+    }
+  },
+  "common": {
+    "navbar": {
+      "home": "Home",
+      "pricing": "Pricing",
+      "signIn": "Sign in",
+      "dashboard": "Dashboard",
+      "signOut": "Sign out",
+      "toggleTheme": "Toggle theme",
+      "billing": "Billing"
+    },
+    "footer": {
+      "rightReserved": "All rights reserved",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
+    },
+    "langSelector": {
+      "options": {
+        "en": "English",
+        "it": "Italian"
+      }
+    },
+    "errors": {
+      "title": "Oops! Something went wrong.",
+      "unexpected": "An unexpected error occurred.",
+      "codes": {
+        "rateLimit": "Request limit exceeded for IP. Please try again later.",
+        "sendingEmail": "Error sending email. Please try again later.",
+        "notAuthenticated": "You must be authenticated to access this resource.",
+        "profileNotFound": "Profile not found",
+        "badCredentials": "Unable to create user with these credentials",
+        "invalidToken": "Invalid or expired token.",
+        "invalidTokenAndResend": "Invalid or expired token. We have sent you an email with a new link.",
+        "invalidCredentials": "Email/password not valid or not verified (check your email)",
+        "exceededPlanLimit": "You have exceeded the limit for this resource"
+      }
+    }
+  }
+}
