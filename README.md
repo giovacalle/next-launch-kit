@@ -88,7 +88,7 @@ This **separation of concerns** into layers enhances the maintainability and reu
 
 We have implemented a "mode" system that allows you to define different modes for the application.
 
-In the `.env` file, you can define the `MODE` variable, which can be `coming-soon`, `maintenance`, or `live`.
+In the `.env.example` file, you can define the `MODE` variable, which can be `coming-soon`, `maintenance`, or `live`.
 
 - `coming-soon`: allows you to render just the home page hiding some UI elements (like the header).
 - `maintenance`: allows you to show a message to users when the site is under maintenance.
@@ -106,7 +106,7 @@ In the `.env` file, you can define the `MODE` variable, which can be `coming-soo
       1. Have Docker installed and running
       2. Run `pnpm db:local` to start the Docker container ([.yml](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file)
 
-    1. In the [.env](https://github.com/giovacalle/next-launch-kit/blob/main/.env) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
+    1. In the [.env.example](https://github.com/giovacalle/next-launch-kit/blob/main/.env.example) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
     2. Run `pnpm db:generate` to generate the database schema
     3. Run `pnpm db:migrate` to create the database (in the Postgres instance)
     4. Run `pnpm db:studio` to open a GUI to interact with the database
