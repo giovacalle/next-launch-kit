@@ -1,5 +1,7 @@
 import { cookies } from 'next/headers';
 
+import { MODE } from '@/core/consts';
+
 import { getCurrentUser, google } from '@/lib/auth';
 import { rateLimitByIp } from '@/lib/rate-limit';
 
@@ -8,6 +10,16 @@ import { generateCodeVerifier, generateState } from 'arctic';
 export async function GET(): Promise<Response> {
   try {
     await rateLimitByIp({ key: 'google', limit: 5, interval: 60000 });
+
+    // block google sign-in when the app is not in live mode
+    if (MODE !== 'live') {
+      return new Response(null, {
+        status: 302,
+        headers: {
+          Location: '/'
+        }
+      });
+    }
 
     // redirect to the sign-in page if the user is already signed in
     const user = await getCurrentUser();
