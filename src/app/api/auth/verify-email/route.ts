@@ -5,6 +5,8 @@ import { verifyEmailUseCase } from '@/core/use-cases/users';
 
 import { rateLimitByIp } from '@/lib/rate-limit';
 
+import { Locale } from '@/i18n/routing';
+
 export async function GET(request: NextRequest): Promise<Response> {
   try {
     await rateLimitByIp({ key: 'verify-email', limit: 5, interval: 60000 });
@@ -20,7 +22,9 @@ export async function GET(request: NextRequest): Promise<Response> {
       });
     }
 
-    await verifyEmailUseCase(token);
+    const locale = (request.nextUrl.searchParams.get('locale') ?? 'en') as Locale;
+
+    await verifyEmailUseCase(token, locale);
 
     return new Response(null, {
       status: 302,

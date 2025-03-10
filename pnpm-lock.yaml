@@ -72,6 +72,9 @@ dependencies:
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
+  dotenv:
+    specifier: ^16.4.7
+    version: 16.4.7
   drizzle-orm:
     specifier: ^0.33.0
     version: 0.33.0(@types/react@19.0.1)(postgres@3.3.5)(react@19.0.0)
@@ -4154,6 +4157,11 @@ packages:
     dependencies:
       is-obj: 2.0.0
     dev: true
+
+  /dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /drizzle-kit@0.24.2:
     resolution: {integrity: sha512-nXOaTSFiuIaTMhS8WJC2d4EBeIcN9OSt2A2cyFbQYBAZbi7lRsVGJNqDpEwPqYfJz38yxbY/UtbvBBahBfnExQ==}

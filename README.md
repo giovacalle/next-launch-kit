@@ -106,6 +106,7 @@ In the `.env.example` file, you can define the `MODE` variable, which can be `co
       1. Have Docker installed and running
       2. Run `pnpm db:local` to start the Docker container ([.yml](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file)
 
+    0. In the [drizzle.config.ts](https://github.com/webdevcody/wdc-saas-starter-kit/blob/main/drizzle.config.ts) file, we need to declare env path using `dotenv` package. By default is set to `.env.example` (change if needed).
     1. In the [.env.example](https://github.com/giovacalle/next-launch-kit/blob/main/.env.example) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
     2. Run `pnpm db:generate` to generate the database schema
     3. Run `pnpm db:migrate` to create the database (in the Postgres instance)

@@ -1,11 +1,14 @@
 'use server';
 
+import { getLocale } from 'next-intl/server';
 import { redirect } from 'next/navigation';
 
 import { createUserWithCredentialsUseCase } from '@/core/use-cases/users';
 
 import { unAuthenticatedAction } from '@/lib/action-procedures';
 import { rateLimitByIp } from '@/lib/rate-limit';
+
+import { Locale } from '@/i18n/routing';
 
 import { signUpSchema } from './schema';
 
@@ -14,6 +17,16 @@ export const signUpAction = unAuthenticatedAction
   .input(signUpSchema)
   .handler(async ({ input }) => {
     await rateLimitByIp({ key: 'sign-up', limit: 3, interval: 30000 });
-    await createUserWithCredentialsUseCase(input.email, input.password, input.name, input.surname);
-    return redirect('/sign-up/verify-email');
+
+    const locale = ((await getLocale()) ?? 'en') as Locale;
+
+    await createUserWithCredentialsUseCase(
+      input.email,
+      input.password,
+      input.name,
+      input.surname,
+      locale
+    );
+
+    redirect('/sign-up/verify-email');
   });

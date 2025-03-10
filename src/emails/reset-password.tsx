@@ -17,11 +17,39 @@ import {
 
 const BASE_URL = process.env.BASE_URL;
 
-export default function ResetPasswordEmail({ token }: { token: string }) {
+const translations = {
+  en: {
+    preview: `${applicationName} Reset password`,
+    heading: 'Reset your password',
+    text: 'Hi there, to reset your password, please click the link below:',
+    link: 'Reset password',
+    footer: `© 2025 ${applicationName}. All rights reserved.`
+  },
+  it: {
+    preview: `${applicationName} Reimposta password`,
+    heading: 'Reimposta la tua password',
+    text: 'Ciao, per reimpostare la tua password, clicca sul link qui sotto:',
+    link: 'Reimposta password',
+    footer: `© 2025 ${applicationName}. Tutti i diritti riservati.`
+  }
+} as Record<
+  string,
+  { preview: string; heading: string; text: string; link: string; footer: string }
+>;
+
+export default function ResetPasswordEmail({
+  token,
+  locale = 'en'
+}: {
+  token: string;
+  locale: string;
+}) {
+  const t = translations[locale];
+
   return (
     <Html>
       <Head />
-      <Preview>{applicationName} Reset password</Preview>
+      <Preview>{t.preview}</Preview>
       <Tailwind>
         <Body className="bg-white font-sans text-black">
           <Container className="mx-auto my-10 rounded border border-solid border-gray-200">
@@ -36,23 +64,19 @@ export default function ResetPasswordEmail({ token }: { token: string }) {
             </Section>
             <Section className="p-4">
               <Section>
-                <Heading className="text-xl font-bold">Reset your password</Heading>
-                <Text className="mb-8 text-sm font-medium">
-                  Hi there, to reset your password, please click the link below:
-                </Text>
+                <Heading className="text-xl font-bold">{t.heading}</Heading>
+                <Text className="mb-8 text-sm font-medium">{t.text}</Text>
                 <Text className="text-base font-medium">
                   <Link
                     href={`${BASE_URL}/sign-in/account/reset-password/?token=${token}`}
                     target="_blank"
                     className="text-[#2754C5]">
-                    Reset password
+                    {t.link}
                   </Link>
                 </Text>
               </Section>
               <Hr className="mx-0 my-6 w-full border border-solid border-gray-400" />
-              <Text className="text-center text-xs text-gray-700">
-                © 2025 {applicationName}. All rights reserved.
-              </Text>
+              <Text className="text-center text-xs text-gray-700">{t.footer}</Text>
             </Section>
           </Container>
         </Body>

@@ -57,21 +57,21 @@ export default async function Home() {
         <p className="mx-auto mt-4 px-5 text-lg lg:max-w-[60svw]">{t('howComposed.subtitle')}</p>
         <div className="mx-auto mt-8 grid w-max grid-cols-1 items-start gap-x-10 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
           <p className="col-span-full text-lg font-bold">{t('howComposed.whatsInside')}</p>
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-2">
             <span>🚀 Next.js 15</span>
             <span>✏️ TypeScript</span>
             <span>🐘 Postgres</span>
             <span>🔒 Authentication</span>
             <span>🔑 Google OAuth & Magic Link</span>
           </div>
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-2">
             <span>🌐 i18n</span>
             <span>💳 Stripe</span>
             <span>✉️ Email (Resend)</span>
             <span>🔧 Maintenance mode</span>
             <span>🔜 Coming soon mode</span>
           </div>
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-2">
             <span>🎨 Tailwind CSS</span>
             <span>🖼️ ShadCN</span>
             <span>{t('howComposed.andMore')}</span>

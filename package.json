@@ -37,6 +37,7 @@
     "@trpc/server": "11.0.0-rc.700",
     "arctic": "^1.9.2",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
     "drizzle-orm": "^0.33.0",
     "next": "15.1.0",
     "next-intl": "^3.26.1",

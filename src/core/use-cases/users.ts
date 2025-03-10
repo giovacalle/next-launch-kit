@@ -31,6 +31,7 @@ import { sendEmail } from '@/lib/email';
 import MagicLinkEmail from '@/emails/magic-link';
 import ResetPasswordEmail from '@/emails/reset-password';
 import VerifyEmail from '@/emails/verify-email';
+import { Locale } from '@/i18n/routing';
 
 export async function getUserByIdUseCase(userId: UserId) {
   return await getUserById(userId);
@@ -40,7 +41,8 @@ export async function createUserWithCredentialsUseCase(
   email: string,
   password: string,
   name: string,
-  surname: string
+  surname: string,
+  locale: Locale
 ) {
   let user = await getUserByEmail(email);
   if (!user) user = await createUser(email);
@@ -53,12 +55,19 @@ export async function createUserWithCredentialsUseCase(
   await createUserProfile(user.id, name, surname);
 
   const token = await upsertEmailVerificationToken(user.id);
-  await sendEmail(email, `Verify your email for ${applicationName}`, VerifyEmail({ token }));
+  await sendEmail(
+    email,
+    {
+      en: `Verify your email for ${applicationName}`,
+      it: `Verifica la tua email per ${applicationName}`
+    }[locale],
+    VerifyEmail({ token, locale })
+  );
 
   return { id: user.id };
 }
 
-export async function createUserWithMagicLinkUseCase(email: string) {
+export async function createUserWithMagicLinkUseCase(email: string, locale: Locale) {
   let user = await getUserByEmail(email);
   if (!user) user = await createUser(email);
 
@@ -67,7 +76,14 @@ export async function createUserWithMagicLinkUseCase(email: string) {
   await createUserProfile(user.id, 'Guest', 'Magic link');
 
   const token = await upsertMagicLink(user.id);
-  await sendEmail(email, `Your magic login link for ${applicationName}`, MagicLinkEmail({ token }));
+  await sendEmail(
+    email,
+    {
+      en: `Your magic login link for ${applicationName}`,
+      it: `Il tuo link magico per accedere a ${applicationName}`
+    }[locale],
+    MagicLinkEmail({ token, locale })
+  );
 
   return { id: user.id };
 }
@@ -88,7 +104,7 @@ export async function createUserWithGoogleUseCase(googleUser: GoogleUser) {
   return { id: user.id };
 }
 
-export async function verifyEmailUseCase(token: string) {
+export async function verifyEmailUseCase(token: string, locale: Locale) {
   const verificationToken = await getVerifyEmailToken(token);
 
   if (!verificationToken) throw new TokenError();
@@ -101,8 +117,11 @@ export async function verifyEmailUseCase(token: string) {
     const newToken = await upsertEmailVerificationToken(user.id);
     await sendEmail(
       user.email,
-      `Verify your email for ${applicationName}`,
-      VerifyEmail({ token: newToken })
+      {
+        en: `Verify your email for ${applicationName}`,
+        it: `Verifica la tua email per ${applicationName}`
+      }[locale],
+      VerifyEmail({ token: newToken, locale })
     );
 
     throw new TokenError('invalidTokenAndResend');
@@ -129,7 +148,7 @@ export async function signInUseCase(email: string, password: string) {
   return { id: user.id };
 }
 
-export async function resetPasswordUseCase(email: string) {
+export async function resetPasswordUseCase(email: string, locale: Locale) {
   const user = await getUserByEmail(email);
 
   if (!user) return new CredentialsError();
@@ -138,8 +157,11 @@ export async function resetPasswordUseCase(email: string) {
 
   await sendEmail(
     email,
-    `Reset your password for ${applicationName}`,
-    ResetPasswordEmail({ token })
+    {
+      en: `Reset your password for ${applicationName}`,
+      it: `Reimposta la tua password per ${applicationName}`
+    }[locale],
+    ResetPasswordEmail({ token, locale })
   );
 }
 
