@@ -102,9 +102,12 @@ In the `.env.example` file, you can define the `MODE` variable, which can be `co
 2.  Run `pnpm install` to install dependencies
 3.  Db setup:
 
-    - if you want to use the local db, you need to:
-      1. Have Docker installed and running
-      2. Run `pnpm db:local` to start the Docker container ([.yml](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file)
+    > 💡 **If you want to use the local database, follow these steps:**
+    >
+    > 1. Ensure **Docker** is installed and running.
+    > 2. Run `pnpm db:local-up` to start the Docker container
+    >    - This will use the [`local-db.yml`](https://github.com/giovacalle/next-launch-kit/blob/main/src/db/local-db.yml) file.
+    > 3. To stop the container, run `pnpm db:local-down`.
 
     0. In the [drizzle.config.ts](https://github.com/webdevcody/wdc-saas-starter-kit/blob/main/drizzle.config.ts) file, we need to declare env path using `dotenv` package. By default is set to `.env.example` (change if needed).
     1. In the [.env.example](https://github.com/giovacalle/next-launch-kit/blob/main/.env.example) file we define `DATABASE_URL` variable. It is the url of the local Postgres instance.
