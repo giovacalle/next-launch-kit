@@ -48,6 +48,8 @@ We prefer to keep this project simple with certain packages/features, so any new
   - [stripe](http://stripe.com/)
 - i18n
   - [next-intl](https://next-intl.dev/)
+- Analytics
+  - [posthog](https://posthog.com/)
 
 ## 🤓 More about
 
@@ -194,6 +196,27 @@ In the `.env.example` file, you can define the `MODE` variable, which can be `co
        - Go to the [Billing Portal](https://dashboard.stripe.com/settings/billing/portal)
        - Enable the portal
        - Copy the URL and insert it into the env variable (`NEXT_PUBLIC_STRIPE_CUSTOMER_PORTAL`)
+
+9.  In order to use `Posthog`, you will need to:
+
+    > 💡 **Keep in mind**
+    >
+    > Posthog provides a ton of features, so you can customize the analytics as you want. In this template, we just set up the basic configuration for the web analytics.
+    > In the future, if we'll add more features, we'll update this section.
+
+    1. **Create a Posthog account**
+
+       - Go to the [Posthog website](https://posthog.com/).
+       - Create an account or sign in.
+
+    2. **Continue with the wizard**
+
+       - Follow the steps in the wizard to create a new project using Next.js.
+
+    3. **Get the env variables**
+
+    - At the end of the wizard, you will get the `NEXT_PUBLIC_POSTHOG_KEY` and `NEXT_PUBLIC_POSTHOG_HOST`.
+    - Insert them into the env variables (with the same name).
 
 ## 📚 Resources
 

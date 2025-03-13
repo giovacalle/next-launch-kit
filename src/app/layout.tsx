@@ -8,6 +8,7 @@ import { TRPCProvider } from '@/lib/trpc/client';
 
 import { Toaster } from 'sonner';
 
+import { PostHogProvider } from '@/components/providers/posthog';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 
 import '@/app/globals.css';
@@ -57,7 +58,9 @@ export default async function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            <main className="grid min-h-svh">{children}</main>
+            <PostHogProvider>
+              <main className="grid min-h-svh">{children}</main>
+            </PostHogProvider>
           </ThemeProvider>
         </TRPCProvider>
       </body>

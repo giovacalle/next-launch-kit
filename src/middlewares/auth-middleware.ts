@@ -11,7 +11,11 @@ export function authMiddleware(request: NextRequest): NextResponse | null {
 
   const { pathname } = request.nextUrl;
 
-  // not the best way to check if user is logged in but in middleware we can't access db to check session status
+  /* 
+    In Next.js middleware, it's recommended to only check for the existence of a session cookie to handle redirection. 
+    To avoid blocking requests by making API or database calls.
+    BUT keep in mind that this is just a 'easy check', you should add a session verification in each route that needs it.
+  */
   const isAuthenticated = request.cookies.has(SESSION_COOKIE_NAME);
 
   // if not authenticated, hide some pages

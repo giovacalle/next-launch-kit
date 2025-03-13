@@ -68,8 +68,8 @@ export default async function Home() {
             <span>🌐 i18n</span>
             <span>💳 Stripe</span>
             <span>✉️ Email (Resend)</span>
-            <span>🔧 Maintenance mode</span>
-            <span>🔜 Coming soon mode</span>
+            <span>⚙️ Coming soon and Maintenance mode</span>
+            <span>📊 Posthog (for analytics)</span>
           </div>
           <div className="flex flex-col gap-2">
             <span>🎨 Tailwind CSS</span>
