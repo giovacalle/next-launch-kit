@@ -14,7 +14,9 @@ const nextConfig = {
       }
     ]
   },
-  serverExternalPackages: ['arctic'] // since arctic use oslo under the hood
+  serverExternalPackages: ['arctic'], // since arctic use oslo under the hood,
+  output: 'standalone',
+  reactStrictMode: true
 };
 
 export default withNextIntl(nextConfig);

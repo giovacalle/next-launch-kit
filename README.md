@@ -4,6 +4,8 @@ This is a GitHub template that aims to be a sort of "blueprint" with Next.js, Ty
 We're not superheroes, so we make mistakes! If you find any issues in this template, feel free to submit a pull request or open an issue.
 We prefer to keep this project simple with certain packages/features, so any new feature requests will be discussed first.
 
+> ⚠️ **Note:** This project uses Next.js in [standalone mode](https://nextjs.org/docs/pages/api-reference/config/next-config-js/output#automatically-copying-traced-files) along with a Dockerfile for deployment. This allows the application to be containerized and easily deployed in various environments.
+
 ## Table of contents
 
 - 🏁 [Next launch kit](#🏁-next-launch-kit)
@@ -95,6 +97,14 @@ In the `.env.example` file, you can define the `MODE` variable, which can be `co
 - `coming-soon`: allows you to render just the home page hiding some UI elements (like the header).
 - `maintenance`: allows you to show a message to users when the site is under maintenance.
 - `live`: the default mode.
+
+</details>
+<details>
+<summary>How does rate-limiter work?</summary>
+
+In the file [rate-limit.ts](https://github.com/giovacalle/next-launch-kit/blob/main/src/lib/rate-limit.ts), an example of a rate-limiter is defined to limit the number of requests to a specific endpoint. In this kit, it is mainly used to protect server actions and/or API routes (particularly to prevent spam for actions like database modifications or email sending).
+
+However, as mentioned in the file, this rate-limiter is applicable when the app is deployed on a single VPS (which is our case since we use Next.js in standalone mode). If the app needs to scale, a distributed rate-limiter like Redis would be necessary. To keep the kit as simple as possible, we decided not to implement this functionality, but it could be an idea for a future update.
 
 </details>
 

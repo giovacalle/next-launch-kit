@@ -4,6 +4,9 @@ import { RateLimitError } from '@/core/types';
 
 const CLEANUP_INTERVAL = 1000 * 60; // 1 minute
 
+// NOTE: Keep in mind that this rate limiter only works when deploying to a single VPS instance (which is what we are doing in this kit).
+//       For more information, read the README.md.
+
 export async function getIp() {
   const headersList = await headers();
 
