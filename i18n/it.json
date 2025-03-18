@@ -136,6 +136,14 @@
     }
   },
   "common": {
+    "metadata": {
+      "description": "Starter Kit Next.js per lanciare il tuo prodotto digitale",
+      "keywords": "next.js, starter kit, saas, lancio, launch kit, starter kit prodotto digitale, lancia il tuo primo prodotto, inizia a costruire, starter kit next.js facile, blueprint saas kit, kit per la tua app",
+      "openGraph": {
+        "image": "https://nextlaunchkit.com/og-it.png",
+        "alt": "Immagine della scheda per i social media"
+      }
+    },
     "navbar": {
       "home": "Home",
       "pricing": "Prezzi",

@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 import { Icon } from '@iconify/react';
 
@@ -7,8 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 
 export default async function NotFound() {
-  const locale = (await getLocale()) ?? 'en';
-  const t = await getTranslations({ locale, namespace: 'pages.404' });
+  const t = await getTranslations('pages.404');
 
   return (
     <div className="flex h-full flex-col items-center justify-center bg-gradient-to-b from-blue-100 to-purple-100">
