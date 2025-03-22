@@ -1,4 +1,4 @@
-import { NestedKeyOf } from 'next-intl';
+import { Messages, NestedKeyOf } from 'next-intl';
 
 import { Subscription as SubscriptionDb } from '@/db/schema';
 
@@ -24,7 +24,7 @@ export type Plan = {
   highlight?: boolean;
 };
 
-export type i18nErrorCode = NestedKeyOf<IntlMessages['common']['errors']['codes']>;
+export type i18nErrorCode = NestedKeyOf<Messages['common']['errors']['codes']>;
 export class i18nError extends Error {
   code: i18nErrorCode;
 

@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 import { MODE } from '@/core/consts';
 
 const MAINTENANCE_PATHS = ['/maintenance', '/manutenzione'];
-const COMING_SOON_PATHS = ['/en', '/'];
+const COMING_SOON_PATHS = ['/', '/it'];
 
 export function modeMiddleware(request: NextRequest): NextResponse | null {
   const { pathname } = request.nextUrl;

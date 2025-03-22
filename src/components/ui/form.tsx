@@ -1,6 +1,6 @@
 'use client';
 
-import { NestedKeyOf, NestedValueOf } from 'next-intl';
+import { Messages, NestedKeyOf, NestedValueOf } from 'next-intl';
 import { ComponentPropsWithRef, createContext, useContext, useId } from 'react';
 import {
   Controller,
@@ -125,10 +125,10 @@ function FormDescription({ className, ref, ...props }: ComponentPropsWithRef<'p'
 }
 FormDescription.displayName = 'FormDescription';
 
-type FormMessageProps<T extends NestedKeyOf<IntlMessages>> = ComponentPropsWithRef<'p'> & {
-  t?: (key: keyof NestedValueOf<IntlMessages, T>) => string;
+type FormMessageProps<T extends NestedKeyOf<Messages>> = ComponentPropsWithRef<'p'> & {
+  t?: (key: keyof NestedValueOf<Messages, T>) => string;
 };
-function FormMessage<T extends NestedKeyOf<IntlMessages>>({
+function FormMessage<T extends NestedKeyOf<Messages>>({
   className,
   children,
   ref,
