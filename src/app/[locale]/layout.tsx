@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
@@ -14,7 +14,7 @@ import { Toaster } from 'sonner';
 import { PostHogProvider } from '@/components/providers/posthog';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 
-import { Locale, routing } from '@/i18n/routing';
+import { routing } from '@/i18n/routing';
 
 import '@/app/globals.css';
 
@@ -25,7 +25,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   let { locale } = await params;
 
-  if (!routing.locales.includes(locale as Locale)) locale = 'en';
+  if (!hasLocale(routing.locales, locale)) locale = routing.defaultLocale;
 
   const t = await getTranslations('common.metadata');
 
@@ -79,11 +79,9 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as Locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-
-  const messages = await getMessages();
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -96,7 +94,7 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange>
             <PostHogProvider>
-              <NextIntlClientProvider messages={messages}>
+              <NextIntlClientProvider>
                 <main className="grid min-h-svh">{children}</main>
               </NextIntlClientProvider>
             </PostHogProvider>
