@@ -1,7 +1,7 @@
 'use client';
 
 import { Messages, NestedKeyOf, NestedValueOf } from 'next-intl';
-import { ComponentPropsWithRef, createContext, useContext, useId } from 'react';
+import { ComponentProps, createContext, useContext, useId } from 'react';
 import {
   Controller,
   ControllerProps,
@@ -67,41 +67,31 @@ type FormItemContextValue = {
 
 const FormItemContext = createContext<FormItemContextValue>({} as FormItemContextValue);
 
-function FormItem({ className, ref, ...props }: ComponentPropsWithRef<'div'>) {
+function FormItem({ className, ...props }: ComponentProps<'div'>) {
   const id = useId();
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn('w-full space-y-2', className)} {...props} />
+      <div className={cn('w-full space-y-2', className)} {...props} />
     </FormItemContext.Provider>
   );
 }
 FormItem.displayName = 'FormItem';
 
-function FormLabel({
-  className,
-  ref,
-  ...props
-}: ComponentPropsWithRef<typeof LabelPrimitive.Root>) {
+function FormLabel({ className, ...props }: ComponentProps<typeof LabelPrimitive.Root>) {
   const { error, formItemId } = useFormField();
 
   return (
-    <Label
-      ref={ref}
-      className={cn(error && 'text-destructive', className)}
-      htmlFor={formItemId}
-      {...props}
-    />
+    <Label className={cn(error && 'text-destructive', className)} htmlFor={formItemId} {...props} />
   );
 }
 FormLabel.displayName = 'FormLabel';
 
-function FormControl({ ref, ...props }: ComponentPropsWithRef<typeof Slot>) {
+function FormControl(props: ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
 
   return (
     <Slot
-      ref={ref}
       id={formItemId}
       aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`}
       aria-invalid={!!error}
@@ -111,12 +101,11 @@ function FormControl({ ref, ...props }: ComponentPropsWithRef<typeof Slot>) {
 }
 FormControl.displayName = 'FormControl';
 
-function FormDescription({ className, ref, ...props }: ComponentPropsWithRef<'p'>) {
+function FormDescription({ className, ...props }: ComponentProps<'p'>) {
   const { formDescriptionId } = useFormField();
 
   return (
     <p
-      ref={ref}
       id={formDescriptionId}
       className={cn('text-xs text-muted-foreground', className)}
       {...props}
@@ -125,13 +114,12 @@ function FormDescription({ className, ref, ...props }: ComponentPropsWithRef<'p'
 }
 FormDescription.displayName = 'FormDescription';
 
-type FormMessageProps<T extends NestedKeyOf<Messages>> = ComponentPropsWithRef<'p'> & {
+type FormMessageProps<T extends NestedKeyOf<Messages>> = ComponentProps<'p'> & {
   t?: (key: keyof NestedValueOf<Messages, T>) => string;
 };
 function FormMessage<T extends NestedKeyOf<Messages>>({
   className,
   children,
-  ref,
   t,
   ...props
 }: FormMessageProps<T>) {
@@ -143,7 +131,6 @@ function FormMessage<T extends NestedKeyOf<Messages>>({
 
   return (
     <p
-      ref={ref}
       id={formMessageId}
       className={cn('text-xs font-medium text-destructive', className)}
       {...props}>

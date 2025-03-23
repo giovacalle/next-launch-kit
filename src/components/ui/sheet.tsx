@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentPropsWithRef } from 'react';
+import { ComponentProps } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -33,11 +33,7 @@ const SheetClose = SheetPrimitive.Close;
 
 const SheetPortal = SheetPrimitive.Portal;
 
-function SheetOverlay({
-  className,
-  ref,
-  ...props
-}: ComponentPropsWithRef<typeof SheetPrimitive.Overlay>) {
+function SheetOverlay({ className, ...props }: ComponentProps<typeof SheetPrimitive.Overlay>) {
   return (
     <SheetPrimitive.Overlay
       className={cn(
@@ -45,22 +41,18 @@ function SheetOverlay({
         className
       )}
       {...props}
-      ref={ref}
     />
   );
 }
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
-type SheetContentProps = ComponentPropsWithRef<typeof SheetPrimitive.Content> &
+type SheetContentProps = ComponentProps<typeof SheetPrimitive.Content> &
   VariantProps<typeof sheetVariants>;
-function SheetContent({ side = 'right', className, children, ref, ...props }: SheetContentProps) {
+function SheetContent({ side = 'right', className, children, ...props }: SheetContentProps) {
   return (
     <SheetPortal>
       <SheetOverlay />
-      <SheetPrimitive.Content
-        ref={ref}
-        className={cn(sheetVariants({ side }), className)}
-        {...props}>
+      <SheetPrimitive.Content className={cn(sheetVariants({ side }), className)} {...props}>
         <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
           <Icon icon="mdi:close" width={20} height={20} />
           <span className="sr-only">Close</span>
@@ -72,26 +64,21 @@ function SheetContent({ side = 'right', className, children, ref, ...props }: Sh
 }
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
-function SheetHeader({ className, ...props }: ComponentPropsWithRef<'div'>) {
+function SheetHeader({ className, ...props }: ComponentProps<'div'>) {
   return <div className={cn('flex flex-col gap-2 text-left', className)} {...props} />;
 }
 SheetHeader.displayName = 'SheetHeader';
 
-function SheetFooter({ className, ...props }: ComponentPropsWithRef<'div'>) {
+function SheetFooter({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div className={cn('flex flex-col-reverse sm:flex-row sm:justify-end', className)} {...props} />
   );
 }
 SheetFooter.displayName = 'SheetFooter';
 
-function SheetTitle({
-  className,
-  ref,
-  ...props
-}: ComponentPropsWithRef<typeof SheetPrimitive.Title>) {
+function SheetTitle({ className, ...props }: ComponentProps<typeof SheetPrimitive.Title>) {
   return (
     <SheetPrimitive.Title
-      ref={ref}
       className={cn('text-lg font-semibold text-foreground', className)}
       {...props}
     />
@@ -101,12 +88,10 @@ SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
 function SheetDescription({
   className,
-  ref,
   ...props
-}: ComponentPropsWithRef<typeof SheetPrimitive.Description>) {
+}: ComponentProps<typeof SheetPrimitive.Description>) {
   return (
     <SheetPrimitive.Description
-      ref={ref}
       className={cn('text-sm text-muted-foreground', className)}
       {...props}
     />

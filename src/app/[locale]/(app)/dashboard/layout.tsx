@@ -6,7 +6,6 @@ import { enforceAuthenticatedUser } from '@/lib/auth';
 
 import { Icon } from '@iconify/react';
 import { Collapsible } from '@radix-ui/react-collapsible';
-import '@radix-ui/react-dropdown-menu';
 
 import { LangSelector } from '@/components/lang-selector/lang-selector';
 import { Logo } from '@/components/logo/logo';

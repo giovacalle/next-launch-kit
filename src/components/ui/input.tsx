@@ -22,14 +22,9 @@ const inputVariants = tv({
 
 type InputProps = Omit<ComponentPropsWithRef<'input'>, 'size'> & VariantProps<typeof inputVariants>;
 
-function Input({ className, variant, size, type, ref, ...props }: InputProps) {
+function Input({ className, variant, size, type, ...props }: InputProps) {
   return (
-    <input
-      type={type}
-      className={cn(inputVariants({ variant, size }), className)}
-      ref={ref}
-      {...props}
-    />
+    <input type={type} className={cn(inputVariants({ variant, size }), className)} {...props} />
   );
 }
 Input.displayName = 'Input';

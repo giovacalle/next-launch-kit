@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentPropsWithRef } from 'react';
+import { ComponentProps } from 'react';
 
 import { cn } from '@/lib/tailwind';
 
@@ -13,13 +13,11 @@ const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 function DropdownMenuContent({
   className,
   sideOffset = 4,
-  ref,
   ...props
-}: ComponentPropsWithRef<typeof DropdownMenuPrimitive.Content>) {
+}: ComponentProps<typeof DropdownMenuPrimitive.Content>) {
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
-        ref={ref}
         sideOffset={sideOffset}
         className={cn(
           'z-[12345] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md',
@@ -33,14 +31,13 @@ function DropdownMenuContent({
 }
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
-type DropdownMenuItemProps = ComponentPropsWithRef<typeof DropdownMenuPrimitive.Item> & {
+type DropdownMenuItemProps = ComponentProps<typeof DropdownMenuPrimitive.Item> & {
   inset?: boolean;
 };
 
-function DropdownMenuItem({ className, inset, ref, ...props }: DropdownMenuItemProps) {
+function DropdownMenuItem({ className, inset, ...props }: DropdownMenuItemProps) {
   return (
     <DropdownMenuPrimitive.Item
-      ref={ref}
       className={cn(
         'relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0',
         inset && 'pl-8',
@@ -55,7 +52,7 @@ DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 function DropdownMenuSeparator({
   className,
   ...props
-}: ComponentPropsWithRef<typeof DropdownMenuPrimitive.Separator>) {
+}: ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
   return (
     <DropdownMenuPrimitive.Separator
       className={cn('-mx-1 my-1 h-px bg-muted', className)}
