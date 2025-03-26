@@ -108,6 +108,15 @@ However, as mentioned in the file, this rate-limiter is applicable when the app 
 
 </details>
 
+<details>
+<summary>Middleware usage</summary>
+
+Middleware in Next.js should be used as a lightweight mechanism for performing simple checks or transformations during the request lifecycle. However, it should not be relied upon as a definitive security layer. Therefore, critical security checks should always be implemented in each server action or API route.
+
+[CVE-2025-29927](https://nextjs.org/blog/cve-2025-29927)
+
+</details>
+
 ## 🧪 Usage
 
 1.  Click `use this template`, then **[create a new repository](https://github.com/new?template_name=next-launch-kit&template_owner=giovacalle)**, and clone it to your local machine
