@@ -67,7 +67,7 @@
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2",
     "drizzle-kit": "^0.24.2",
-    "eslint": "^8",
+    "eslint": "^9.23.0",
     "eslint-config-next": "15.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-check-file": "^2.8.0",

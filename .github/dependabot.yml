@@ -6,6 +6,7 @@ updates:
       interval: 'monthly'
     ignore:
       - dependency-name: 'pnpm'
+        update-types: ['version-update:semver-patch']
     commit-message:
       prefix: 'deps'
     open-pull-requests-limit: 10
