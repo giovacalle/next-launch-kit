@@ -30,7 +30,7 @@ function Sidebar({ children }: { children: ReactNode }) {
         <SheetContent
           data-sidebar="sidebar"
           side="left"
-          className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:!hidden"
+          className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden!"
           style={{ '--sidebar-width': sidebar.width } as CSSProperties}>
           <VisuallyHidden>
             <SheetTitle>Sidebar</SheetTitle>
@@ -46,7 +46,7 @@ function Sidebar({ children }: { children: ReactNode }) {
       {/* this create the gap between the sidebar and the content */}
       <div
         className={cn(
-          'relative h-svh w-[--sidebar-width] bg-transparent transition-[width] duration-200 ease-linear',
+          'relative h-svh w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
           'group-data-[offscreen=true]:w-0'
         )}
       />
@@ -54,7 +54,7 @@ function Sidebar({ children }: { children: ReactNode }) {
       <div
         data-sidebar="sidebar"
         className={cn(
-          'fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] flex-col bg-sidebar transition-[left,right,width] duration-200 ease-linear md:flex',
+          'bg-sidebar fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) flex-col transition-[left,right,width] duration-200 ease-linear md:flex',
           'left-0 group-data-[offscreen=true]:left-[calc(var(--sidebar-width)*-1)]'
         )}>
         {children}
@@ -129,7 +129,7 @@ function SidebarGroupLabel({
     <Comp
       data-sidebar="group-label"
       className={cn(
-        'flex shrink-0 items-center rounded-md p-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
+        'text-sidebar-foreground/70 ring-sidebar-ring flex shrink-0 items-center rounded-md p-2 text-xs font-medium outline-hidden transition-[margin,opa] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
         className
       )}
       {...props}
@@ -143,7 +143,7 @@ const sidebarMenuVariants = tv({
   variants: {
     variant: {
       default: '',
-      sub: 'ml-3.5 translate-x-px border-l border-sidebar-border px-2.5 py-0.5'
+      sub: 'border-sidebar-border ml-3.5 translate-x-px border-l px-2.5 py-0.5'
     }
   },
   defaultVariants: {
@@ -187,11 +187,11 @@ function SidebarMenuItem({
 SidebarMenuItem.displayName = 'SidebarMenuItem';
 
 const sidebarMenuButtonVariants = tv({
-  base: 'flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+  base: 'ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:font-medium [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
   variants: {
     variant: {
       default: '',
-      sub: 'translate-x-px py-1 text-sidebar-foreground'
+      sub: 'text-sidebar-foreground translate-x-px py-1'
     },
     size: {
       default: 'text-sm',
@@ -246,7 +246,7 @@ function SidebarInset({ children, ...props }: SidebarInsetProps) {
   return (
     <div
       data-sidebar="inset"
-      className="relative flex min-h-svh flex-1 flex-col bg-background"
+      className="bg-background relative flex min-h-svh flex-1 flex-col"
       {...props}>
       {children}
     </div>

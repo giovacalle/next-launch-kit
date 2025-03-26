@@ -14,7 +14,7 @@ export function FullPageLoading() {
   }, []);
 
   return (
-    <div className="fixed left-0 top-0 z-[9999] flex h-full w-full flex-col items-center justify-center bg-black/80">
+    <div className="fixed top-0 left-0 z-9999 flex h-full w-full flex-col items-center justify-center bg-black/80">
       <Icon icon="mdi:loading" width={100} height={100} color="white" className="animate-spin" />
     </div>
   );

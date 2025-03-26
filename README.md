@@ -31,7 +31,7 @@ We prefer to keep this project simple with certain packages/features, so any new
 - Tailwind/CSS utilities
   - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge)
   - [tailwind-variants](https://www.npmjs.com/package/tailwind-variants)
-  - [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate)
+  - [tw-animate-css](https://www.npmjs.com/package/tw-animate-css)
   - [clsx](https://www.npmjs.com/package/clsx)
 - Components
   - [radix-ui](https://www.radix-ui.com/primitives)
@@ -60,14 +60,14 @@ We prefer to keep this project simple with certain packages/features, so any new
 
 We replace `lucide-react` (that comes with `shadcn` components) with `@iconify/react`, because we like the multi-repos approach of iconify and its implementation of icons.
 
-#### Why we are using `tailwind-variants` ?
+#### Why we are using `tailwind-variants` instead of `class-variance-authority`?
 
 `tailwind-variants` is a plugin built on top of `class-variance-authority` and provides some additional features like:
 
 - [slots](https://www.tailwind-variants.org/docs/slots)
-- [responsive variants](https://www.tailwind-variants.org/docs/variants#responsive-variants)
+- ~~[responsive variants](https://www.tailwind-variants.org/docs/variants#responsive-variants)~~ _(deprecated)_
 
-So, when we import shadcn components, we replaced the default class-variance-authority with tailwind-variants.
+If you want to compare the two packages, check out the following link: [comparison](https://www.tailwind-variants.org/docs/comparison).
 
 #### Why not use `shadcn CLI` ?
 

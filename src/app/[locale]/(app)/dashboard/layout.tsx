@@ -116,7 +116,7 @@ export default async function DashboardLayout({
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 flex shrink-0 items-center gap-2 border-b bg-background p-4">
+        <header className="bg-background sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
           <SidebarTrigger />
           <span className="mr-auto">Page title</span>
           <LangSelector />
@@ -137,7 +137,7 @@ async function NavUser() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-            <Avatar className="h-8 w-8 rounded-lg">
+            <Avatar className="size-8 rounded-lg">
               <AvatarImage src={profile.avatar ?? ''} alt={profile.name} />
               <AvatarFallback className="rounded-lg">
                 {profile.name.charAt(0) + (profile.surname ? profile.surname.charAt(0) : '')}
@@ -151,7 +151,7 @@ async function NavUser() {
           </SidebarMenuButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+          className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
           align="start"
           alignOffset={-4}>
           <ToggleTheme />

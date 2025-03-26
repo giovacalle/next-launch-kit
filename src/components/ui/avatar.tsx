@@ -9,7 +9,7 @@ import * as AvatarPrimitive from '@radix-ui/react-avatar';
 function Avatar({ className, ...props }: ComponentProps<typeof AvatarPrimitive.Root>) {
   return (
     <AvatarPrimitive.Root
-      className={cn('relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full', className)}
+      className={cn('relative flex size-10 shrink-0 overflow-hidden rounded-full', className)}
       {...props}
     />
   );
@@ -27,7 +27,7 @@ function AvatarFallback({ className, ...props }: ComponentProps<typeof AvatarPri
   return (
     <AvatarPrimitive.Fallback
       className={cn(
-        'flex h-full w-full items-center justify-center rounded-full bg-muted',
+        'bg-muted flex h-full w-full items-center justify-center rounded-full',
         className
       )}
       {...props}

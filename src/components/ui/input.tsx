@@ -5,10 +5,10 @@ import { cn } from '@/lib/tailwind';
 import { type VariantProps, tv } from 'tailwind-variants';
 
 const inputVariants = tv({
-  base: 'flex w-full rounded-md border px-3 py-2 transition-colors file:border-0 file:bg-transparent file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 aria-[invalid=true]:!border-destructive aria-[invalid=true]:!ring-destructive',
+  base: 'file:text-foreground placeholder:text-muted-foreground aria-invalid:border-destructive! aria-invalid:ring-destructive! flex w-full rounded-md border px-3 py-2 transition-colors file:border-0 file:bg-transparent file:font-medium focus-visible:ring-1 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50',
   variants: {
     variant: {
-      transparent: 'border-input bg-transparent ring-ring'
+      transparent: 'border-input ring-ring bg-transparent'
     },
     size: {
       default: 'text-sm'

@@ -16,7 +16,7 @@ export default async function Header() {
   const user = await getCurrentUser();
 
   return (
-    <header className="sticky top-0 z-[1234] h-max w-full bg-background/50 p-5 py-3 backdrop-blur-md md:px-8">
+    <header className="bg-background/50 sticky top-0 z-1234 h-max w-full p-5 py-3 backdrop-blur-md md:px-8">
       <nav className="flex items-center justify-between gap-5 text-sm font-medium">
         <Logo />
         <div className="mr-auto max-md:hidden">
