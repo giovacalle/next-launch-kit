@@ -58,7 +58,7 @@
     "zsa-react": "^0.2.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
+    "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.5.0",
     "@iconify/react": "^5.0.2",
     "@tailwindcss/postcss": "^4.0.15",
